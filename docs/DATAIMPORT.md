@@ -2,13 +2,41 @@
 
 ## initialize environment (once)
 
-### create and initialize database
-- create mediadb the master-database (mysql)
+### create solr-core
+- create solr-core
+
+### initialze with osm-data
+- select available tags [available osm-tags](https://taginfo.openstreetmap.org/tags/natural=peak#overview)
+- get data export as geojson  [git via overpass-turbo](http://overpass-turbo.eu/#)
 ```
-mysql
-source installer/db/mysql/musikdb/step1_create-db.sql
-source installer/db/mysql/musikdb/step3_import-data.sql
-source installer/db/mysql/musikdb/step2_create-user.sql
+/*
+This query looks for nodes, ways and relations 
+with the given key/value combination.
+Choose your region and hit the Run button above!
+*/
+[out:json][timeout:1125];
+// gather results
+(
+  // query part for: “natural=peak”
+  node["natural"="peak"]({{bbox}});
+  way["natural"="peak"]({{bbox}});
+  relation["natural"="peak"]({{bbox}});
+);
+// print results
+out body;
+>;
+out skel qt;
+```
+- convert geojson to GeoDoc-json and import
+```
+f:
+cd \projekte\mygeomanager
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\tmp\import-peaks-canaren.geojson --mode SOLR> d:\tmp\import-gdocs-peaks-canaren.json
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\tmp\import-alpine-huts.geojson --mode SOLR > d:\tmp\import-gdocs-alpine-huts.json
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\tmp\import-peaks-alpen.geojson --mode SOLR > d:\tmp\import-gdocs-peaks-alpen.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\tmp\import-gdocs-peaks-canaren.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\tmp\import-gdocs-alpine-huts.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\tmp\import-gdocs-peaks-alpen.json
 ```
 
 ### configure local environments

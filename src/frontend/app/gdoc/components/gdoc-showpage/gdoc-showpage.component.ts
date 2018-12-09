@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/co
 import {GeoDocRecord} from '../../../../shared/gdoc-commons/model/records/gdoc-record';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {Layout, LayoutService, LayoutSizeData} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
+import {LayoutService, LayoutSizeData} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {ErrorResolver} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/resolver/error.resolver';
 import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
 import {PageUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/page.utils';
@@ -16,7 +16,6 @@ import {GeoDocSearchForm} from '../../../../shared/gdoc-commons/model/forms/gdoc
 import {Facets} from '@dps/mycms-commons/dist/search-commons/model/container/facets';
 import {GeoDocSearchFormConverter} from '../../../shared-gdoc/services/gdoc-searchform-converter.service';
 import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
-import {isArray, isNumber} from 'util';
 import {GeoDocContentUtils} from '../../../shared-gdoc/services/gdoc-contentutils.service';
 import {GeoDocDataService} from '../../../../shared/gdoc-commons/services/gdoc-data.service';
 import {
@@ -38,39 +37,8 @@ export class GeoDocShowpageComponent extends CommonDocShowpageComponent<GeoDocRe
     tagcloudSearchResult = new GeoDocSearchResult(new GeoDocSearchForm({}), 0, undefined, new Facets());
     flgShowMap = false;
     flgShowProfileMap = false;
-    flgShowTopImages = true;
     flgMapAvailable = false;
     flgProfileMapAvailable = false;
-    flgTopImagesAvailable = false;
-    defaultSubImageLayout = Layout.SMALL;
-    showResultListTrigger: {
-        IMAGE: boolean|number;
-        VIDEO: boolean|number;
-        LOCATION: boolean|number;
-        NEWS: boolean|number;
-        ROUTE: boolean|number;
-        TOPIMAGE: boolean|number;
-        TRACK: boolean|number;
-        TRIP: boolean|number;
-    } = {
-        IMAGE: false,
-        VIDEO: false,
-        LOCATION: false,
-        NEWS: false,
-        ROUTE: false,
-        TOPIMAGE: false,
-        TRACK: false,
-        TRIP: false
-    };
-    availableTabs = {
-        'IMAGE': true,
-        'ROUTE': true,
-        'TRACK': true,
-        'LOCATION': true,
-        'TRIP': true,
-        'VIDEO': true,
-        'NEWS': true
-    };
     private layoutSize: LayoutSizeData;
 
     constructor(route: ActivatedRoute, cdocRoutingService: GeoDocRoutingService,
@@ -113,42 +81,11 @@ export class GeoDocShowpageComponent extends CommonDocShowpageComponent<GeoDocRe
         this.cd.markForCheck();
     }
 
-    onTopImagesFound(searchResult: GeoDocSearchResult) {
-        if (searchResult === undefined || searchResult.recordCount <= 3) {
-            this.flgTopImagesAvailable = false;
-        } else {
-            this.flgTopImagesAvailable = true;
-        }
-        this.flgShowTopImages = this.flgTopImagesAvailable;
-        if (!this.layoutService.isDesktop()) {
-            this.flgShowTopImages = false;
-        }
-        this.cd.markForCheck();
-
-        return false;
-    }
-
-    onTagcloudClicked(filterValue: any, filter: string) {
-        const filters = this.getFiltersForType(this.record, 'ROUTE');
-        filters[filter] = filterValue;
-        const searchForm = new GeoDocSearchForm(filters);
-        const url = this.searchFormConverter.searchFormToUrl(this.baseSearchUrl, searchForm);
-        this.commonRoutingService.navigateByUrl(url);
-
-        return false;
-    }
-
-
     getFiltersForType(record: GeoDocRecord, type: string): any {
-        const minPerPage = isNumber(this.showResultListTrigger[type]) ? this.showResultListTrigger[type] : 0;
+        const minPerPage = 0;
 
         const filters = (<GeoDocContentUtils>this.contentUtils).getGeoDocSubItemFiltersForType(record, type,
             (this.pdoc ? this.pdoc.theme : undefined), minPerPage);
-        if (type === 'TOPIMAGE') {
-            if (this.layoutSize && this.layoutSize.width > 1200 && this.layoutSize.width < 1480) {
-                filters['perPage'] = 3;
-            }
-        }
 
         return filters;
     }
@@ -169,22 +106,6 @@ export class GeoDocShowpageComponent extends CommonDocShowpageComponent<GeoDocRe
     protected configureProcessingOfResolvedData(): void {
         const me = this;
         const config = me.appService.getAppConfig();
-        if (BeanUtils.getValue(config, 'components.gdoc-showpage.showBigImages') === true) {
-            this.defaultSubImageLayout = Layout.BIG;
-        }
-        if (BeanUtils.getValue(config, 'components.gdoc-showpage.availableTabs') !== undefined) {
-            me.availableTabs = BeanUtils.getValue(config, 'components.gdoc-showpage.availableTabs');
-        }
-        if (isArray(BeanUtils.getValue(config, 'components.gdoc-showpage.allowedQueryParams'))) {
-            const allowedParams = BeanUtils.getValue(config, 'components.gdoc-showpage.allowedQueryParams');
-            for (const type in me.showResultListTrigger) {
-                const paramName = 'show' + type;
-                if (allowedParams.indexOf(paramName) >= 0 && me.queryParamMap && me.queryParamMap.get(paramName)) {
-                    me.showResultListTrigger[type] =
-                        GeoDocSearchForm.genericFields.perPage.validator.sanitize(me.queryParamMap.get(paramName));
-                }
-            }
-        }
     }
 
     protected getConfiguredIndexableTypes(config: {}): string[] {
@@ -214,8 +135,6 @@ export class GeoDocShowpageComponent extends CommonDocShowpageComponent<GeoDocRe
 
         me.flgShowMap = this.flgMapAvailable;
         me.calcShowMaps();
-        me.flgTopImagesAvailable = true;
-        me.flgShowTopImages = true;
     }
 
     private calcShowMaps() {

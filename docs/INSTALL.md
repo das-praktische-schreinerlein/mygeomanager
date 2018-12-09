@@ -3,32 +3,7 @@
 ## prepare-dev
 
 ### prepare src-directory
-- add symlinks
-    - on windows in admin-console
-```
-cd src\frontend\ && mklink /D shared ..\shared && cd ..\backend\ && mklink /D shared ..\shared  && mklink /D shared-node ..\shared-node && cd ..\frontendserver\ && mklink /D shared ..\shared && mklink /D shared-node ..\shared-node
-```
-- run `npm install`
-- fix mytourbook/node_modules/@types/vis/index.d.ts
-```
-export class Graph3d {
-  constructor(container: HTMLElement,
-              items: any,
-              options?: any);
-
-  setCameraPosition(pos);
-}
-```
-- fix mytourbook/node_modules/js-data/dist/js-data.js defineMapper 
-```
-    descriptor.configurable = true;
-    Object.defineProperty(mapper.recordClass.prototype, localField, descriptor);
-```
-- node_modules\@angular\cli\models\webpack-configs\common.js for tests: resolve .js before .ts
-```
-            extensions: ['.js', '.ts'],
-``` 
-
+- run `npm prune && npm install`
 
 ## Development server
 Run `npm backend-build-serve` to build and start the backend. Navigate to `http://localhost:4100/api/v1/de/pdoc/` to get the pdocs.

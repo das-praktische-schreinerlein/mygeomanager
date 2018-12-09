@@ -116,18 +116,6 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
         values['descTxt'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'desc_txt', undefined);
         values['descHtml'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'desc_html_txt', undefined);
         values['descMd'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'desc_md_txt', undefined);
-        values['geoDistance'] = this.mapperUtils.getAdapterCoorValue(doc,
-            this.mapperUtils.mapToAdapterFieldName(mapping, 'distance'), undefined);
-        values['geoLon'] = this.mapperUtils.getAdapterCoorValue(doc,
-            this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_lon_s'), undefined);
-        values['geoLat'] = this.mapperUtils.getAdapterCoorValue(doc,
-            this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_lat_s'), undefined);
-        values['geoEle'] = this.mapperUtils.getAdapterCoorValue(doc,
-            this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_ele_s'), undefined);
-        values['geoLoc'] = this.mapperUtils.getAdapterCoorValue(doc,
-            this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_loc_p'), undefined);
-        values['gpsTrackSrc'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'gpstrack_src_s', undefined);
-        values['gpsTrackBasefile'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'gpstracks_basefile_s', undefined);
 
         const origKeywordsArr = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'keywords_txt', '').split(',');
         const newKeywordsArr = [];
@@ -166,6 +154,19 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
             .split(',,').join(', ');
         values['subtype'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'subtype_s', undefined);
         values['type'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'type_s', undefined);
+
+        values['geoDistance'] = this.mapperUtils.getAdapterCoorValue(doc,
+            this.mapperUtils.mapToAdapterFieldName(mapping, 'distance'), undefined);
+        values['geoLon'] = this.mapperUtils.getAdapterCoorValue(doc,
+            this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_lon_s'), undefined);
+        values['geoLat'] = this.mapperUtils.getAdapterCoorValue(doc,
+            this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_lat_s'), undefined);
+        values['geoEle'] = this.mapperUtils.getAdapterCoorValue(doc,
+            this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_ele_s'), undefined);
+        values['geoLoc'] = this.mapperUtils.getAdapterCoorValue(doc,
+            this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_loc_p'), undefined);
+        values['gpsTrackSrc'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'gpstrack_src_s', undefined);
+        values['gpsTrackBasefile'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'gpstracks_basefile_s', undefined);
         values['locHirarchie'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'loc_lochirarchie_s', '')
             .replace(/,,/g, ' -> ')
             .replace(/,/g, ' ')

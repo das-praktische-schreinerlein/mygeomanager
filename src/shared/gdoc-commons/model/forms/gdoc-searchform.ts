@@ -1,4 +1,7 @@
-import {GenericSearchFormFieldConfig} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-searchform';
+import {
+    GenericSearchForm,
+    GenericSearchFormFieldConfig
+} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-searchform';
 import {
     GenericValidatorDatatypes,
     IdCsvValidationRule,
@@ -11,6 +14,7 @@ import {
     CommonDocSearchFormFactory,
     CommonDocSearchFormValidator
 } from '@dps/mycms-commons/dist/search-commons/model/forms/cdoc-searchform';
+import {NumberValidationRule} from "@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util";
 
 export class GeoDocSearchForm extends CommonDocSearchForm {
     static gdocFields = {
@@ -37,6 +41,7 @@ export class GeoDocSearchForm extends CommonDocSearchForm {
 
     constructor(values: {}) {
         super(values);
+        GenericSearchForm.genericFields.perPage = new GenericSearchFormFieldConfig(GenericValidatorDatatypes.PERPAGE, new NumberValidationRule(false, 0, 1000, 100))
         this.where = values['where'] || '';
         this.locId = values['locId'] || '';
         this.nearby = values['nearby'] || '';

@@ -124,17 +124,24 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             id: props.id,
             image_id_i: props.imageId,
             loc_id_i: props.locId,
+
             dateshow_dt: props.dateshow,
             desc_txt: props.descTxt,
             desc_md_txt: props.descMd,
             desc_html_txt: props.descHtml,
+            keywords_txt: (props.keywords ? props.keywords.split(', ').join(',,') : ''),
+
+            name_s: props.name,
+            playlists_txt: (props.playlists ? props.playlists.split(', ').join(',,') : ''),
+            type_s: props.type,
+            type_txt: props.type,
+
             geo_lon_s: props.geoLon,
             geo_lat_s: props.geoLat,
             geo_ele_s: props.geoEle,
             geo_loc_p: props.geoLoc,
             gpstracks_basefile_s: props.gpsTrackBasefile,
             gpstracks_src_s: props.gpsTrackSrc,
-            keywords_txt: (props.keywords ? props.keywords.split(', ').join(',,') : ''),
             loc_lochirarchie_s: (props.locHirarchie ? props.locHirarchie
                 .toLowerCase()
                 .replace(/[ ]*->[ ]*/g, ',,')
@@ -143,9 +150,7 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
                 .toLowerCase()
                 .replace(/,/g, ',,')
                 .replace(/ /g, '_') : ''),
-            name_s: props.name,
-            playlists_txt: (props.playlists ? props.playlists.split(', ').join(',,') : ''),
-            type_s: props.type,
+
             data_info_guides_s: BeanUtils.getValue(props, 'gdocdatainfo.guides'),
             data_tech_alt_min_i: BeanUtils.getValue(props, 'gdocdatatech.altMin'),
             data_tech_alt_min_facet_is: this.parseFacet(BeanUtils.getValue(props, 'gdocdatatech.altMin'), 500),

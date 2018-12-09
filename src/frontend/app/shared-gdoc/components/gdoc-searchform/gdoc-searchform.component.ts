@@ -25,64 +25,19 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
     // initialize a private variable _searchForm, it's a BehaviorSubject
     private geoLocationService = new GeoLocationService();
 
-    public optionsSelectWhen: IMultiSelectOption[] = [];
-    public optionsSelectWhere: IMultiSelectOption[] = [];
     public optionsSelectSubType: IMultiSelectOption[] = [];
-    public optionsSelectTechDataDistance: IMultiSelectOption[] = [];
-    public optionsSelectTechDataAscent: IMultiSelectOption[] = [];
     public optionsSelectTechDataAltitudeMax: IMultiSelectOption[] = [];
-    public optionsSelectTechDataDuration: IMultiSelectOption[] = [];
 
-    public settingsSelectWhen = this.defaultSeLectSettings;
-    public settingsSelectWhere: IMultiSelectSettings =
-        {dynamicTitleMaxItems: 5,
-            buttonClasses: 'btn btn-default btn-secondary text-right fullwidth btn-sm multiselect-highlight-value',
-            containerClasses: 'dropdown-inline fullwidth',
-            enableSearch: true,
-            showUncheckAll: true,
-            autoUnselect: true,
-            selectionLimit: 1};
-    public settingsSelectsubtype = this.defaultSeLectSettings;
-    public settingsSelectTechDataDistance = this.defaultSeLectSettings;
-    public settingsSelectTechDataAscent = this.defaultSeLectSettings;
-    public settingsSelectTechDataAltitudeMax = this.defaultSeLectSettings;
-    public settingsSelectTechDataDuration = this.defaultSeLectSettings;
+    public settingsSelectSubType: IMultiSelectSettings = this.defaultSeLectSettings;
+    public settingsSelectTechDataAltitudeMax: IMultiSelectSettings = this.defaultSeLectSettings;
 
-    public textsSelectWhen: IMultiSelectTexts = { checkAll: 'Alle auswählen',
-        uncheckAll: 'Alle abwählen',
-        checked: 'Zeit ausgewählt',
-        checkedPlural: 'Zeiten ausgewählt',
-        searchPlaceholder: 'Find',
-        defaultTitle: '',
-        allSelected: 'Jederzeit'};
-    public textsSelectWhere: IMultiSelectTexts = { checkAll: 'Alle auswählen',
-        uncheckAll: 'Alle abwählen',
-        checked: 'Region ausgewählt',
-        checkedPlural: 'Regionen ausgewählt',
-        searchPlaceholder: 'Find',
-        defaultTitle: '',
-        allSelected: 'Überall'};
-    public textsSelectsubtype: IMultiSelectTexts = { checkAll: 'Alle auswählen',
+    public textsSelectSubType: IMultiSelectTexts = { checkAll: 'Alle auswählen',
         uncheckAll: 'Alle abwählen',
         checked: 'Action ausgewählt',
         checkedPlural: 'Aktion ausgewählt',
         searchPlaceholder: 'Find',
         defaultTitle: '',
         allSelected: 'alles'};
-    public textsSelectTechDataDistance: IMultiSelectTexts = { checkAll: 'Alle auswählen',
-        uncheckAll: 'Alle abwählen',
-        checked: 'Strecke ausgewählt',
-        checkedPlural: 'Strecke ausgewählt',
-        searchPlaceholder: 'Find',
-        defaultTitle: '',
-        allSelected: 'Alle'};
-    public textsSelectTechDataAscent: IMultiSelectTexts = { checkAll: 'Alle auswählen',
-        uncheckAll: 'Alle abwählen',
-        checked: 'Aufstieg ausgewählt',
-        checkedPlural: 'Aufstieg ausgewählt',
-        searchPlaceholder: 'Find',
-        defaultTitle: '',
-        allSelected: 'Alle'};
     public textsSelectTechDataAltitudeMax: IMultiSelectTexts = { checkAll: 'Alle auswählen',
         uncheckAll: 'Alle abwählen',
         checked: 'Hähe ausgewählt',
@@ -90,16 +45,8 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
         searchPlaceholder: 'Find',
         defaultTitle: '',
         allSelected: 'Alle'};
-    public textsSelectTechDataDuration: IMultiSelectTexts = { checkAll: 'Alle auswählen',
-        uncheckAll: 'Alle abwählen',
-        checked: 'Dauer ausgewählt',
-        checkedPlural: 'Dauer ausgewählt',
-        searchPlaceholder: 'Find',
-        defaultTitle: '',
-        allSelected: 'Alle'};
 
     public showWhereAvailable = true;
-    public showWhenAvailable = true;
 
     @Input()
     public showWhere? = this.showForm;
@@ -191,14 +138,6 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
         const me = this;
 
         const rawValues = this.searchFormGroup.getRawValue();
-        this.optionsSelectWhen = this.searchFormUtils.moveSelectedToTop(
-            this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
-                this.gdocSearchFormUtils.getWhenValues(gdocSearchSearchResult), true, [], true),
-            rawValues['when']);
-        this.optionsSelectWhere = this.searchFormUtils.moveSelectedToTop(
-            this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
-                this.gdocSearchFormUtils.getWhereValues(gdocSearchSearchResult), true, [/^_+/, /_+$/], false),
-            rawValues['where']);
         this.optionsSelectSubType = this.searchFormUtils.moveSelectedToTop(
             this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
                 this.gdocSearchFormUtils.getSubTypeValues(gdocSearchSearchResult), true, [], true)
@@ -213,16 +152,8 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
                 }),
             rawValues['subtype']);
 
-        this.optionsSelectTechDataDistance = this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
-            this.gdocSearchFormUtils.getTechDataDistanceValues(gdocSearchSearchResult), true, [], true);
-        this.optionsSelectTechDataAscent = this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
-            this.gdocSearchFormUtils.getTechDataAscentValues(gdocSearchSearchResult), true, [], true);
         this.optionsSelectTechDataAltitudeMax = this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
             this.gdocSearchFormUtils.getTechDataAltitudeMaxValues(gdocSearchSearchResult), true, [], true);
-        this.optionsSelectTechDataDuration = this.searchFormUtils.moveSelectedToTop(
-            this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
-                this.gdocSearchFormUtils.getTechDataDurationValues(gdocSearchSearchResult), true, [], true),
-            rawValues['techDataDuration']);
 
         const values: GeoDocSearchForm = gdocSearchSearchResult.searchForm;
         const [lat, lon, dist] = this.gdocSearchFormUtils.extractNearbyPos(values.nearby);
@@ -238,11 +169,8 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
     }
 
     protected updateAvailabilityFlags(gdocSearchSearchResult: GeoDocSearchResult) {
-        this.showWhereAvailable = true || (this.optionsSelectWhere.length > 0);
-        this.showWhenAvailable = (this.optionsSelectWhen.length > 0 || this.optionsSelectTechDataDuration.length > 0);
-        this.showDetailsAvailable = (this.optionsSelectWhat.length > 0 ||
-            this.optionsSelectTechDataDistance.length > 0 || this.optionsSelectTechDataAltitudeMax.length > 0 ||
-            this.optionsSelectTechDataAscent.length > 0);
+        this.showWhereAvailable = true;
+        this.showDetailsAvailable = (this.optionsSelectWhat.length > 0 || this.optionsSelectTechDataAltitudeMax.length > 0);
         this.showMetaAvailable = (this.optionsSelectPlaylists.length > 0);
     }
 

@@ -25,9 +25,6 @@
                     <button *ngIf="!showWhat" class="btn btn-configure btn-sm float-right" (click)="showWhat = true; updateFormState();">
                         <span i18n="button show Whatform|Buttontext to show Whatform@@button.searchform.show.Whatform">"Was" filtern</span>
                         <span>&#x21D3;</span></button>
-                    <button *ngIf="!showWhen && showWhereAvailable" class="btn btn-configure btn-sm float-right" (click)="showWhen = true; updateFormState();">
-                        <span i18n="button show Whenform|Buttontext to show Whatform@@button.searchform.show.Whenform">"Zeit" ändern</span>
-                        <span>&#x21D3;</span></button>
                     <button *ngIf="!showWhere && showWhereAvailable" class="btn btn-configure btn-sm float-right" (click)="showWhere = true; updateFormState();">
                         <span i18n="button show Whereform|Buttontext to show Whereform@@button.searchform.show.Whereform">"Ort" filtern</span>
                         <span>&#x21D3;</span></button>
@@ -57,18 +54,7 @@
             </div>
         </div>
         <div class="row hidden-print" *ngIf="showWhereAvailable">
-            <div [class]="(width4 + ' input-group input-group-sm')">
-                <label [class]="'col-xs-3 col-form-label mr-2' + (searchFormGroup.get('where').value.length > 0 ? ' label-active' : ' lael-inactive')" i18n="where label|Label for filter: where@@label.searchform.gdoc.where">Where:</label>
-                <ss-multiselect-dropdown [options]="optionsSelectWhere"
-                                         [settings]="settingsSelectWhere"
-                                         [texts]="textsSelectWhere"
-                                         class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                         formControlName="where"
-                                         ngDefaultControl
-                                         (onAdded)="onChangeSelect()"
-                                         (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
-            </div>
-            <div [class]="(width4 + ' form-inline input-group input-group-sm')">
+            <div [class]="(width8 + ' form-inline input-group input-group-sm')">
                <label [class]="'col-xs-3 col-form-label mr-2 ' + (searchFormGroup.get('nearbyAddress').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="nearby label|Label for filter: nearby@@label.searchform.gdoc.nearby">Nahe:</label>
                 <input formControlName="nearbyAddress" type="text" (keydown.enter)="doLocationSearch('.nearbyAddressAutocompleteShort');" placeholder="Nahe" class="form-control nearbyAddressAutocompleteShort" i18n-placeholder="nearby placeholder|Placeholder for nearby@@placeholder.searchform.gdoc.nearby">
                 <input formControlName="nearby" type="text" style="display: none">
@@ -84,14 +70,14 @@
         </div>
         <div class="row hidden-print">
             <div [class]="(width4 + ' input-group input-group-sm')">
-               <label [class]="'col-form-label ' + (searchFormGroup.get('when').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="when label|Label for filter: when@@label.searchform.gdoc.when">When:</label>
-                <ng-container *ngIf="optionsSelectWhen.length > 0; else noFilterValues">
-                    <ss-multiselect-dropdown [options]="optionsSelectWhen"
-                                             [settings]="settingsSelectWhen"
-                                             [texts]="textsSelectWhen"
-                                             class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                             formControlName="when"
+                <label [class]="'col-xs-4 col-form-label mr-2 ' + (searchFormGroup.get('what').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="what label|Label for filter: what@@label.searchform.gdoc.what">What:</label>
+                <ng-container *ngIf="optionsSelectWhat.length > 0; else noFilterValues">
+                    <ss-multiselect-dropdown [options]="optionsSelectWhat"
+                                             [settings]="settingsSelectWhat"
+                                             [texts]="textsSelectWhat"
+                                             formControlName="what"
                                              ngDefaultControl
+                                             class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
                                              (onAdded)="onChangeSelect()"
                                              (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
                 </ng-container>
@@ -123,18 +109,7 @@
         <fieldset class="hidden-print" *ngIf="showWhere && showWhereAvailable">
             <legend i18n="where label|Label for fieldset: where@@label.searchform.gdoc.legend.where">&#x26f3; Wo</legend>
             <div class="row">
-                <div [class]="(width4 + ' input-group input-group-sm')">
-                   <label [class]="'col-xs-3 col-form-label mr-2 ' + (searchFormGroup.get('where').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="where label|Label for filter: where@@label.searchform.gdoc.where">Where:</label>
-                    <ss-multiselect-dropdown [options]="optionsSelectWhere"
-                                             [settings]="settingsSelectWhere"
-                                             [texts]="textsSelectWhere"
-                                             class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                             formControlName="where"
-                                             ngDefaultControl
-                                             (onAdded)="onChangeSelect()"
-                                             (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
-                </div>
-                <div [class]="(width4 + ' form-inline input-group input-group-sm')">
+                <div [class]="(width8 + ' form-inline input-group input-group-sm')">
                    <label [class]="'col-xs-3 col-form-label mr-2 ' + (searchFormGroup.get('nearbyAddress').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="nearby label|Label for filter: nearby@@label.searchform.gdoc.nearby">Nahe:</label>
                     <input formControlName="nearbyAddress" type="text" (keydown.enter)="doLocationSearch('.nearbyAddressAutocomplete');" placeholder="Nahe" class="form-control nearbyAddressAutocomplete" i18n-placeholder="nearby placeholder|Placeholder for nearby@@placeholder.searchform.gdoc.nearby">
                     <input formControlName="nearby" type="text" style="display: none">
@@ -158,12 +133,12 @@
             <legend i18n="what label|Label for fieldset: what@@label.searchform.gdoc.legend.what">&#x26bd; Was</legend>
             <div class="row">
                 <div [class]="(width4 + ' input-group input-group-sm')">
-                    <label [class]="'col-xs-4 col-form-label mr-2 ' + (searchFormGroup.get('subtype').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="subtype label|Label for filter: subtype@@label.searchform.gdoc.subtype">Action:</label>
-                    <ng-container *ngIf="optionsSelectSubType.length > 0; else noFilterValues">
-                        <ss-multiselect-dropdown [options]="optionsSelectSubType"
-                                                 [settings]="settingsSelectSubType"
-                                                 [texts]="textsSelectSubType"
-                                                 formControlName="subtype"
+                    <label [class]="'col-xs-4 col-form-label mr-2 ' + (searchFormGroup.get('what').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="what label|Label for filter: what@@label.searchform.gdoc.what">What:</label>
+                    <ng-container *ngIf="optionsSelectWhat.length > 0; else noFilterValues">
+                        <ss-multiselect-dropdown [options]="optionsSelectWhat"
+                                                 [settings]="settingsSelectWhat"
+                                                 [texts]="textsSelectWhat"
+                                                 formControlName="what"
                                                  ngDefaultControl
                                                  class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
                                                  (onAdded)="onChangeSelect()"
@@ -205,101 +180,9 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="hidden-print" *ngIf="showWhen && showWhenAvailable">
-            <legend i18n="when label|Label for fieldset: when@@label.searchform.gdoc.legend.when">&#x231a; Zeit</legend>
-            <div class="row">
-                <div [class]="(width4 + ' input-group input-group-sm')">
-                   <label [class]="'col-form-label ' + (searchFormGroup.get('when').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="when label|Label for filter: when@@label.searchform.gdoc.when">When:</label>
-                    <ng-container *ngIf="optionsSelectWhen.length > 0; else noFilterValues">
-                        <ss-multiselect-dropdown [options]="optionsSelectWhen"
-                                                 [settings]="settingsSelectWhen"
-                                                 [texts]="textsSelectWhen"
-                                                 class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                                 formControlName="when"
-                                                 ngDefaultControl
-                                                 (onAdded)="onChangeSelect()"
-                                                 (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
-                    </ng-container>
-                </div>
-                <div [class]="(width4 + ' input-group input-group-sm')">
-                   <label [class]="'col-xs-2 col-form-label mr-2 ' + (searchFormGroup.get('techDataDuration').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="techDataDuration label|Label for filter: techDataDuration@@label.searchform.gdoc.techDataDuration">Dauer:</label>
-                    <ng-container *ngIf="optionsSelectTechDataDuration.length > 0; else noFilterValues">
-                        <ss-multiselect-dropdown [options]="optionsSelectTechDataDuration"
-                                                 [settings]="settingsSelectTechDataDuration"
-                                                 [texts]="textsSelectTechDataDuration"
-                                                 formControlName="techDataDuration"
-                                                 ngDefaultControl
-                                                 class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                                 (onAdded)="onChangeSelect()"
-                                                 (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
-                    </ng-container>
-                </div>
-                <div [class]="(width4 + ' input-group input-group-sm justify-content-end')">
-                    <button class="btn btn-configure btn-sm" (click)="showWhen = false">
-                        <span i18n="button hide Whenform|Buttontext to hide Whenform@@button.searchform.hide.Whenform">ausblenden</span>
-                        <span>&#x21D1;</span></button>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="hidden-print" *ngIf="showMeta && showMetaAvailable">
-            <legend i18n="meta label|Label for fieldset: meta@@label.searchform.gdoc.legend.meta">&#x2764; Bewertung</legend>
-            <div class="row">
-                <div [class]="(width4 + ' input-group input-group-sm')" *ngIf="optionsSelectPlaylists.length > 0">
-                   <label [class]="'col-xs-2 col-form-label mr-2 ' + (searchFormGroup.get('playlists').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="playlists label|Label for filter: playlists@@label.searchform.gdoc.playlists">Playlist:</label>
-                    <ng-container *ngIf="optionsSelectPlaylists.length > 0; else noFilterValues">
-                        <ss-multiselect-dropdown [options]="optionsSelectPlaylists"
-                                                 [settings]="settingsSelectPlaylists"
-                                                 [texts]="textsSelectPlaylists"
-                                                 formControlName="playlists"
-                                                 ngDefaultControl
-                                                 class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                                 (onAdded)="onChangeSelect()"
-                                                 (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
-                    </ng-container>
-                </div>
-                <div [class]="(width4 + ' input-group input-group-sm justify-content-end')">
-                    <button class="btn btn-configure btn-sm" (click)="showMeta = false; updateFormState();">
-                        <span i18n="button hide Metasform|Buttontext to hide Netaform@@button.searchform.hide.Metaform">ausblenden</span>
-                        <span>&#x21D1;</span></button>
-                </div>
-            </div>
-        </fieldset>
         <fieldset class="hidden-print" *ngIf="showDetails && showDetailsAvailable">
             <legend i18n="details label|Label for fieldset: details@@label.searchform.gdoc.legend.details">&#x231b; Details</legend>
             <div class="row">
-                <div [class]="(width4 + ' input-group input-group-sm')">
-                   <label [class]="'col-xs-4 col-form-label mr-2 ' + (searchFormGroup.get('what').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="what label|Label for filter: what@@label.searchform.gdoc.what">What:</label>
-                    <ng-container *ngIf="optionsSelectWhat.length > 0; else noFilterValues">
-                        <ss-multiselect-dropdown [options]="optionsSelectWhat"
-                                                 [settings]="settingsSelectWhat"
-                                                 [texts]="textsSelectWhat"
-                                                 formControlName="what"
-                                                 ngDefaultControl
-                                                 class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                                 (onAdded)="onChangeSelect()"
-                                                 (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
-                    </ng-container>
-                </div>
-                <div [class]="(width4 + ' input-group input-group-sm justify-content-end')">
-                    <button class="btn btn-configure btn-sm" (click)="showDetails = false; updateFormState();">
-                        <span i18n="button hide Detailsform|Buttontext to hide Detailsform@@button.searchform.hide.Detailsform">ausblenden</span>
-                        <span>&#x21D1;</span></button>
-                </div>
-            </div>
-            <div class="row">
-                <div [class]="(width4 + ' input-group input-group-sm')" *ngIf="optionsSelectTechDataDistance.length > 0">
-                   <label [class]="'col-xs-2 col-form-label mr-2 ' + (searchFormGroup.get('techDataDistance').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="techDataDistance label|Label for filter: techDataDistance@@label.searchform.gdoc.techDataDistance">Strecke:</label>
-                    <ng-container *ngIf="optionsSelectTechDataDistance.length > 0; else noFilterValues">
-                        <ss-multiselect-dropdown [options]="optionsSelectTechDataDistance"
-                                                 [settings]="settingsSelectTechDataDistance"
-                                                 [texts]="textsSelectTechDataDistance"
-                                                 formControlName="techDataDistance"
-                                                 ngDefaultControl
-                                                 class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                                 (onAdded)="onChangeSelect()"
-                                                 (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
-                    </ng-container>
-                </div>
                 <div [class]="(width4 + ' input-group input-group-sm')" *ngIf="optionsSelectTechDataAltitudeMax.length > 0">
                    <label [class]="'col-xs-2 col-form-label mr-2 ' + (searchFormGroup.get('techDataAltitudeMax').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="techDataAltitudeMax label|Label for filter: techDataAltitudeMax@@label.searchform.gdoc.techDataAltitudeMax">Höhe:</label>
                     <ng-container *ngIf="optionsSelectTechDataAltitudeMax.length > 0; else noFilterValues">
@@ -312,19 +195,11 @@
                                                  (onAdded)="onChangeSelect()"
                                                  (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
                     </ng-container>
-                </div>
-                <div [class]="(width4 + ' input-group input-group-sm')" *ngIf="optionsSelectTechDataAscent.length > 0">
-                   <label [class]="'col-xs-2 col-form-label mr-2 ' + (searchFormGroup.get('techDataAscent').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="techDataAscent label|Label for filter: techDataAscent@@label.searchform.gdoc.techDataAscent">Aufstieg:</label>
-                    <ng-container *ngIf="optionsSelectTechDataAscent.length > 0; else noFilterValues">
-                        <ss-multiselect-dropdown [options]="optionsSelectTechDataAscent"
-                                                 [settings]="settingsSelectTechDataAscent"
-                                                 [texts]="textsSelectTechDataAscent"
-                                                 formControlName="techDataAscent"
-                                                 ngDefaultControl
-                                                 class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
-                                                 (onAdded)="onChangeSelect()"
-                                                 (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
-                    </ng-container>
+                    <div [class]="(width4 + ' input-group input-group-sm justify-content-end')">
+                        <button class="btn btn-configure btn-sm" (click)="showDetails = false; updateFormState();">
+                            <span i18n="button hide Detailsform|Buttontext to hide Detailsform@@button.searchform.hide.Detailsform">ausblenden</span>
+                            <span>&#x21D1;</span></button>
+                    </div>
                 </div>
             </div>
         </fieldset>

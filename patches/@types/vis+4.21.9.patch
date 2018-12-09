@@ -1,0 +1,18 @@
+patch-package
+--- a/node_modules/@types/vis/index.d.ts
++++ b/node_modules/@types/vis/index.d.ts
+@@ -64,6 +64,14 @@ export interface LegendPositionOptions {
+   position?: LegendPositionType;
+ }
+ 
++export class Graph3d {
++    constructor(container: HTMLElement,
++                items: any,
++                options?: any);
++
++    setCameraPosition(pos);
++}
++
+ export interface LegendOptions {
+   enabled?: boolean;
+   icons?: boolean;
