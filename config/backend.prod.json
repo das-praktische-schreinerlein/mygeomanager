@@ -1,5 +1,20 @@
 {
     "filePathPDocJson": "config/pdocs.json",
+    "filePathThemeFilterJson": "config/themeFilterConfig.json",
+    "gdocDataStoreAdapter": "GeoDocSolrAdapter",
+    "gdocWritable": true,
+    "GeoDocItemsJsAdapter": {
+        "dataFile": "D:/tmp/test/mygeo.json"
+    },
+    "GeoDocSolrAdapter": {
+        "solrCoreGeoDoc": "http://localhost:8983/solr/mygeodev/",
+        "solrCoreGeoDocReadUsername": "mytbread",
+        "solrCoreGeoDocReadPassword": "SolrRocks"
+    },
+    "mapperConfig": {
+        "allowedKeywordPatterns": [".*"],
+        "replaceKeywordPatterns": []
+    },
     "cacheConfig": {
     },
     "port": 4102,
