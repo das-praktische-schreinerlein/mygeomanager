@@ -38,6 +38,8 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+# project
 /installer/docker/mysqldb/docker-entrypoint-initdb.d/*
 /installer/docker/solr/cores/*
 /documentation/
@@ -49,5 +51,26 @@ Thumbs.db
 /src/out-tsc
 /out-tsc
 /cache/
-/package-lock.json
-/docs/data2.ods
+!/overrides/.gitkeep
+!/overrides/after-build/.gitkeep
+overrides/after-build/config/*
+!/overrides/after-build/config/.gitkeep
+overrides/after-build/dist/myshpdev/de/*
+overrides/after-build/dist/myshpdev/en/*
+!/overrides/after-build/dist/myshpdev/de/.gitkeep
+!/overrides/after-build/dist/myshpdev/en/.gitkeep
+overrides/after-build/dist/myshpbeta/de/*
+overrides/after-build/dist/myshpbeta/en/*
+!/overrides/after-build/dist/myshpbeta/de/.gitkeep
+!/overrides/after-build/dist/myshpbeta/en/.gitkeep
+overrides/after-build/dist/myshp/de/*
+overrides/after-build/dist/myshp/en/*
+!/overrides/after-build/dist/myshp/de/.gitkeep
+!/overrides/after-build/dist/myshp/en/.gitkeep
+!/overrides/before-build/.gitkeep
+/overrides/before-build/installer/*
+!/overrides/before-build/installer/.gitkeep
+/overrides/before-build/sbin/*
+!/overrides/before-build/sbin/.gitkeep
+/overrides/before-build/src/*
+!/overrides/before-build/src/.gitkeep

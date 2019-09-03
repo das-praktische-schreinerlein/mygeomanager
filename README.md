@@ -10,6 +10,4 @@ For more information take a look at documentation:
 - [usage instructions](docs/DATAIMPORT.md)
 - [credits for used libraries](docs/CREDITS.md)
 
-MyGeoManager bases on mytourbook-2.0.0.
-
-![Thats MyGeoManager)](docs/images/showpage-x400.png)
+MyGeoManager bases on myshp-1.0.0.

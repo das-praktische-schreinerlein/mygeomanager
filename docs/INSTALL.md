@@ -3,26 +3,34 @@
 ## prepare-dev
 
 ### prepare src-directory
-- run `npm prune && npm install`
+```bash
+npm prune && npm install
+``` 
 
-## Development server
-Run `npm backend-build-serve` to build and start the backend. Navigate to `http://localhost:4100/api/v1/de/pdoc/` to get the pdocs.
+## Build dev
+Run for the dev-versions in `dist/`.
+```bash
+bash
+./build-dev.bash
+```
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`.
-
-## Running unit tests
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-Run `npm e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `npm start`.
+## Build beta
+Run for the beta-versions in `dist/`.
+```bash
+bash
+./build-beta.bash
+```
 
 ## Build prod
-Run `npm build-prod-de` or `npm build-prod-en` for the prod-versions in `dist/`. 
+Run for the prod-versions in `dist/`. 
+```bash
+bash
+./build-prod.bash
+```
 
 ## Deploy prod
 Stop backend via startscript
-```
+```bash
 /etc/init.d/mygeom start
 /etc/init.d/mygeom-frontend start
 ```
@@ -38,7 +46,7 @@ error_docs
 ```
 
 Copy files on server to `$APPDIR`
-```
+```bash
 cd $APPDIR
 rm -fr dist
 mv $IMPORTDIR/dist $APPDIR
@@ -54,7 +62,7 @@ mv $IMPORTDIR/package.json $APPDIR
 ```
 
 Install packages
-```
+```bash
 cd $APPDIR
 npm install 
 ```
@@ -62,13 +70,7 @@ npm install
 Set permissions and rights für `$APPDIR`
 
 Start backend via startscript
-```
+```bash
 /etc/init.d/mygeom start
 /etc/init.d/mygeom start-frontend
-```
-
-- clear redis-cache [seen on](https://stackoverflow.com/questions/4006324/how-to-atomically-delete-keys-matching-a-pattern-using-redis)
-```
-select 2
-EVAL "local keys = redis.call('keys', ARGV[1]) \n for i=1,#keys,5000 do \n redis.call('del', unpack(keys, i, math.min(i+4999, #keys))) \n end \n return keys" 0 cache*
 ```

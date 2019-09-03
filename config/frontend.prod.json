@@ -1,0 +1,6 @@
+{
+    "port": 4003,
+    "cacheFolder": "cache/myshp/",
+    "redirectFileJson": "config/redirects.prod.json",
+    "redirectOnlyCached": false
+}
