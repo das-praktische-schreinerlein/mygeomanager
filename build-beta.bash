@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WORKSPACE="/cygdrive/f/Projekte/"
-MYCMSPROJECT="mysimplehomepage"
+MYCMSPROJECT="mygeomanager"
 
 echo "STEP: build server -> they need the node_modules"
 cd ${WORKSPACE}${MYCMSPROJECT}

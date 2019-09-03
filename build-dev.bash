@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WORKSPACE="/cygdrive/f/Projekte/"
-MYCMSPROJECT="mysimplehomepage"
+MYCMSPROJECT="mygeomanager"
 
 #echo "STEP: build commons"
 #cd ${WORKSPACE}mycms-commons
