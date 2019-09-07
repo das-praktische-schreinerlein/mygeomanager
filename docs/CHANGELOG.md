@@ -18,7 +18,7 @@
 
 
 ## 1.0.0
-- initial version based on mytourbook-2.0.0
+- initial version based on mysimplehomepage-1.0.0
 
 ### new features
 - none
