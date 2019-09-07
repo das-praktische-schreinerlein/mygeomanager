@@ -1,6 +1,6 @@
 # MyGeoManager
 
-MyGeoManager is a simple starter for your application.
+MyGeoManager is a portal for managing POIs.
 
 For more information take a look at documentation:
 - [portalinfo](docs/INFO.md)
@@ -10,4 +10,8 @@ For more information take a look at documentation:
 - [usage instructions](docs/DATAIMPORT.md)
 - [credits for used libraries](docs/CREDITS.md)
 
-MyGeoManager bases on myshp-1.0.0.
+MyGeoManager bases on mysimplehomepage-1.0.0.
+
+![searchpage](images/searchpage-x400.png)
+
+
