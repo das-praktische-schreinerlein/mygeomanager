@@ -1,6 +1,15 @@
 # Install MyGeoManager
 
-## prepare-dev
+## prepare
+
+### prepare build-scripts
+- build-dev.bash, build-beta.bash, build-prod.bash
+```bash
+#!/usr/bin/env bash
+
+WORKSPACE="/cygdrive/f/Projekte/"
+MYCMSPROJECT="mysimplehomepage"
+```
 
 ### prepare src-directory
 ```bash

@@ -10,9 +10,11 @@ const argv = minimist(process.argv.slice(2));
 // disable debug-logging
 const debug = argv['debug'] || false;
 if (!debug) {
+    console.log = function() {};
+}
+if (!debug || debug === true || parseInt(debug, 10) < 1) {
     console.trace = function() {};
     console.debug = function() {};
-    console.log = function() {};
 }
 
 const gdocConverter = new GeoDocConverterCommand();
@@ -40,8 +42,9 @@ switch (argv['command']) {
 }
 
 promise.then(value => {
+    console.log('DONE - command finished:', value);
     process.exit(0);
 }).catch(reason => {
-    console.error('error:', reason);
+    console.error('ERROR - command failed:', reason);
     process.exit(-1);
 });
