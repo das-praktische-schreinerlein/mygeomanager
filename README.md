@@ -13,5 +13,3 @@ For more information take a look at documentation:
 MyGeoManager bases on mysimplehomepage-1.0.0.
 
 ![searchpage](docs/images/searchpage-x400.png)
-
-

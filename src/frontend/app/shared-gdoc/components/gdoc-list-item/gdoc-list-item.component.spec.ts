@@ -16,7 +16,7 @@ import {DatePipe} from '@angular/common';
 import {CommonDocDataServiceStub} from '@dps/mycms-frontend-commons/dist/testing/cdoc-dataservice-stubs';
 import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
-import {AngularCommonsModule} from '@dps/mycms-frontend-commons/dist/angular-commons/angular-commons.module';
+import {TruncatePipe} from "@dps/mycms-frontend-commons/dist/angular-commons/pipes/truncate.pipe";
 
 describe('GeoDocListItemComponent', () => {
     let component: GeoDocListItemComponent;
@@ -24,7 +24,7 @@ describe('GeoDocListItemComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [GeoDocListItemComponent, GeoDocDateFormatPipe],
+            declarations: [GeoDocListItemComponent, GeoDocDateFormatPipe, TruncatePipe],
             providers: [
                 { provide: Router, useValue: new RouterStub() },
                 CommonRoutingService,
@@ -37,8 +37,7 @@ describe('GeoDocListItemComponent', () => {
             ],
             schemas: [NO_ERRORS_SCHEMA],
             imports: [NgbModule.forRoot(),
-                TranslateModule.forRoot(),
-            AngularCommonsModule]
+                TranslateModule.forRoot()]
         })
             .compileComponents();
     }));

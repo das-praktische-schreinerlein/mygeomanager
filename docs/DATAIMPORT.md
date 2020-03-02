@@ -31,12 +31,12 @@ out skel qt;
 ```
 f:
 cd \projekte\mygeomanager
-node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\tmp\import-peaks-canaren.geojson --mode SOLR> d:\tmp\import-gdocs-peaks-canaren.json
-node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\tmp\import-alpine-huts.geojson --mode SOLR > d:\tmp\import-gdocs-alpine-huts.json
-node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\tmp\import-peaks-alpen.geojson --mode SOLR > d:\tmp\import-gdocs-peaks-alpen.json
-node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\tmp\import-gdocs-peaks-canaren.json
-node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\tmp\import-gdocs-alpine-huts.json
-node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\tmp\import-gdocs-peaks-alpen.json
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\docs\import-peaks-canaren.geojson --mode SOLR> d:\docs\import-gdocs-peaks-canaren.json
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\docs\import-alpine-huts.geojson --mode SOLR > d:\docs\import-gdocs-alpine-huts.json
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --srcFile d:\docs\import-peaks-alpen.geojson --mode SOLR > d:\docs\import-gdocs-peaks-alpen.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\docs\import-gdocs-peaks-canaren.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\docs\import-gdocs-alpine-huts.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc  -c config\backend.json -f d:\docs\import-gdocs-peaks-alpen.json
 ```
 
 ### configure local environments

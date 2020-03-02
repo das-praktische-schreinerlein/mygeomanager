@@ -1,6 +1,6 @@
 {
     "port": 4001,
-    "cacheFolder": "cache/mygeomdev",
+    "cacheFolder": "cache/mygeomdev/",
     "redirectFileJson": "config/redirects.json",
     "redirectOnlyCached": false
 }

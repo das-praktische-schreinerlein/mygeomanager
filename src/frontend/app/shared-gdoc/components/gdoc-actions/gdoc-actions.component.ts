@@ -4,8 +4,7 @@ import {GeoDocDynamicComponentService} from '../../services/gdoc-dynamic-compone
 import {GeoDocDataService} from '../../../../shared/gdoc-commons/services/gdoc-data.service';
 import {ToastrService} from 'ngx-toastr';
 import {
-    CommonDocActionsComponent,
-    CommonDocActionsComponentConfig
+    CommonDocActionsComponent
 } from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/components/cdoc-actions/cdoc-actions.component';
 import {GeoDocSearchForm} from '../../../../shared/gdoc-commons/model/forms/gdoc-searchform';
 import {GeoDocSearchResult} from '../../../../shared/gdoc-commons/model/container/gdoc-searchresult';
@@ -25,11 +24,4 @@ export class GeoDocActionsComponent extends CommonDocActionsComponent<GeoDocReco
                 protected actionTagService: GeoDocActionTagService) {
         super(dynamicComponentService, toastr, cd, appService, actionTagService);
     }
-
-    protected getComponentConfig(config: {}): CommonDocActionsComponentConfig {
-        return {
-            baseEditPath: 'gdocadmin'
-        };
-    }
-
 }

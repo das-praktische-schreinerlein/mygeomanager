@@ -1,25 +1,22 @@
 {
     "compilerOptions": {
         "sourceMap": false,
-        "declaration": true,
+        "declaration": false,
         "moduleResolution": "node",
-        "skipLibCheck": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "target": "es5",
-        "module": "es2015",
         "lib": [
             "es2016",
             "dom"
         ],
-        "traceResolution": false,
-        "outDir": "../../dist/tsc-out/spec",
-        "baseUrl": "./",
-        "paths": {
-            "@angular/*": ["../../node_modules/@angular/*"],
-            "rxjs/*": ["../../node_modules/rxjs/*"],
-            "*": [ "../../node_modules/@types/*", "*"]
-        }
+        "outDir": "../out-tsc/spec",
+        "module": "commonjs",
+        "target": "es5",
+        "baseUrl": "",
+        "types": [
+            "jasmine",
+            "node"
+        ]
     },
     "files": [
         "test.ts"
@@ -29,6 +26,6 @@
         "**/*.d.ts"
     ],
     "exclude": [
-        "node_modules"
+        "**/backend-only*"
     ]
 }
