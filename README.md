@@ -11,3 +11,5 @@ For more information take a look at documentation:
 - [credits for used libraries](docs/CREDITS.md)
 
 MyGeoManager bases on myshp-1.0.0.
+
+![searchpage](docs/images/searchpage-x400.png)
