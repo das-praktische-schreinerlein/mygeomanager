@@ -26,10 +26,10 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
     private geoLocationService = new GeoLocationService();
 
     public optionsSelectSubType: IMultiSelectOption[] = [];
-    public optionsSelectTechDataAltitudeMax: IMultiSelectOption[] = [];
+    public optionsSelectEle: IMultiSelectOption[] = [];
 
     public settingsSelectSubType: IMultiSelectSettings = this.defaultSeLectSettings;
-    public settingsSelectTechDataAltitudeMax: IMultiSelectSettings = this.defaultSeLectSettings;
+    public settingsSelectEle: IMultiSelectSettings = this.defaultSeLectSettings;
 
     public textsSelectSubType: IMultiSelectTexts = { checkAll: 'Alle auswählen',
         uncheckAll: 'Alle abwählen',
@@ -38,7 +38,7 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
         searchPlaceholder: 'Find',
         defaultTitle: '',
         allSelected: 'alles'};
-    public textsSelectTechDataAltitudeMax: IMultiSelectTexts = { checkAll: 'Alle auswählen',
+    public textsSelectEle: IMultiSelectTexts = { checkAll: 'Alle auswählen',
         uncheckAll: 'Alle abwählen',
         checked: 'Hähe ausgewählt',
         checkedPlural: 'Höhen ausgewählt',
@@ -76,7 +76,7 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
             moreFilter: '',
             fulltext: '',
             techDataAscent: [],
-            techDataAltitudeMax: [],
+            ele: [],
             techDataDistance: [],
             techDataDuration: [],
             techRateOverall: [],
@@ -124,10 +124,7 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
             fulltext: values.fulltext,
             moreFilter: values.moreFilter,
             subtype: [(values.subtype ? values.subtype.split(/,/) : [])],
-            techDataAscent: [(values.techDataAscent ? values.techDataAscent.split(/,/) : [])],
-            techDataAltitudeMax: [(values.techDataAltitudeMax ? values.techDataAltitudeMax.split(/,/) : [])],
-            techDataDistance: [(values.techDataDistance ? values.techDataDistance.split(/,/) : [])],
-            techDataDuration: [(values.techDataDuration ? values.techDataDuration.split(/,/) : [])],
+            ele: [(values.ele ? values.ele.split(/,/) : [])],
             playlists: [(values.playlists ? values.playlists.split(/,/) : [])],
             type: [(values.type ? values.type.split(/,/) : [])]
         });
@@ -152,8 +149,8 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
                 }),
             rawValues['subtype']);
 
-        this.optionsSelectTechDataAltitudeMax = this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
-            this.gdocSearchFormUtils.getTechDataAltitudeMaxValues(gdocSearchSearchResult), true, [], true);
+        this.optionsSelectEle = this.searchFormUtils.getIMultiSelectOptionsFromExtractedFacetValuesList(
+            this.gdocSearchFormUtils.getEleValues(gdocSearchSearchResult), true, [], true);
 
         const values: GeoDocSearchForm = gdocSearchSearchResult.searchForm;
         const [lat, lon, dist] = this.gdocSearchFormUtils.extractNearbyPos(values.nearby);
@@ -170,7 +167,7 @@ export class GeoDocSearchformComponent extends CommonDocSearchformComponent<GeoD
 
     protected updateAvailabilityFlags(gdocSearchSearchResult: GeoDocSearchResult) {
         this.showWhereAvailable = true;
-        this.showDetailsAvailable = (this.optionsSelectWhat.length > 0 || this.optionsSelectTechDataAltitudeMax.length > 0);
+        this.showDetailsAvailable = (this.optionsSelectWhat.length > 0 || this.optionsSelectEle.length > 0);
         this.showMetaAvailable = (this.optionsSelectPlaylists.length > 0);
     }
 

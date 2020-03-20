@@ -19,12 +19,11 @@ export class GeoDocTeamFilterConfig {
 
 export class GeoDocDataStore extends GenericDataStore<GeoDocRecord, GeoDocSearchForm, GeoDocSearchResult> {
 
-    static UPDATE_RELATION = ['gdocimage', 'gdocdatatech', 'gdocdatainfo'];
+    static UPDATE_RELATION = [];
     private validMoreNumberFilterNames = {
         id: true,
         loc_id_i: true,
         loc_lochirarchie_ids_txt: true,
-        image_id_i: true,
         loc_parent_id_i: true
     };
     private validMoreInFilterNames = {
@@ -141,28 +140,10 @@ export class GeoDocDataStore extends GenericDataStore<GeoDocRecord, GeoDocSearch
             }
         }
 
-        if (searchForm.techDataAltitudeMax !== undefined && searchForm.techDataAltitudeMax.length > 0) {
+        if (searchForm.ele !== undefined && searchForm.ele.length > 0) {
             filter = filter || {};
-            filter['data_tech_alt_max_facet_is'] = {
-                'in_number': searchForm.techDataAltitudeMax.split(/,/)
-            };
-        }
-        if (searchForm.techDataAscent !== undefined && searchForm.techDataAscent.length > 0) {
-            filter = filter || {};
-            filter['data_tech_alt_asc_facet_is'] = {
-                'in_number': searchForm.techDataAscent.split(/,/)
-            };
-        }
-        if (searchForm.techDataDistance !== undefined && searchForm.techDataDistance.length > 0) {
-            filter = filter || {};
-            filter['data_tech_dist_facets_fs'] = {
-                'in_number': searchForm.techDataDistance.split(/,/)
-            };
-        }
-        if (searchForm.techDataDuration !== undefined && searchForm.techDataDuration.length > 0) {
-            filter = filter || {};
-            filter['data_tech_dur_facet_fs'] = {
-                'in_number': searchForm.techDataDuration.split(/,/)
+            filter['geo_ele_facet_is'] = {
+                'in_number': searchForm.ele.split(/,/)
             };
         }
 

@@ -27,9 +27,12 @@
 ### improvements
 - bumped up deps
 - development: improved build-process - activated tests+coverage
+- improved map
+- removed unused fields
 
 ### bug fixes
 - fixed build-process
+- fixed data-import
  
 ### breaking changes
 - none

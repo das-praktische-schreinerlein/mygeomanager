@@ -6,6 +6,7 @@ import {MapElement} from '@dps/mycms-frontend-commons/dist/angular-maps/services
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
 import {AbstractInlineComponent} from '@dps/mycms-frontend-commons/dist/angular-commons/components/inline.component';
+import {StringUtils} from "@dps/mycms-commons/dist/commons/utils/string.utils";
 
 @Component({
     selector: 'app-gdoc-map',
@@ -15,6 +16,7 @@ import {AbstractInlineComponent} from '@dps/mycms-frontend-commons/dist/angular-
 export class GeoDocMapComponent extends AbstractInlineComponent {
     showLoadingSpinner = false;
     mapElements: MapElement[] = [];
+    centerOnMapElements: MapElement[] = undefined;
     mapElementsReverseMap = new Map<MapElement, GeoDocRecord>();
 
     @Input()
@@ -25,6 +27,9 @@ export class GeoDocMapComponent extends AbstractInlineComponent {
 
     @Input()
     public gdocs: GeoDocRecord[];
+
+    @Input()
+    public currentGDocId?: string;
 
     @Input()
     public mapCenterPos: L.LatLng;
@@ -60,17 +65,23 @@ export class GeoDocMapComponent extends AbstractInlineComponent {
 
     renderMap() {
         this.mapElementsReverseMap.clear();
+        this.centerOnMapElements = undefined;
         if (!this.gdocs) {
             this.mapElements = [];
             this.showLoadingSpinner = false;
             return;
         }
 
-        this.showLoadingSpinner = (this.gdocs.length > 0 ? true : false);
+        this.showLoadingSpinner = (this.gdocs.length > 0);
         for (let i = 0; i < this.gdocs.length; i++) {
             const record =  this.gdocs[i];
 
-            for (const mapElement of this.contentUtils.createMapElementForGeoDoc(record, this.showImageTrackAndGeoPos)) {
+            for (const mapElement of this.contentUtils.createMapElementForGeoDoc(record,
+                StringUtils.calcCharCodeForListIndex(i + 1), this.showImageTrackAndGeoPos)) {
+                if (record.id === this.currentGDocId) {
+                    mapElement.color = 'red';
+                    this.centerOnMapElements = [mapElement];
+                }
                 this.mapElementsReverseMap.set(mapElement, record);
             }
         }

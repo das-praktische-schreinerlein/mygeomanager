@@ -1,8 +1,0 @@
-<ng-container *ngIf="gdocdatainfo !== undefined">
-    <div class="techvaluetable">
-        <div *ngIf="gdocdatainfo.region !== undefined && gdocdatainfo.region.length > 0" class="entry"><div class="label">Region:</div><div class="value">{{gdocdatainfo.region}}</div></div>
-        <div *ngIf="gdocdatainfo.baseloc !== undefined && gdocdatainfo.baseloc.length > 0" class="entry"><div class="label">Talort:</div><div class="value">{{gdocdatainfo.baseloc}}</div></div>
-        <div *ngIf="gdocdatainfo.destloc !== undefined && gdocdatainfo.destloc.length > 0" class="entry"><div class="label">Ziel:</div><div class="value">{{gdocdatainfo.destloc}}</div></div>
-        <div *ngIf="gdocdatainfo.guides !== undefined && gdocdatainfo.guides.length > 0" class="entry"><div class="label">Führer:</div><div class="value" [innerHTML]="guides" ></div></div>
-    </div>
-</ng-container>

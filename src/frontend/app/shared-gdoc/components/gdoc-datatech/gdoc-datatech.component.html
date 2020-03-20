@@ -1,8 +1,5 @@
 <ng-container *ngIf="gdocdatatech !== undefined">
     <div class="techvaluetable datatechvaluetable">
-        <div *ngIf="gdocdatatech.dur > 0" class="entry"><div class="label">&#x231A;:</div><div class="value">{{gdocdatatech.dur | number : '1.0-1'}} h</div></div>
-        <div *ngIf="gdocdatatech.altAsc > 0" class="entry"><div class="label">&#x2197;:</div><div class="value">{{gdocdatatech.altAsc | number : '1.0'}} Hm</div></div>
-        <div *ngIf="gdocdatatech.altMax > 0" class="entry"><div class="label">max:</div><div class="value">{{gdocdatatech.altMax | number : '1.0'}} m</div></div>
-        <div *ngIf="gdocdatatech.dist > 0" class="entry"><div class="label">&#x2194;:</div><div class="value">{{gdocdatatech.dist | number : '1.0-1'}} km</div></div>
+        <div *ngIf="gdocdatatech.geoEle > 0" class="entry"><div class="label">max:</div><div class="value">{{gdocdatatech.geoEle | number : '1.0'}} m</div></div>
     </div>
 </ng-container>

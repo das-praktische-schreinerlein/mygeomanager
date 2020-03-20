@@ -25,7 +25,7 @@ export class GeoDocServerModule extends CommonDocServerModule<GeoDocRecord, GeoD
     }
 
     getApiResolveParameterName(): string {
-        return 'resolveTdocByTdocId';
+        return 'resolveGdocByGdocId';
     }
 
     isSearchFormValid(searchForm: CommonDocSearchForm): boolean {

@@ -18,7 +18,6 @@ import {GeoDocProfileMapComponent} from './components/gdoc-profilemap/gdoc-profi
 import {GeoDocMapComponent} from './components/gdoc-map/gdoc-map.component';
 import {GeoDocLinkedLocHierarchyComponent} from './components/gdoc-linked-loc-hierarchy/gdoc-linked-loc-hierarchy.component';
 import {GeoDocDataTechComponent} from './components/gdoc-datatech/gdoc-datatech.component';
-import {GeoDocDataInfoComponent} from './components/gdoc-datainfo/gdoc-datainfo.component';
 import {GeoDocDistanceComponent} from './components/gdoc-distance/gdoc-distance.component';
 import {GeoDocDateFormatPipe} from './pipes/gdoc-dateformat.pipe';
 import {DatePipe} from '@angular/common';
@@ -33,6 +32,7 @@ import {GeoDocListItemSmallComponent} from "./components/gdoc-list-item-small/gd
 import {GeoDocListItemFlatComponent} from "./components/gdoc-list-item-flat/gdoc-list-item-flat.component";
 import {GeoDocListItemPageComponent} from "./components/gdoc-list-item-page/gdoc-list-item-page.component";
 import {GeoDocListItemThinComponent} from "./components/gdoc-list-item-thin/gdoc-list-item-thin.component";
+import {GeoDocMapCodePipe} from "./pipes/gdoc-mapcode.pipe";
 
 @NgModule({
     declarations: [
@@ -49,10 +49,10 @@ import {GeoDocListItemThinComponent} from "./components/gdoc-list-item-thin/gdoc
         GeoDocInlineSearchpageComponent,
         GeoDocLinkedLocHierarchyComponent,
         GeoDocDataTechComponent,
-        GeoDocDataInfoComponent,
         GeoDocDataMetaComponent,
         GeoDocDistanceComponent,
         GeoDocDateFormatPipe,
+        GeoDocMapCodePipe,
         GeoDocActionsComponent,
         GeoDocActionTagsComponent,
         GeoDocKeywordsComponent,
@@ -91,10 +91,10 @@ import {GeoDocListItemThinComponent} from "./components/gdoc-list-item-thin/gdoc
         GeoDocInlineSearchpageComponent,
         GeoDocLinkedLocHierarchyComponent,
         GeoDocDataTechComponent,
-        GeoDocDataInfoComponent,
         GeoDocDataMetaComponent,
         GeoDocDistanceComponent,
         GeoDocDateFormatPipe,
+        GeoDocMapCodePipe,
         GeoDocActionsComponent,
         GeoDocActionTagsComponent,
         GeoDocKeywordsComponent,

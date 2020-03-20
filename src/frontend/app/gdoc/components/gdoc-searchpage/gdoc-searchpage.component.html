@@ -21,7 +21,9 @@
                        [baseSearchUrl]="baseSearchUrl"
                        [layout]="layout"
                        [multiActionManager]="multiActionManager"
-                       (show)="onShowDoc($event)"></app-gdoc-list>
+                       [showItemMapFlag]="true"
+                       (show)="onShowDoc($event)"
+                       (showItemOnMap)="onShowItemOnMap($event)"></app-gdoc-list>
     </div>
     <div class="container">
         <div class="row">
@@ -62,6 +64,7 @@
                       [height]="'300'"
                       [mapZoom]="mapZoom"
                       [gdocs]="searchResult.currentRecords"
+                      [currentGDocId]="currentMapGDocId"
                       (gdocClicked)="onMapGeoDocClicked($event)"
                       (centerChanged)="onMapCenterChanged($event)"
                       (mapElementsFound)="onMapElementsFound($event)"
@@ -108,9 +111,11 @@
                     <app-gdoc-list [searchResult]="searchResult"
                                    [baseSearchUrl]="baseSearchUrl"
                                    [layout]="layout"
+                                   [showItemMapFlag]="true"
                                    (playerStarted)="onPlayerStarted($event)"
                                    (playerStopped)="onPlayerStopped($event)"
-                                   (show)="onShowDoc($event)"></app-gdoc-list>
+                                   (show)="onShowDoc($event)"
+                                   (showItemOnMap)="onShowItemOnMap($event)"></app-gdoc-list>
                 </div>
             </div>
         </div>
@@ -130,8 +135,8 @@
                             <app-cdoc-tagcloud [label]="'Was'" [facetName]="'keywords_txt'" [max]="50"
                                                (columnClicked)="onTagcloudClicked($event, 'what')"
                                                [searchResult]="searchResult"></app-cdoc-tagcloud>
-                            <app-cdoc-tagcloud [label]="'Höhe'" [facetName]="'data_tech_alt_max_facet_is'" [max]="50"
-                                               (columnClicked)="onTagcloudClicked($event, 'techDataAltitudeMax')"
+                            <app-cdoc-tagcloud [label]="'Höhe'" [facetName]="'geo_ele_facet_is'" [max]="50"
+                                               (columnClicked)="onTagcloudClicked($event, 'ele')"
                                                [searchResult]="searchResult"></app-cdoc-tagcloud>
                         </div>
                     </div>

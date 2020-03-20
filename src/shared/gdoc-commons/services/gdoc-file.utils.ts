@@ -31,10 +31,6 @@ export class GeoDocFileUtils {
                 record['keywords_txt'].replace(/^,/g, '').replace(/,$/g, '').replace(/,,/g, ',') : '');
 
             // calc facets
-            record['data_tech_alt_asc_facet_is'] = Math.ceil(Number.parseFloat(record['data_tech_alt_asc_i']) / 500) * 500 + '';
-            record['data_tech_alt_max_facet_is'] = Math.ceil(Number.parseFloat(record['data_tech_alt_max_i']) / 500) * 500 + '';
-            record['data_tech_dist_facets_fs'] = Math.ceil(Number.parseFloat(record['data_tech_dist_f']) / 5) * 5 + '';
-            record['data_tech_dur_facet_fs'] = Math.ceil(Number.parseFloat(record['data_tech_dur_f']) / 2) * 2 + '';
 
             for (const dateField of ['dateshow_dt']) {
                 if (record[dateField] !== undefined && record[dateField] !== '') {

@@ -19,20 +19,8 @@ export class GeoDocSearchFormUtils extends CommonDocSearchFormUtils {
          return this.searchFormUtils.getFacetValues(searchResult, 'subtype_ss', '', '');
     }
 
-    getTechDataAscentValues(searchResult: GeoDocSearchResult): any[] {
-         return this.searchFormUtils.getFacetValues(searchResult, 'data_tech_alt_asc_facet_is', '', '');
-    }
-
-    getTechDataAltitudeMaxValues(searchResult: GeoDocSearchResult): any[] {
-         return this.searchFormUtils.getFacetValues(searchResult, 'data_tech_alt_max_facet_is', '', '');
-    }
-
-    getTechDataDistanceValues(searchResult: GeoDocSearchResult): any[] {
-         return this.searchFormUtils.getFacetValues(searchResult, 'data_tech_dist_facets_fs', '', '');
-    }
-
-    getTechDataDurationValues(searchResult: GeoDocSearchResult): any[] {
-         return this.searchFormUtils.getFacetValues(searchResult, 'data_tech_dur_facet_fs', '', '');
+    getEleValues(searchResult: GeoDocSearchResult): any[] {
+         return this.searchFormUtils.getFacetValues(searchResult, 'geo_ele_facet_is', '', '');
     }
 
     public extractNearbyPos(nearby: string): any[] {

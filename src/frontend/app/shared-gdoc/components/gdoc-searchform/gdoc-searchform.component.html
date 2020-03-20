@@ -183,13 +183,13 @@
         <fieldset class="hidden-print" *ngIf="showDetails && showDetailsAvailable">
             <legend i18n="details label|Label for fieldset: details@@label.searchform.gdoc.legend.details">&#x231b; Details</legend>
             <div class="row">
-                <div [class]="(width4 + ' input-group input-group-sm')" *ngIf="optionsSelectTechDataAltitudeMax.length > 0">
-                   <label [class]="'col-xs-2 col-form-label mr-2 ' + (searchFormGroup.get('techDataAltitudeMax').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="techDataAltitudeMax label|Label for filter: techDataAltitudeMax@@label.searchform.gdoc.techDataAltitudeMax">Höhe:</label>
-                    <ng-container *ngIf="optionsSelectTechDataAltitudeMax.length > 0; else noFilterValues">
-                        <ss-multiselect-dropdown [options]="optionsSelectTechDataAltitudeMax"
-                                                 [settings]="settingsSelectTechDataAltitudeMax"
-                                                 [texts]="textsSelectTechDataAltitudeMax"
-                                                 formControlName="techDataAltitudeMax"
+                <div [class]="(width4 + ' input-group input-group-sm')" *ngIf="optionsSelectEle.length > 0">
+                   <label [class]="'col-xs-2 col-form-label mr-2 ' + (searchFormGroup.get('ele').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="ele label|Label for filter: ele@@label.searchform.gdoc.ele">Höhe:</label>
+                    <ng-container *ngIf="optionsSelectEle.length > 0; else noFilterValues">
+                        <ss-multiselect-dropdown [options]="optionsSelectEle"
+                                                 [settings]="settingsSelectEle"
+                                                 [texts]="textsSelectEle"
+                                                 formControlName="ele"
                                                  ngDefaultControl
                                                  class="ss-multiselect-dropdown ss-multiselect-dropdown-fullwidth"
                                                  (onAdded)="onChangeSelect()"

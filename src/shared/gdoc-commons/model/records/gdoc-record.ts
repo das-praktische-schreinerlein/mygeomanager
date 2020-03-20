@@ -4,7 +4,6 @@ import {
     BaseEntityRecordType
 } from '@dps/mycms-commons/dist/search-commons/model/records/base-entity-record';
 import {
-    DateValidationRule,
     DbIdValidationRule,
     FilenameValidationRule,
     GenericValidatorDatatypes,
@@ -13,8 +12,7 @@ import {
     HierarchyValidationRule,
     IdCsvValidationRule,
     NumberValidationRule,
-    StringNumberValidationRule,
-    TextValidationRule
+    StringNumberValidationRule
 } from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
 import {isArray} from 'util';
 import {
@@ -22,9 +20,6 @@ import {
     CommonDocRecordFactory,
     CommonDocRecordValidator
 } from '@dps/mycms-commons/dist/search-commons/model/records/cdoc-entity-record';
-import {GeoDocDataTechRecord, GeoDocDataTechRecordFactory, GeoDocDataTechRecordValidator} from './gdocdatatech-record';
-import {GeoDocDataInfoRecord, GeoDocDataInfoRecordFactory, GeoDocDataInfoRecordValidator} from './gdocdatainfo-record';
-import {GeoDocImageRecord, GeoDocImageRecordFactory, GeoDocImageRecordValidator} from './gdocimage-record';
 
 export interface GeoDocRecordType extends BaseEntityRecordType {
     locId: number;
@@ -120,26 +115,8 @@ export class GeoDocRecord extends CommonDocRecord implements GeoDocRecordType {
 
 export let GeoDocRecordRelation: any = {
     hasOne: {
-        gdocdatatech: {
-            // database column
-            foreignKey: 'gdoc_id',
-            // reference to related objects in memory
-            localField: 'gdocdatatech'
-        },
-        gdocdatainfo: {
-            // database column
-            foreignKey: 'gdoc_id',
-            // reference to related objects in memory
-            localField: 'gdocdatainfo'
-        }
     },
     hasMany: {
-        gdocimage: {
-            // database column
-            foreignKey: 'gdoc_id',
-            // reference to related objects in memory
-            localField: 'gdocimages'
-        }
     }
 };
 
@@ -164,12 +141,6 @@ export class GeoDocRecordFactory extends CommonDocRecordFactory {
 
     getSanitizedRelationValues(relation: string, values: {}): {} {
         switch (relation) {
-            case 'gdocdatatech':
-                return GeoDocDataTechRecordFactory.instance.getSanitizedValues(values, {});
-            case 'gdocdatainfo':
-                return GeoDocDataInfoRecordFactory.instance.getSanitizedValues(values, {});
-            case 'gdocimages':
-                return GeoDocImageRecordFactory.instance.getSanitizedValues(values, {});
             default:
                 return super.getSanitizedRelationValues(relation, values);
         }
@@ -204,27 +175,15 @@ export class GeoDocRecordValidator extends CommonDocRecordValidator {
 
     protected validateRelationDoc(relation: string, doc: BaseEntityRecord, errFieldPrefix?: string): string[] {
         switch (relation) {
-            case 'gdocdatatech':
-                return GeoDocDataTechRecordValidator.instance.validate(<GeoDocDataTechRecord>doc, errFieldPrefix);
-            case 'gdocdatainfo':
-                return GeoDocDataInfoRecordValidator.instance.validate(<GeoDocDataInfoRecord>doc, errFieldPrefix);
-            case 'gdocimages':
-                return GeoDocImageRecordValidator.instance.validate(<GeoDocImageRecord>doc, errFieldPrefix);
             default:
-                super.validateRelationDoc(relation, doc, errFieldPrefix);
+                return super.validateRelationDoc(relation, doc, errFieldPrefix);
         }
     };
 
     protected validateValueRelationDoc(relation: string, values: {}, fieldPrefix?: string, errFieldPrefix?: string): string[] {
         switch (relation) {
-            case 'gdocdatatech':
-                return GeoDocDataTechRecordValidator.instance.validateValues(values, fieldPrefix, errFieldPrefix);
-            case 'gdocdatainfo':
-                return GeoDocDataInfoRecordValidator.instance.validateValues(values, fieldPrefix, errFieldPrefix);
-            case 'gdocimages':
-                return GeoDocImageRecordValidator.instance.validateValues(values, fieldPrefix, errFieldPrefix);
             default:
-                super.validateValueRelationDoc(relation, values, fieldPrefix, errFieldPrefix);
+                return super.validateValueRelationDoc(relation, values, fieldPrefix, errFieldPrefix);
         }
     };
 }

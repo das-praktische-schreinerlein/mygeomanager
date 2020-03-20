@@ -13,32 +13,18 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
         spatialField: 'geo_loc_p',
         spatialSortKey: 'distance',
         fieldList: ['id', 'image_id_i', 'loc_id_i',
-            'dateshow_dt', 'desc_txt', 'desc_md_txt', 'desc_html_txt', 'geo_lon_s', 'geo_lat_s', 'geo_dele_s', 'geo_loc_p',
-            'data_tech_alt_asc_i', 'data_tech_alt_desc_i', 'data_tech_alt_min_i', 'data_tech_alt_max_i',
-            'data_tech_dist_f', 'data_tech_dur_f',
-            'data_info_guides_s', 'data_info_region_s', 'data_info_baseloc_s', 'data_info_destloc_s',
+            'dateshow_dt', 'desc_txt', 'desc_md_txt', 'desc_html_txt', 'geo_lon_s', 'geo_lat_s',
+            'geo_ele_s', 'geo_ele_f', 'geo_loc_p',
             'gpstracks_basefile_s', 'gpstracks_src_s', 'keywords_txt', 'loc_lochirarchie_s', 'loc_lochirarchie_ids_s', 'name_s', 'type_s',
-            'subtype_ss', 'subtype_s', 'i_fav_url_txt'],
+            'subtype_ss', 'subtype_s'],
         facetConfigs: {
             'subtype_ss': {
                 'f.subtype_ss.facet.limit': '-1',
                 'f.subtype_ss.facet.sort': 'index'
             },
-            'data_tech_alt_asc_facet_is': {
-                'f.data_tech_alt_asc_facet_is.facet.limit': '-1',
-                'f.data_tech_alt_asc_facet_is.facet.sort': 'index'
-            },
-            'data_tech_alt_max_facet_is': {
-                'f.data_tech_alt_max_facet_is.facet.limit': '-1',
-                'f.data_tech_alt_max_facet_is.facet.sort': 'index'
-            },
-            'data_tech_dist_facets_fs': {
-                'f.data_tech_dist_facets_fs.facet.limit': '-1',
-                'f.data_tech_dist_facets_fs.facet.sort': 'index'
-            },
-            'data_tech_dur_facet_fs': {
-                'f.data_tech_dur_facet_fs.facet.limit': '-1',
-                'f.data_tech_dur_facet_fs.facet.sort': 'index'
+            'geo_ele_facet_is': {
+                'f.geo_ele_facet_is.facet.limit': '-1',
+                'f.geo_ele_facet_is.facet.sort': 'index'
             },
             'keywords_txt': {
                 'f.keywords_txt.facet.prefix': '',
@@ -47,21 +33,9 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             },
             'loc_id_i': {},
             'loc_lochirarchie_txt': {},
-            'month_is': {
-                'f.month_is.facet.limit': '-1',
-                'f.month_is.facet.sort': 'index'
-            },
             'playlists_txt': {
             },
-            'type_txt': {},
-            'week_is': {
-                'f.week_is.facet.limit': '-1',
-                'f.week_is.facet.sort': 'index'
-            },
-            'year_is': {
-                'f.year_is.facet.limit': '-1',
-                'f.year_is.facet.sort': 'index'
-            }
+            'type_txt': {}
         },
         commonSortOptions: {
             'bq': 'type_s:IMAGE^1',
@@ -79,29 +53,11 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             'distance': {
                 'sort': 'geodist() asc'
             },
-            'dataTechDurDesc': {
-                'sort': 'data_tech_dur_f desc'
+            'eleDesc': {
+                'sort': 'geo_ele_f desc'
             },
-            'dataTechAltDesc': {
-                'sort': 'data_tech_alt_asc_i desc'
-            },
-            'dataTechMaxDesc': {
-                'sort': 'data_tech_alt_max_i desc'
-            },
-            'dataTechDistDesc': {
-                'sort': 'data_tech_dist_f desc'
-            },
-            'dataTechDurAsc': {
-                'sort': 'data_tech_dur_f asc'
-            },
-            'dataTechAltAsc': {
-                'sort': 'data_tech_alt_asc_i asc'
-            },
-            'dataTechMaxAsc': {
-                'sort': 'data_tech_alt_max_i asc'
-            },
-            'dataTechDistAsc': {
-                'sort': 'data_tech_dist_f asc'
+            'eleAsc': {
+                'sort': 'geo_ele_f asc'
             },
             'location': {
                 'sort': 'loc_lochirarchie_s asc'
@@ -122,7 +78,6 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
     mapToAdapterDocument(props: any): any {
         const values = {
             id: props.id,
-            image_id_i: props.imageId,
             loc_id_i: props.locId,
 
             dateshow_dt: props.dateshow,
@@ -139,6 +94,8 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             geo_lon_s: props.geoLon,
             geo_lat_s: props.geoLat,
             geo_ele_s: props.geoEle,
+            geo_ele_f: props.geoEle,
+            geo_ele_facet_is: this.parseFacet(props.geoEle, 500),
             geo_loc_p: props.geoLoc,
             gpstracks_basefile_s: props.gpsTrackBasefile,
             gpstracks_src_s: props.gpsTrackSrc,
@@ -149,21 +106,8 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             loc_lochirarchie_ids_s: (props.locHirarchieIds ? props.locHirarchieIds
                 .toLowerCase()
                 .replace(/,/g, ',,')
-                .replace(/ /g, '_') : ''),
+                .replace(/ /g, '_') : '')
 
-            data_info_guides_s: BeanUtils.getValue(props, 'gdocdatainfo.guides'),
-            data_tech_alt_min_i: BeanUtils.getValue(props, 'gdocdatatech.altMin'),
-            data_tech_alt_min_facet_is: this.parseFacet(BeanUtils.getValue(props, 'gdocdatatech.altMin'), 500),
-            data_tech_alt_max_i: BeanUtils.getValue(props, 'gdocdatatech.altMax'),
-            data_tech_alt_max_facet_is: this.parseFacet(BeanUtils.getValue(props, 'gdocdatatech.altMax'), 500),
-            data_tech_alt_asc_i: BeanUtils.getValue(props, 'gdocdatatech.altAsc'),
-            data_tech_alt_asc_facet_is: this.parseFacet(BeanUtils.getValue(props, 'gdocdatatech.altAsc'), 500),
-            data_tech_alt_desc_i: BeanUtils.getValue(props, 'gdocdatatech.altDesc'),
-            data_tech_alt_desc_facet_is: this.parseFacet(BeanUtils.getValue(props, 'gdocdatatech.altDesc'), 500),
-            data_tech_dist_f: BeanUtils.getValue(props, 'gdocdatatech.dist'),
-            data_tech_dist_facets_fs: this.parseFacet(BeanUtils.getValue(props, 'gdocdatatech.dist'), 5),
-            data_tech_dur_f: BeanUtils.getValue(props, 'gdocdatatech.dur'),
-            data_tech_dur_facet_fs: this.parseFacet(BeanUtils.getValue(props, 'gdocdatatech.dur'), 5)
         };
         values['html_txt'] = [values.desc_txt, values.name_s, values.keywords_txt, values.type_s].join(' ');
 
@@ -207,7 +151,7 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
     }
 
     protected parseFacet(value: any, base: number): string {
-        return (value ? Math.ceil(Number.parseFloat(value) / base) * base + '' : undefined)
+        return (value ? Math.ceil(Number.parseFloat(value) / base) * base + '' : undefined);
     }
 
 }

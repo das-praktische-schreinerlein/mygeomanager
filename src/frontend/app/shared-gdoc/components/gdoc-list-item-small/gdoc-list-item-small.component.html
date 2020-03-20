@@ -1,31 +1,4 @@
 <ng-container *ngIf="listItem.currentRecord !== undefined" [ngSwitch]="true">
-    <ng-container *ngSwitchCase="listItem.currentRecord.type === 'IMAGE'">
-        <div class="card-block card-block-image" [ngClass]="listItem.styleClassFor">
-            <a [name]="listItem.currentRecord.id"></a>
-            <div>
-                <div class="image-container">
-                    <div class="multiaction-checkbox" *ngIf="isMultiActionTagSelected()">
-                        <input type="checkbox" [disabled]="isMultiActionAvailableForRecord()"
-                               [checked]="isMultiActionSelectedForRecord()"
-                               (click)="onChangeMultiActionForRecord($event)">
-                    </div>
-                    <h5 *ngIf="listItem.currentRecord.geoDistance > 0"><app-gdoc-distance [record]="listItem.currentRecord"></app-gdoc-distance></h5>
-                    <h5 class="listItem.currentRecord-type">{{listItem.currentRecord.type | translate }}</h5>
-                    <ng-container *ngIf="listItem.image">
-                        <img class="picture-thumbnail-big" width="100px"
-                             [src]="listItem.thumbnailUrl"
-                             (click)="submitShowImage(listItem.currentRecord)"
-                             alt="{{listItem.image.name}}">
-                    </ng-container>
-                    <a [href]="listItem.urlShow" (click)="submitShow(listItem.currentRecord)"><h5 class="image-date">{{listItem.currentRecord | gdocdate}}</h5></a>
-                    <app-gdoc-datameta [record]="listItem.currentRecord"></app-gdoc-datameta>
-                    <ng-container *ngIf="!short">
-                        <app-gdoc-action [record]="listItem.currentRecord" [type]="'actionTagsSmall'" (actionTagEvent)="onActionTagEvent($event)"></app-gdoc-action>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
-    </ng-container>
     <ng-container *ngSwitchDefault="">
         <div class="card-block" [ngClass]="listItem.styleClassFor">
             <a [name]="listItem.currentRecord.id"></a>
@@ -34,8 +7,11 @@
                        [checked]="isMultiActionSelectedForRecord()"
                        (click)="onChangeMultiActionForRecord($event)">
             </div>
-            <h5 *ngIf="listItem.currentRecord.geoDistance > 0"><app-gdoc-distance [record]="listItem.currentRecord"></app-gdoc-distance></h5>
-            <h5><app-gdoc-linked-loc-hierarchy [record]="listItem.currentRecord" [lastOnly]="true"></app-gdoc-linked-loc-hierarchy></h5>
+            <h5 (click)="submitShowItemOnMap(listItem.currentRecord)">
+                <span *ngIf="mapFlagAvailable" [innerHTML]="listItem.currentRecord | gdocmapcode: idx+1 : mapFlagSymbol"></span>
+                <app-gdoc-distance *ngIf="listItem.currentRecord.geoDistance > 0" [record]="listItem.currentRecord"></app-gdoc-distance>
+                <app-gdoc-linked-loc-hierarchy [record]="listItem.currentRecord" [lastOnly]="true"></app-gdoc-linked-loc-hierarchy>
+            </h5>
             <div>
                 <div style="width: 100px; float: left">
                     <h5 *ngIf="listItem.currentRecord.type !== 'LOCATION'" class="listItem.currentRecord-type">{{listItem.currentRecord.type | translate }}</h5>
@@ -50,7 +26,6 @@
                 <a [href]="listItem.urlShow" (click)="submitShow(listItem.currentRecord)"><h5 class="card-title">{{listItem.currentRecord.name}}</h5></a>
                 <app-gdoc-keywords [record]="listItem.currentRecord"></app-gdoc-keywords>
                 <app-gdoc-datatech [record]="listItem.currentRecord"></app-gdoc-datatech >
-                <app-gdoc-datainfo [record]="listItem.currentRecord"></app-gdoc-datainfo >
                 <app-gdoc-datameta [record]="listItem.currentRecord"></app-gdoc-datameta>
             </div>
         </div>

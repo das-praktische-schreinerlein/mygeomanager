@@ -10,40 +10,52 @@
                                      (showImage)="onShowImage($event)"
                                      (playerStarted)="onPlayerStarted($event)"
                                      (playerStopped)="onPlayerStopped($event)"
-                                     *ngFor="let record of searchResult.currentRecords"></app-gdoc-list-item-page>
+                                     *ngFor="let record of searchResult.currentRecords; let idx = index"></app-gdoc-list-item-page>
         </ng-container>
         <ng-container *ngSwitchCase="Layout.SMALL">
             <app-gdoc-list-item-small style="min-width: 130px; margin-bottom: 10px" class="card app-gdoc-list-item app-gdoc-list-item-small"
                                       [record]="record"
+                                      [idx]="idx"
+                                      [rowNr]="((searchResult.searchForm.pageNum - 1) * searchResult.searchForm.perPage) + idx"
                                       [layout]="layout"
                                       [short]="short"
                                       [backToSearchUrl]="getBackToSearchUrl(searchResult)"
                                       [multiActionManager]="multiActionManager"
+                                      [showItemMapFlag]="showItemMapFlag"
                                       (show)="onShow($event)"
                                       (showImage)="onShowImage($event)"
-                                      *ngFor="let record of searchResult.currentRecords"></app-gdoc-list-item-small>
+                                      (showItemOnMap)="onShowItemOnMap($event)"
+                                      *ngFor="let record of searchResult.currentRecords; let idx = index"></app-gdoc-list-item-small>
         </ng-container>
         <ng-container *ngSwitchCase="Layout.FLAT">
             <app-gdoc-list-item-flat style="min-width: 130px; margin-bottom: 10px; clear: both; width: 100%" class="app-gdoc-list-item app-gdoc-list-item-flat"
                                      [record]="record"
+                                     [idx]="idx"
+                                     [rowNr]="((searchResult.searchForm.pageNum - 1) * searchResult.searchForm.perPage) + idx"
                                      [layout]="layout"
                                      [short]="short"
                                      [backToSearchUrl]="getBackToSearchUrl(searchResult)"
                                      [multiActionManager]="multiActionManager"
+                                     [showItemMapFlag]="showItemMapFlag"
                                      (show)="onShow($event)"
                                      (showImage)="onShowImage($event)"
-                                     *ngFor="let record of searchResult.currentRecords"></app-gdoc-list-item-flat>
+                                     (showItemOnMap)="onShowItemOnMap($event)"
+                                     *ngFor="let record of searchResult.currentRecords; let idx = index"></app-gdoc-list-item-flat>
         </ng-container>
         <ng-container *ngSwitchCase="Layout.THIN">
             <app-gdoc-list-item-thin style="min-width: 130px; margin-bottom: 10px; clear: both; width: 100%" class="app-gdoc-list-item app-gdoc-list-item-thin"
                                      [record]="record"
+                                     [idx]="idx"
+                                     [rowNr]="((searchResult.searchForm.pageNum - 1) * searchResult.searchForm.perPage) + idx"
                                      [layout]="layout"
                                      [short]="short"
                                      [backToSearchUrl]="getBackToSearchUrl(searchResult)"
                                      [multiActionManager]="multiActionManager"
+                                     [showItemMapFlag]="showItemMapFlag"
                                      (show)="onShow($event)"
                                      (showImage)="onShowImage($event)"
-                                     *ngFor="let record of searchResult.currentRecords"></app-gdoc-list-item-thin>
+                                     (showItemOnMap)="onShowItemOnMap($event)"
+                                     *ngFor="let record of searchResult.currentRecords; let idx = index"></app-gdoc-list-item-thin>
         </ng-container>
         <ng-container *ngSwitchDefault>
             <app-gdoc-list-item style="min-width: 300px; margin-bottom: 10px" class="card app-gdoc-list-item app-gdoc-list-item-big"
@@ -52,9 +64,11 @@
                                 [short]="short"
                                 [backToSearchUrl]="getBackToSearchUrl(searchResult)"
                                 [multiActionManager]="multiActionManager"
+                                [showItemMapFlag]="showItemMapFlag"
                                 (show)="onShow($event)"
                                 (showImage)="onShowImage($event)"
-                                *ngFor="let record of searchResult.currentRecords"></app-gdoc-list-item>
+                                (showItemOnMap)="onShowItemOnMap($event)"
+                                *ngFor="let record of searchResult.currentRecords; let idx = index"></app-gdoc-list-item>
         </ng-container>
     </ng-container>
 </div>

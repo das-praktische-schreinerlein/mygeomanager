@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef} from '@angular/core';
 import {GeoDocDataService} from '../../../../shared/gdoc-commons/services/gdoc-data.service';
 import {GeoDocRecord} from '../../../../shared/gdoc-commons/model/records/gdoc-record';
 import {ActivatedRoute} from '@angular/router';
@@ -39,6 +39,7 @@ export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoD
     mapZoom = 9;
     mapElements: MapElement[] = [];
     profileMapElements: MapElement[] = [];
+    currentMapGDocId = undefined;
     flgShowMap = false;
     flgShowProfileMap = false;
     flgMapAvailable = false;
@@ -49,7 +50,8 @@ export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoD
                 cdocRoutingService: GeoDocRoutingService, toastr: ToastrService, pageUtils: PageUtils,
                 cd: ChangeDetectorRef, trackingProvider: GenericTrackingService, appService: GenericAppService,
                 platformService: PlatformService, layoutService: LayoutService, searchFormUtils: SearchFormUtils,
-                gdocSearchFormUtils: GeoDocSearchFormUtils, protected actionService: GeoDocActionTagService) {
+                gdocSearchFormUtils: GeoDocSearchFormUtils, protected actionService: GeoDocActionTagService,
+                protected elRef: ElementRef) {
         super(route, commonRoutingService, errorResolver, gdocDataService, searchFormConverter, cdocRoutingService,
             toastr, pageUtils, cd, trackingProvider, appService, platformService, layoutService, searchFormUtils,
             gdocSearchFormUtils, new CommonDocMultiActionManager(appService, actionService), environment);
@@ -85,6 +87,15 @@ export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoD
         return false;
     }
 
+
+    onShowItemOnMap(gdoc: GeoDocRecord) {
+        this.currentMapGDocId = undefined;
+        if (gdoc) {
+            this.currentMapGDocId = gdoc.id;
+            this.pageUtils.scrollToTopOfElement(this.elRef);
+            this.cd.markForCheck();
+        }
+    }
 
     protected getComponentConfig(config: {}): CommonDocSearchpageComponentConfig {
         return {

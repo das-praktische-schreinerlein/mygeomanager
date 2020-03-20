@@ -13,7 +13,6 @@ export class GeoDocSearchFormConverter implements GenericSearchFormSearchFormCon
     public HRD_IDS = {
         loc_id_i: 'LOCATION',
         loc_lochirarchie_ids_txt: 'LOCATION',
-        image_id_i: 'IMAGE',
         loc_parent_id_i: 'LOCATION'};
 
     private splitter = '_,_';
@@ -42,10 +41,7 @@ export class GeoDocSearchFormConverter implements GenericSearchFormSearchFormCon
     joinMoreFilterParams(gdocSearchForm: GeoDocSearchForm): string {
         const searchForm = (gdocSearchForm ? gdocSearchForm : new GeoDocSearchForm({}));
         const moreFilterMap = new Map();
-        moreFilterMap.set('techDataAltitudeMax', searchForm.techDataAltitudeMax);
-        moreFilterMap.set('techDataAscent', searchForm.techDataAscent);
-        moreFilterMap.set('techDataDistance', searchForm.techDataDistance);
-        moreFilterMap.set('techDataDuration', searchForm.techDataDuration);
+        moreFilterMap.set('ele', searchForm.ele);
         let moreFilter = this.searchParameterUtils.joinParamsToOneRouteParameter(moreFilterMap, this.splitter);
         if (moreFilter !== undefined && moreFilter.length > 0) {
             if (searchForm.moreFilter !== undefined && searchForm.moreFilter.length > 0) {
@@ -111,21 +107,15 @@ export class GeoDocSearchFormConverter implements GenericSearchFormSearchFormCon
             this.searchParameterUtils.joinValuesAndReplacePrefix(whereValues.get('locId:'), 'locId:', ',') : '');
 
         const moreFilterValues = this.searchParameterUtils.splitValuesByPrefixes(params.moreFilter, this.splitter,
-            ['techDataAltitudeMax:', 'techDataAscent:', 'techDataDistance:', 'techDataDuration:']);
+            ['ele:']);
         let moreFilter = '';
         if (moreFilterValues.has('unknown')) {
             moreFilter += ',' + this.searchParameterUtils.joinValuesAndReplacePrefix(moreFilterValues.get('unknown'), '', ',');
         }
         moreFilter = moreFilter.replace(/[,]+/g, ',').replace(/(^,)|(,$)/g, '');
-        const techDataAltitudeMax: string = (moreFilterValues.has('techDataAltitudeMax:') ?
+        const ele: string = (moreFilterValues.has('ele:') ?
             this.searchParameterUtils.joinValuesAndReplacePrefix(
-                moreFilterValues.get('techDataAltitudeMax:'), 'techDataAltitudeMax:', ',') : '');
-        const techDataAscent: string = (moreFilterValues.has('techDataAscent:') ?
-            this.searchParameterUtils.joinValuesAndReplacePrefix(moreFilterValues.get('techDataAscent:'), 'techDataAscent:', ',') : '');
-        const techDataDistance: string = (moreFilterValues.has('techDataDistance:') ?
-            this.searchParameterUtils.joinValuesAndReplacePrefix(moreFilterValues.get('techDataDistance:'), 'techDataDistance:', ',') : '');
-        const techDataDuration: string = (moreFilterValues.has('techDataDuration:') ?
-            this.searchParameterUtils.joinValuesAndReplacePrefix(moreFilterValues.get('techDataDuration:'), 'techDataDuration:', ',') : '');
+                moreFilterValues.get('ele:'), 'ele:', ',') : '');
 
         const whatFilterValues = this.searchParameterUtils.splitValuesByPrefixes(params.what, this.splitter,
             ['action:', 'keyword:', 'playlists:']);
@@ -175,18 +165,9 @@ export class GeoDocSearchFormConverter implements GenericSearchFormSearchFormCon
         searchForm.moreFilter = this.searchParameterUtils.useValueDefaultOrFallback(
             this.searchParameterUtils.replacePlaceHolder(moreFilter, /^ungefiltert$/, ''),
             defaults['moreFilter'], '');
-        searchForm.techDataAscent = this.searchParameterUtils.useValueDefaultOrFallback(
-            this.searchParameterUtils.replacePlaceHolder(techDataAscent, /^ungefiltert$/, ''),
-            defaults['techDataAscent'], '');
-        searchForm.techDataDuration = this.searchParameterUtils.useValueDefaultOrFallback(
-            this.searchParameterUtils.replacePlaceHolder(techDataDuration, /^ungefiltert$/, ''),
-            defaults['techDataDuration'], '');
-        searchForm.techDataDistance = this.searchParameterUtils.useValueDefaultOrFallback(
-            this.searchParameterUtils.replacePlaceHolder(techDataDistance, /^ungefiltert$/, ''),
-            defaults['techDataDistance'], '');
-        searchForm.techDataAltitudeMax = this.searchParameterUtils.useValueDefaultOrFallback(
-            this.searchParameterUtils.replacePlaceHolder(techDataAltitudeMax, /^ungefiltert$/, ''),
-            defaults['techDataAltitudeMax'], '');
+        searchForm.ele = this.searchParameterUtils.useValueDefaultOrFallback(
+            this.searchParameterUtils.replacePlaceHolder(ele, /^ungefiltert$/, ''),
+            defaults['ele'], '');
         searchForm.sort = this.searchParameterUtils.useValueDefaultOrFallback(params['sort'], defaults['sort'], '');
         searchForm.type = this.searchParameterUtils.useValueDefaultOrFallback(
             this.searchParameterUtils.replacePlaceHolder(params['type'], /^alle$/, ''), defaults['type'], '').toLowerCase();
@@ -225,11 +206,8 @@ export class GeoDocSearchFormConverter implements GenericSearchFormSearchFormCon
         });
 
         res.push(this.searchFormUtils.valueToHumanReadableText(gdocSearchForm.fulltext, 'hrt_fulltext', undefined, true));
-        res.push(this.searchFormUtils.valueToHumanReadableText(gdocSearchForm.techDataAltitudeMax, 'hrt_techDataAltitudeMax',
+        res.push(this.searchFormUtils.valueToHumanReadableText(gdocSearchForm.ele, 'hrt_ele',
             undefined, true));
-        res.push(this.searchFormUtils.valueToHumanReadableText(gdocSearchForm.techDataAscent, 'hrt_techDataAscent', undefined, true));
-        res.push(this.searchFormUtils.valueToHumanReadableText(gdocSearchForm.techDataDistance, 'hrt_techDataDistance', undefined, true));
-        res.push(this.searchFormUtils.valueToHumanReadableText(gdocSearchForm.techDataDuration, 'hrt_techDataDuration', undefined, true));
         res.push(this.searchFormUtils.valueToHumanReadableText(gdocSearchForm.playlists, 'hrt_playlists', undefined, true));
 
         return res;

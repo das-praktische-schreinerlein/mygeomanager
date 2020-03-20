@@ -1,18 +1,12 @@
 import {GeoDocRecord, GeoDocRecordRelation} from '../model/records/gdoc-record';
 import {GeoDocDataStore} from './gdoc-data.store';
 import {GeoDocSearchService} from './gdoc-search.service';
-import {GeoDocImageRecord, GeoDocImageRecordRelation} from '../model/records/gdocimage-record';
-import {GeoDocImageRecordSchema} from '../model/schemas/gdocimage-record-schema';
-import {GeoDocRecordSchema} from '../model/schemas/gdoc-record-schema';
-import {GeoDocDataTechRecordSchema} from '../model/schemas/gdocdatatech-record-schema';
-import {GeoDocDataTechRecord, GeoDocDataTechRecordRelation} from '../model/records/gdocdatatech-record';
-import {GeoDocDataInfoRecord, GeoDocDataInfoRecordRelation} from '../model/records/gdocdatainfo-record';
-import {GeoDocDataInfoRecordSchema} from '../model/schemas/gdocdatainfo-record-schema';
 import {GeoDocAdapterResponseMapper} from './gdoc-adapter-response.mapper';
 import {ActionTagForm} from '@dps/mycms-commons/dist/commons/utils/actiontag.utils';
 import {GeoDocSearchForm} from '../model/forms/gdoc-searchform';
 import {GeoDocSearchResult} from '../model/container/gdoc-searchresult';
 import {CommonDocDataService} from '@dps/mycms-commons/dist/search-commons/services/cdoc-data.service';
+import {GeoDocRecordSchema} from "../model/schemas/gdoc-record-schema";
 
 export class GeoDocDataService extends CommonDocDataService<GeoDocRecord, GeoDocSearchForm, GeoDocSearchResult> {
     public defaultLocIdParent = 1;
@@ -25,15 +19,12 @@ export class GeoDocDataService extends CommonDocDataService<GeoDocRecord, GeoDoc
         return <GeoDocRecord>this.dataStore.createRecord(this.getBaseMapperName(), props, opts);
     }
 
-    protected addAdditionalActionTagForms(origTdocRecord: GeoDocRecord, newTdocRecord: GeoDocRecord,
+    protected addAdditionalActionTagForms(origGdocRecord: GeoDocRecord, newGdocRecord: GeoDocRecord,
                                           actionTagForms: ActionTagForm[]) {
     }
 
     protected defineDatastoreMapper(): void {
         this.dataStore.defineMapper('gdoc', GeoDocRecord, GeoDocRecordSchema, GeoDocRecordRelation);
-        this.dataStore.defineMapper('gdocdatatech', GeoDocDataTechRecord, GeoDocDataTechRecordSchema, GeoDocDataTechRecordRelation);
-        this.dataStore.defineMapper('gdocdatainfo', GeoDocDataInfoRecord, GeoDocDataInfoRecordSchema, GeoDocDataInfoRecordRelation);
-        this.dataStore.defineMapper('gdocimage', GeoDocImageRecord, GeoDocImageRecordSchema, GeoDocImageRecordRelation);
     }
 
     protected defineIdMappingAlliases(): {} {

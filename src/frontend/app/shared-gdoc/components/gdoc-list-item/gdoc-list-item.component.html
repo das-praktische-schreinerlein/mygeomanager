@@ -1,78 +1,15 @@
 <ng-container *ngIf="listItem.currentRecord !== undefined" [ngSwitch]="true">
-    <ng-container *ngSwitchCase="listItem.currentRecord.type === 'IMAGE'">
-        <div class="card-block" [ngClass]="listItem.styleClassFor">
-            <a [name]="listItem.currentRecord.id"></a>
-
-            <ng-container *ngIf="short">
-                <div class="picture-small" *ngIf="listItem.image">
-                    <img class="picture-small" width="300px"
-                         [src]="listItem.previewUrl"
-                         (click)="submitShowImage(listItem.currentRecord)"
-                         alt="{{listItem.image.name}}">
-                </div>
-                <small class="text-muted"><app-gdoc-linked-loc-hierarchy [record]="listItem.currentRecord" [lastOnly]="true"></app-gdoc-linked-loc-hierarchy>
-                    {{listItem.currentRecord | gdocdate}}
-                </small>
-            </ng-container>
-            <ng-container *ngIf="!short">
-                <h5><app-gdoc-distance [record]="listItem.currentRecord"></app-gdoc-distance>
-                    <app-gdoc-linked-loc-hierarchy [record]="listItem.currentRecord" [lastOnly]="false"></app-gdoc-linked-loc-hierarchy></h5>
-                <div>
-                    <div>
-                        <h5>{{listItem.currentRecord.type | translate }}</h5>
-                        <h5>{{listItem.currentRecord.subtype | translate }}</h5>
-                        <div class="picture-small" *ngIf="listItem.image">
-                            <img class="picture-small" width="300px"
-                                 [src]="listItem.previewUrl"
-                                 (click)="submitShowImage(listItem.currentRecord)"
-                                 alt="{{listItem.image.name}}">
-                        </div>
-                    </div>
-                    <a [href]="listItem.urlShow" (click)="submitShow(listItem.currentRecord)"><h5 class="card-title">{{listItem.currentRecord.name}}</h5></a>
-                </div>
-                <br clear="all" />
-                <div class="card-text">
-                    <ngb-accordion #acc="ngbAccordion" activeIds="">
-                        <ngb-panel *ngIf="listItem.currentRecord.gpsTrackBasefile || (listItem.currentRecord.geoLat != undefined && listItem.currentRecord.geoLon != undefined)" title="Map" i18n-title="title accordion map|Title for map accordion@@accordion.map.gdoc.title">
-                            <ng-template ngbPanelContent>
-                                <app-gdoc-map [mapId]="'listItemMap' + listItem.currentRecord.id"
-                                              [height]="'150'"
-                                              [mapZoom]="'9'"
-                                              [gdocs]="[listItem.currentRecord]"
-                                              [mapCenterPos]="undefined"></app-gdoc-map>
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel title="Details" i18n-title="title accordion details|Title for details accordion@@accordion.details.gdoc.title">
-                            <ng-template ngbPanelContent>
-                                <app-gdoc-keywords [record]="listItem.currentRecord"></app-gdoc-keywords>
-                                <app-gdoc-datameta [record]="listItem.currentRecord"></app-gdoc-datameta>
-                            </ng-template>
-                        </ngb-panel>
-                    </ngb-accordion>
-                </div>
-            </ng-container>
-        </div>
-        <div class="card-footer card-footer-list-item" *ngIf="!short">
-            <div class="multiaction-checkbox" *ngIf="isMultiActionTagSelected()">
-                <input type="checkbox" [disabled]="isMultiActionAvailableForRecord()"
-                       [checked]="isMultiActionSelectedForRecord()"
-                       (click)="onChangeMultiActionForRecord($event)">
-            </div>
-            <small class="text-muted">{{listItem.currentRecord | gdocdate}}</small>
-            <div class="card-action-buttons align-bottom btn-group" role="group" aria-label="Actions">
-                <button class="show btn-navigation" (click)="submitShow(listItem.currentRecord)" i18n="button listitemaction show gdoc|Buttontext to listitemaction:show gdoc@@button.listitemaction.gdoc.show">Show</button>
-            </div>
-            <app-gdoc-action [record]="listItem.currentRecord" [type]="'actionTagsBig'" (actionTagEvent)="onActionTagEvent($event)"></app-gdoc-action>
-        </div>
-    </ng-container>
     <ng-container *ngSwitchDefault="">
         <div class="card-block" [ngClass]="listItem.styleClassFor">
             <a [name]="listItem.currentRecord.id"></a>
-            <h5><app-gdoc-distance [record]="listItem.currentRecord"></app-gdoc-distance>
-                <app-gdoc-linked-loc-hierarchy [record]="listItem.currentRecord" [lastOnly]="false"></app-gdoc-linked-loc-hierarchy></h5>
+            <app-gdoc-distance [record]="listItem.currentRecord"></app-gdoc-distance>
+            <app-gdoc-linked-loc-hierarchy [record]="listItem.currentRecord" [lastOnly]="false"></app-gdoc-linked-loc-hierarchy>
             <div>
                 <div style="width: 100px; float: left">
-                    <h5>{{listItem.currentRecord.type | translate }}</h5>
+                    <h5 (click)="submitShowItemOnMap(listItem.currentRecord)">
+                        <span *ngIf="mapFlagAvailable" [innerHTML]="listItem.currentRecord | gdocmapcode: idx+1 : mapFlagSymbol"></span>
+                        <span>{{listItem.currentRecord.type | translate }}</span>
+                    </h5>
                     <ng-container *ngIf="listItem.image">
                         <img class="picture-thumbnail" width="50px"
                              [src]="listItem.thumbnailUrl"
@@ -92,7 +29,6 @@
                         <ng-template ngbPanelContent>
                             <app-gdoc-datatech [record]="listItem.currentRecord"></app-gdoc-datatech >
                             <app-gdoc-keywords [record]="listItem.currentRecord"></app-gdoc-keywords>
-                            <app-gdoc-datainfo [record]="listItem.currentRecord"></app-gdoc-datainfo >
                             <app-gdoc-datameta [record]="listItem.currentRecord"></app-gdoc-datameta>
                         </ng-template>
                     </ngb-panel>

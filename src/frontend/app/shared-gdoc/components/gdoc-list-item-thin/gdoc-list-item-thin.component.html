@@ -8,16 +8,11 @@
                        [checked]="isMultiActionSelectedForRecord()"
                        (click)="onChangeMultiActionForRecord($event)">
             </div>
-            <ng-container *ngIf="listItem.currentRecord.geoDistance > 0"><app-gdoc-distance [record]="listItem.currentRecord"></app-gdoc-distance><br /></ng-container>
+            <a (click)="submitShowItemOnMap(listItem.currentRecord)">
+                <span *ngIf="mapFlagAvailable" [innerHTML]="listItem.currentRecord | gdocmapcode: idx+1 : mapFlagSymbol"></span>
+                <app-gdoc-distance *ngIf="listItem.currentRecord.geoDistance > 0" [record]="listItem.currentRecord"></app-gdoc-distance>
+            </a>
             <ng-container [ngSwitch]="listItem.currentRecord.type">
-                <ng-container *ngSwitchCase="'IMAGE'">
-                    <ng-container *ngIf="listItem.image">
-                        <img class="picture-thumbnail" width="50px"
-                             [src]="listItem.thumbnailUrl"
-                             (click)="submitShowImage(listItem.currentRecord)"
-                             alt="{{listItem.image.name}}">
-                    </ng-container>
-                </ng-container>
                 <ng-container *ngSwitchDefault="">
                     {{listItem.currentRecord.type | translate }}<br />
                     {{listItem.currentRecord.subtype | translate }}

@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input} from '@angular/core';
 import {GeoDocRecord} from '../../../../shared/gdoc-commons/model/records/gdoc-record';
-import {GeoDocDataTechRecord} from '../../../../shared/gdoc-commons/model/records/gdocdatatech-record';
 import {AbstractInlineComponent} from '@dps/mycms-frontend-commons/dist/angular-commons/components/inline.component';
 
 @Component({
@@ -10,7 +9,7 @@ import {AbstractInlineComponent} from '@dps/mycms-frontend-commons/dist/angular-
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GeoDocDataTechComponent extends AbstractInlineComponent {
-    gdocdatatech: GeoDocDataTechRecord;
+    gdocdatatech: GeoDocRecord;
 
     @Input()
     public record: GeoDocRecord;
@@ -27,6 +26,7 @@ export class GeoDocDataTechComponent extends AbstractInlineComponent {
             this.gdocdatatech = undefined;
             return;
         }
-        this.gdocdatatech = this.record['gdocdatatech'];
+
+        this.gdocdatatech = this.record;
     }
 }

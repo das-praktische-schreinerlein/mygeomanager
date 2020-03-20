@@ -84,10 +84,9 @@ export class GeoDocConverterModule {
                     geo_lat_s: geoLat,
                     geo_lon_s: geoLon,
                     geo_loc_p: geoLoc,
-                    geo_ele_s: feature.properties['ele'],
+                    geo_ele_s: feature.properties['geoEle'],
                     keywords_txt: keywords.join((', ')),
-                    data_tech_alt_max_i: feature.properties['ele'],
-                    data_info_guides_s: guides.join(';'),
+                    geo_ele_f: feature.properties['geoEle'],
                     loc_id_i: records.length + 1,
                     name_s: feature.properties['name']
                 }, {});

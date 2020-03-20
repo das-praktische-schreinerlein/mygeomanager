@@ -5,6 +5,7 @@ import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/
 import {MapElement} from '@dps/mycms-frontend-commons/dist/angular-maps/services/leaflet-geo.plugin';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
 import {AbstractInlineComponent} from '@dps/mycms-frontend-commons/dist/angular-commons/components/inline.component';
+import {StringUtils} from "@dps/mycms-commons/dist/commons/utils/string.utils";
 
 @Component({
     selector: 'app-gdoc-profilemap',
@@ -43,7 +44,8 @@ export class GeoDocProfileMapComponent extends AbstractInlineComponent {
         const tmpList: MapElement[] = [];
         for (let i = 0; i < this.gdocs.length; i++) {
             const record =  this.gdocs[i];
-            for (const mapElement of this.contentUtils.createMapElementForGeoDoc(record, this.showImageTrackAndGeoPos)) {
+            for (const mapElement of this.contentUtils.createMapElementForGeoDoc(record,
+                StringUtils.calcCharCodeForListIndex(i + 1), this.showImageTrackAndGeoPos)) {
                 tmpList.push(mapElement);
             }
         }

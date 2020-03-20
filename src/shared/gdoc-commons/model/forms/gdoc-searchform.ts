@@ -22,10 +22,7 @@ export class GeoDocSearchForm extends CommonDocSearchForm {
         locId: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.ID_CSV, new IdCsvValidationRule(false)),
         nearby: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.NEARBY, new NearbyParamValidationRule(false)),
         nearbyAddress: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.ADDRESS, new TextValidationRule(false)),
-        techDataAscent: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.ID_CSV, new IdCsvValidationRule(false)),
-        techDataAltitudeMax: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.ID_CSV, new IdCsvValidationRule(false)),
-        techDataDistance: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.ID_CSV, new IdCsvValidationRule(false)),
-        techDataDuration: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.ID_CSV, new IdCsvValidationRule(false)),
+        ele: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.ID_CSV, new IdCsvValidationRule(false)),
         subtype: new GenericSearchFormFieldConfig(GenericValidatorDatatypes.ID_CSV, new IdCsvValidationRule(false))
     };
 
@@ -33,10 +30,7 @@ export class GeoDocSearchForm extends CommonDocSearchForm {
     locId: string;
     nearby: string;
     nearbyAddress: string;
-    techDataAscent: string;
-    techDataAltitudeMax: string;
-    techDataDistance: string;
-    techDataDuration: string;
+    ele: string;
     subtype: string;
 
     constructor(values: {}) {
@@ -46,10 +40,7 @@ export class GeoDocSearchForm extends CommonDocSearchForm {
         this.locId = values['locId'] || '';
         this.nearby = values['nearby'] || '';
         this.nearbyAddress = values['nearbyAddress'] || '';
-        this.techDataAscent = values['techDataAscent'] || '';
-        this.techDataAltitudeMax = values['techDataAltitudeMax'] || '';
-        this.techDataDistance = values['techDataDistance'] || '';
-        this.techDataDuration = values['techDataDuration'] || '';
+        this.ele = values['ele'] || '';
         this.subtype = values['subtype'] || '';
     }
 
@@ -79,11 +70,8 @@ export class GeoDocSearchFormFactory {
         sanitizedValues.locId = GeoDocSearchForm.gdocFields.locId.validator.sanitize(values['locId']) || '';
         sanitizedValues.nearby = GeoDocSearchForm.gdocFields.nearby.validator.sanitize(values['nearby']) || '';
         sanitizedValues.nearbyAddress = GeoDocSearchForm.gdocFields.nearbyAddress.validator.sanitize(values['nearbyAddress']) || '';
-        sanitizedValues.techDataAltitudeMax =
-            GeoDocSearchForm.gdocFields.techDataAltitudeMax.validator.sanitize(values['techDataAltitudeMax']) || '';
-        sanitizedValues.techDataAscent = GeoDocSearchForm.gdocFields.techDataAscent.validator.sanitize(values['techDataAscent']) || '';
-        sanitizedValues.techDataDistance = GeoDocSearchForm.gdocFields.techDataDistance.validator.sanitize(values['techDataDistance']) || '';
-        sanitizedValues.techDataDuration = GeoDocSearchForm.gdocFields.techDataDuration.validator.sanitize(values['techDataDuration']) || '';
+        sanitizedValues.ele =
+            GeoDocSearchForm.gdocFields.ele.validator.sanitize(values['ele']) || '';
         sanitizedValues.subtype = GeoDocSearchForm.gdocFields.subtype.validator.sanitize(values['subtype']) || '';
 
         return sanitizedValues;
@@ -113,10 +101,7 @@ export class GeoDocSearchFormValidator {
         state = GeoDocSearchForm.gdocFields.locId.validator.isValid(values['locId']) && state;
         state = GeoDocSearchForm.gdocFields.nearby.validator.isValid(values['nearby']) && state;
         state = GeoDocSearchForm.gdocFields.nearbyAddress.validator.isValid(values['nearbyAddress']) && state;
-        state = GeoDocSearchForm.gdocFields.techDataAltitudeMax.validator.isValid(values['techDataAltitudeMax']) && state;
-        state = GeoDocSearchForm.gdocFields.techDataAscent.validator.isValid(values['techDataAscent']) && state;
-        state = GeoDocSearchForm.gdocFields.techDataDistance.validator.isValid(values['techDataDistance']) && state;
-        state = GeoDocSearchForm.gdocFields.techDataDuration.validator.isValid(values['techDataDuration']) && state;
+        state = GeoDocSearchForm.gdocFields.ele.validator.isValid(values['ele']) && state;
         state = GeoDocSearchForm.gdocFields.subtype.validator.isValid(values['subtype']) && state;
 
         return state;

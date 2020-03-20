@@ -1,11 +1,8 @@
 import {Mapper, Record} from 'js-data';
 import {GeoDocRecord, GeoDocRecordFactory} from '../model/records/gdoc-record';
-import {GeoDocImageRecord, GeoDocImageRecordFactory} from '../model/records/gdocimage-record';
 import {MapperUtils} from '@dps/mycms-commons/dist/search-commons/services/mapper.utils';
 import {GenericAdapterResponseMapper} from '@dps/mycms-commons/dist/search-commons/services/generic-adapter-response.mapper';
 import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
-import {GeoDocDataTechRecordFactory} from '../model/records/gdocdatatech-record';
-import {GeoDocDataInfoRecordFactory} from '../model/records/gdocdatainfo-record';
 
 export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper {
     protected mapperUtils = new MapperUtils();
@@ -18,17 +15,16 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
     mapToAdapterDocument(mapping: {}, props: GeoDocRecord): any {
         const values = {};
         values['id'] = props.id;
-        values['image_id_i'] = props.imageId;
         values['loc_id_i'] = props.locId;
         values['loc_id_parent_i'] = props.locIdParent;
         values['blocked_i'] = props.blocked;
-        values['dateshow_dt'] = props.dateshow;
         values['desc_txt'] = props.descTxt;
         values['desc_md_txt'] = props.descMd;
         values['desc_html_txt'] = props.descHtml;
         values['geo_lon_s'] = props.geoLon;
         values['geo_lat_s'] = props.geoLat;
         values['geo_ele_s'] = props.geoEle;
+        values['geo_ele_f'] = props.geoEle;
         values['geo_loc_p'] = props.geoLoc;
         values['gpstrack_src_s'] = props.gpsTrackSrc;
         values['gpstracks_basefile_s'] = props.gpsTrackBasefile;
@@ -54,30 +50,13 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
             values['keywords_txt'],
             values['type_s']].join(' ');
 
-        if (props.get('gdocimages') && props.get('gdocimages').length > 0) {
-            const image: GeoDocImageRecord = props.get('gdocimages')[0];
-            values['i_fav_url_txt'] = image.fileName;
-        }
-
-        values['data_tech_alt_asc_i'] = BeanUtils.getValue(props, 'gdocdatatech.altAsc');
-        values['data_tech_alt_desc_i'] = BeanUtils.getValue(props, 'gdocdatatech.altDesc');
-        values['data_tech_alt_min_i'] = BeanUtils.getValue(props, 'gdocdatatech.altMin');
-        values['data_tech_alt_max_i'] = BeanUtils.getValue(props, 'gdocdatatech.altMax');
-        values['data_tech_dist_f'] = BeanUtils.getValue(props, 'gdocdatatech.dist');
-        values['data_tech_dur_f'] = BeanUtils.getValue(props, 'gdocdatatech.dur');
-
-        values['data_info_guides_s'] = BeanUtils.getValue(props, 'gdocdatainfo.guides');
-        values['data_info_region_s'] = BeanUtils.getValue(props, 'gdocdatainfo.region');
-        values['data_info_baseloc_s'] = BeanUtils.getValue(props, 'gdocdatainfo.baseloc');
-        values['data_info_destloc_s'] = BeanUtils.getValue(props, 'gdocdatainfo.destloc');
-
         return values;
     }
 
     mapValuesToRecord(mapper: Mapper, values: {}): GeoDocRecord {
         const record = GeoDocRecordFactory.createSanitized(values);
 
-        for (const mapperKey of ['gdocdatatech', 'gdocdatainfo']) {
+        for (const mapperKey of []) {
             const subMapper = mapper['datastore']._mappers[mapperKey];
             let subValues;
             for (const key in values) {
@@ -99,12 +78,8 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
     }
 
     mapResponseDocument(mapper: Mapper, doc: any, mapping: {}): Record {
-        const dataTechMapper = mapper['datastore']._mappers['gdocdatatech'];
-        const dataInfoMapper = mapper['datastore']._mappers['gdocdatainfo'];
-
         const values = {};
         values['id'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'id', undefined);
-        values['imageId'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'image_id_i', undefined);
         values['locId'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'loc_id_i', undefined);
         values['locIdParent'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'loc_id_parent_i', undefined);
 
@@ -155,8 +130,6 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
         values['subtype'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'subtype_s', undefined);
         values['type'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'type_s', undefined);
 
-        values['geoDistance'] = this.mapperUtils.getAdapterCoorValue(doc,
-            this.mapperUtils.mapToAdapterFieldName(mapping, 'distance'), undefined);
         values['geoLon'] = this.mapperUtils.getAdapterCoorValue(doc,
             this.mapperUtils.mapToAdapterFieldName(mapping, 'geo_lon_s'), undefined);
         values['geoLat'] = this.mapperUtils.getAdapterCoorValue(doc,
@@ -180,115 +153,13 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
         const record: GeoDocRecord = <GeoDocRecord>mapper.createRecord(
             GeoDocRecordFactory.instance.getSanitizedValues(values, {}));
 
-        const imageField = doc[this.mapperUtils.mapToAdapterFieldName(mapping, 'i_fav_url_txt')];
-        let imageDocs = [];
-        if (imageField !== undefined) {
-            if (Array.isArray(imageField)) {
-                imageDocs = imageField;
-            } else {
-                imageDocs.push(imageField);
-            }
-            this.mapImageDocsToAdapterDocument(mapper, record, imageDocs);
-        } else {
-            record.set('gdocimages', []);
-        }
-        // console.log('mapResponseDocument record full:', record);
-
-
-        const dataTechValues = {};
-        dataTechValues['altAsc'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'data_tech_alt_asc_i', undefined);
-        dataTechValues['altDesc'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'data_tech_alt_desc_i', undefined);
-        dataTechValues['altMin'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'data_tech_alt_min_i', undefined);
-        dataTechValues['altMax'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'data_tech_alt_max_i', undefined);
-        dataTechValues['dist'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'data_tech_dist_f', undefined);
-        dataTechValues['dur'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'data_tech_dur_f', undefined);
-        let dataTechSet = false;
-        for (const field in dataTechValues) {
-            if (dataTechValues[field] !== undefined && dataTechValues[field] !== 0) {
-                dataTechSet = true;
-                break;
-            }
-        }
-
-        if (dataTechSet) {
-            record.set('gdocdatatech', dataTechMapper.createRecord(
-                GeoDocDataTechRecordFactory.instance.getSanitizedValues(dataTechValues, {})));
-        } else {
-            record.set('gdocdatatech', undefined);
-        }
-
-        const dataInfoValues = {};
-        dataInfoValues['guides'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'data_info_guides_s', undefined);
-        dataInfoValues['region'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'data_info_region_s', undefined);
-        dataInfoValues['baseloc'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'data_info_baseloc_s', undefined);
-        dataInfoValues['destloc'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'data_info_destloc_s', undefined);
-        let dataInfoSet = false;
-        for (const field in dataInfoValues) {
-            if (dataInfoValues[field] !== undefined && (dataInfoValues[field] + '').length > 0) {
-                dataInfoSet = true;
-                break;
-            }
-        }
-
-        if (dataInfoSet) {
-            record.set('gdocdatainfo', dataInfoMapper.createRecord(
-                GeoDocDataInfoRecordFactory.instance.getSanitizedValues(dataInfoValues, {})));
-        } else {
-            record.set('gdocdatainfo', undefined);
-        }
-
         // console.log('mapResponseDocument record full:', record);
 
         return record;
     }
 
     mapDetailDataToAdapterDocument(mapper: Mapper, profile: string, record: Record, docs: any[]): void {
-        switch (profile) {
-            case 'image':
-                const imageUrls = [];
-                docs.forEach(doc => {
-                    imageUrls.push(doc['i_fav_url_txt']);
-                });
-                this.mapImageDocsToAdapterDocument(mapper, <GeoDocRecord>record, imageUrls);
-                break;
-            case 'keywords':
-                let keywords = '';
-                docs.forEach(doc => {
-                    if (doc['keywords'] !== undefined && doc['keywords'] !== null) {
-                        keywords = doc['keywords'];
-                    }
-                });
-                (<GeoDocRecord>record).keywords = keywords;
-                break;
-        }
     }
 
-    private mapImageDocsToAdapterDocument(mapper: Mapper, record: GeoDocRecord, imageDocs: any[]) {
-        const imageMapper = mapper['datastore']._mappers['gdocimage'];
-        const images: GeoDocImageRecord[] = [];
-        if (imageDocs !== undefined) {
-            let id = 1;
-            if (record.type === 'LOCATION') {
-                id = Number(record.locId);
-            } else if (record.type === 'IMAGE') {
-                id = Number(record.imageId);
-            }
-            id = id * 1000000;
-
-            for (const imageDoc of imageDocs) {
-                if (imageDoc === undefined || imageDoc === null) {
-                    continue;
-                }
-                const imageValues = {};
-                imageValues['name'] = record.name;
-                imageValues['id'] = (id++).toString();
-                imageValues['fileName'] = imageDoc;
-                const imageRecord = imageMapper.createRecord(
-                    GeoDocImageRecordFactory.instance.getSanitizedValues(imageValues, {}));
-                images.push(imageRecord);
-            }
-        }
-        record.set('gdocimages', images);
-    }
 }
 

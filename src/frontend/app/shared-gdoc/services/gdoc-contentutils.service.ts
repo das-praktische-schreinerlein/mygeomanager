@@ -68,7 +68,7 @@ export class GeoDocContentUtils extends CommonDocContentUtils {
         if (record.type === 'LOCATION' && theme !== undefined) {
             filters['theme'] = theme;
         }
-        filters['sort'] = 'ratePers';
+        filters['sort'] = 'relevance';
 
         if (record.type === 'LOCATION') {
             if (type === 'LOCATION') {
@@ -76,17 +76,6 @@ export class GeoDocContentUtils extends CommonDocContentUtils {
                 filters['sort'] = 'location';
             } else {
                 filters['moreFilter'] = 'loc_lochirarchie_ids_txt:' + record.locId;
-                if (type === 'IMAGE') {
-                    filters['perPage'] = 12;
-                }
-            }
-        } else if (record.type === 'IMAGE') {
-            if (type === 'TOPIMAGE') {
-                filters['moreFilter'] = 'track_id_i:' + -1;
-            } else if (type === 'LOCATION' && record.locId) {
-                filters['moreFilter'] = 'loc_id_i:' + record.locId;
-            } else {
-                filters['moreFilter'] = 'image_id_i:' + record.imageId;
             }
         }
 
@@ -97,7 +86,7 @@ export class GeoDocContentUtils extends CommonDocContentUtils {
         return filters;
     }
 
-    createMapElementForGeoDoc(record: GeoDocRecord, showImageTrackAndGeoPos: boolean): MapElement[] {
+    createMapElementForGeoDoc(record: GeoDocRecord, code: string, showImageTrackAndGeoPos: boolean): MapElement[] {
         const trackUrl = record.gpsTrackBasefile;
 
         const isImage = (record.type === 'IMAGE');
@@ -116,10 +105,11 @@ export class GeoDocContentUtils extends CommonDocContentUtils {
             }
             const mapElement: MapElement = {
                 id: record.id,
+                code: code,
                 name: record.name,
                 trackUrl: storeUrl,
                 trackSrc: record.gpsTrackSrc,
-                popupContent: '<b>' + record.type + ': ' + record.name + '</b>',
+                popupContent: '<b>' + '&#128204;' + code + ' ' + record.type + ': ' + record.name + '</b>',
                 type: record.type
             };
             mapElements.push(mapElement);
@@ -129,9 +119,10 @@ export class GeoDocContentUtils extends CommonDocContentUtils {
             const point = ele !== undefined ? new LatLng(+record.geoLat, +record.geoLon, +ele) : new LatLng(+record.geoLat, +record.geoLon);
             const mapElement: MapElement = {
                 id: record.id,
+                code: code,
                 name: record.type + ': ' + record.name,
                 point: point,
-                popupContent: '<b>' + record.type + ': ' + record.name + '</b>',
+                popupContent: '<b>' + '&#128204;' + code + ' ' + record.type + ': ' + record.name + '</b>',
                 type: record.type
             };
             mapElements.push(mapElement);
@@ -150,18 +141,6 @@ export class GeoDocContentUtils extends CommonDocContentUtils {
         }
 
         itemData.styleClassFor = this.getStyleClassForRecord(<GeoDocRecord>itemData.currentRecord, layout);
-
-        if (itemData.currentRecord['gdocimages'] !== undefined && itemData.currentRecord['gdocimages'].length > 0) {
-            itemData.image = itemData.currentRecord['gdocimages'][0];
-            itemData.thumbnailUrl = this.getThumbnailUrl(itemData.image);
-            itemData.previewUrl = this.getPreviewUrl(itemData.image);
-            itemData.fullUrl = this.getFullUrl(itemData.image);
-        } else if (itemData.currentRecord['gdocvideos'] !== undefined && itemData.currentRecord['gdocvideos'].length > 0) {
-            itemData.video = itemData.currentRecord['gdocvideos'][0];
-            itemData.thumbnailUrl = this.getVideoThumbnailUrl(itemData.video);
-            itemData.previewUrl = this.getVideoPreviewUrl(itemData.video);
-            itemData.fullUrl = this.getFullVideoUrl(itemData.video);
-        }
 
         if (record !== undefined && (record.gpsTrackBasefile || record.geoLoc !== undefined
             || (record.gpsTrackSrc !== undefined && record.gpsTrackSrc.length > 20))) {
@@ -182,9 +161,9 @@ export class GeoDocContentUtils extends CommonDocContentUtils {
     protected getServiceConfig(): CommonDocContentUtilsConfig {
         return {
             cdocRecordRefIdField: 'gdoc_id',
-            cdocAudiosKey: 'gdocaudios',
-            cdocImagesKey: 'gdocimages',
-            cdocVideosKey: 'gdocvideos'
+            cdocAudiosKey: undefined,
+            cdocImagesKey: undefined,
+            cdocVideosKey: undefined
         };
     }
 }
