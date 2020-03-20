@@ -16,6 +16,7 @@ import {DatePipe} from '@angular/common';
 import {CommonDocDataServiceStub} from '@dps/mycms-frontend-commons/dist/testing/cdoc-dataservice-stubs';
 import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
+import {GeoDocMapCodePipe} from "../../pipes/gdoc-mapcode.pipe";
 
 describe('GeoDocListItemSmallComponent', () => {
     let component: GeoDocListItemSmallComponent;
@@ -23,7 +24,7 @@ describe('GeoDocListItemSmallComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [GeoDocListItemSmallComponent, GeoDocDateFormatPipe],
+            declarations: [GeoDocListItemSmallComponent, GeoDocDateFormatPipe, GeoDocMapCodePipe],
             providers: [
                 { provide: Router, useValue: new RouterStub() },
                 CommonRoutingService,

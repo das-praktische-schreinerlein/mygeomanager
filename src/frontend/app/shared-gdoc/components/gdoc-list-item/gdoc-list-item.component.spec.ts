@@ -17,6 +17,7 @@ import {CommonDocDataServiceStub} from '@dps/mycms-frontend-commons/dist/testing
 import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
 import {TruncatePipe} from "@dps/mycms-frontend-commons/dist/angular-commons/pipes/truncate.pipe";
+import {GeoDocMapCodePipe} from "../../pipes/gdoc-mapcode.pipe";
 
 describe('GeoDocListItemComponent', () => {
     let component: GeoDocListItemComponent;
@@ -24,7 +25,7 @@ describe('GeoDocListItemComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [GeoDocListItemComponent, GeoDocDateFormatPipe, TruncatePipe],
+            declarations: [GeoDocListItemComponent, GeoDocDateFormatPipe, TruncatePipe, GeoDocMapCodePipe],
             providers: [
                 { provide: Router, useValue: new RouterStub() },
                 CommonRoutingService,
