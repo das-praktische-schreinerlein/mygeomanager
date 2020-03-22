@@ -38,8 +38,8 @@ export interface GeoDocRecordType extends BaseEntityRecordType {
 }
 
 export class GeoDocRecord extends CommonDocRecord implements GeoDocRecordType {
-    static gdocRelationNames = ['gdocdatatech', 'gdocdatainfo', 'gdocimages'];
-    static gdocValidationRelationNames = ['gdocdatatech', 'gdocdatainfo'];
+    static gdocRelationNames = [];
+    static gdocValidationRelationNames = [];
     static gdocFields = {
         locId: new BaseEntityRecordFieldConfig(GenericValidatorDatatypes.ID, new DbIdValidationRule(false)),
         locIdParent: new BaseEntityRecordFieldConfig(GenericValidatorDatatypes.ID, new DbIdValidationRule(false)),
