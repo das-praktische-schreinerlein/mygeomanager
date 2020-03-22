@@ -8,7 +8,6 @@ export const GeoDocRecordSchema = new Schema({
     extends: BaseEntityRecordSchema,
     type: 'object',
     properties: {
-        imageId: {type: 'number'},
         locId: {type: 'number'},
         locIdParent: {type: 'number'},
         descTxt: {type: 'string'},

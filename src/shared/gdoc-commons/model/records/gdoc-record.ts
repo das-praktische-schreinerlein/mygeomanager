@@ -24,7 +24,6 @@ import {
 export interface GeoDocRecordType extends BaseEntityRecordType {
     locId: number;
     locIdParent: number;
-    imageId: number;
 
     geoDistance: number;
     geoLon: string;
@@ -43,7 +42,6 @@ export class GeoDocRecord extends CommonDocRecord implements GeoDocRecordType {
     static gdocFields = {
         locId: new BaseEntityRecordFieldConfig(GenericValidatorDatatypes.ID, new DbIdValidationRule(false)),
         locIdParent: new BaseEntityRecordFieldConfig(GenericValidatorDatatypes.ID, new DbIdValidationRule(false)),
-        imageId: new BaseEntityRecordFieldConfig(GenericValidatorDatatypes.ID, new DbIdValidationRule(false)),
 
         geoDistance: new BaseEntityRecordFieldConfig(GenericValidatorDatatypes.NUMBER,
             new NumberValidationRule(false, -99999, 999999, undefined)),
@@ -63,7 +61,6 @@ export class GeoDocRecord extends CommonDocRecord implements GeoDocRecordType {
 
     locId: number;
     locIdParent: number;
-    imageId: number;
 
     geoDistance: number;
     geoLon: string;

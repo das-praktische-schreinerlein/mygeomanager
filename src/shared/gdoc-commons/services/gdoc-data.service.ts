@@ -39,7 +39,6 @@ export class GeoDocDataService extends CommonDocDataService<GeoDocRecord, GeoDoc
 
     protected defineTypeMappings(): {} {
         return {
-            image: 'imageId',
             location: 'locId'
         };
     }

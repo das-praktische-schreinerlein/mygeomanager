@@ -89,10 +89,9 @@ export class GeoDocContentUtils extends CommonDocContentUtils {
     createMapElementForGeoDoc(record: GeoDocRecord, code: string, showImageTrackAndGeoPos: boolean): MapElement[] {
         const trackUrl = record.gpsTrackBasefile;
 
-        const isImage = (record.type === 'IMAGE');
-        const showTrack = (trackUrl !== undefined && trackUrl.length > 0 && (!isImage || showImageTrackAndGeoPos))
+        const showTrack = (trackUrl !== undefined && trackUrl.length > 0 && (showImageTrackAndGeoPos))
             || (record.gpsTrackSrc !== undefined && record.gpsTrackSrc !== null && record.gpsTrackSrc.length > 0);
-        const showGeoPos = (!showTrack || isImage) && record.geoLat && record.geoLon &&
+        const showGeoPos = (!showTrack) && record.geoLat && record.geoLon &&
             record.geoLat !== '0.0' && record.geoLon !== '0.0';
         const mapElements: MapElement[] = [];
 
