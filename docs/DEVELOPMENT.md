@@ -15,7 +15,7 @@ MYCMSPROJECT="mygeomanager"
 Run initially to copy overrides into project
 ```bash
 bash
-npm install && npm prune && ./build-dev.bash
+npm prune && npm install && ./build-dev.bash
 ```
  
 Run to build and start the backend. Navigate to [api](http://localhost:4100/api/v1/de/pdoc/) to get the pdocs.
