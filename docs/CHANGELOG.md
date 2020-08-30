@@ -14,7 +14,24 @@
 - frontend: IE till 11 not functional (can block rendering sometimes)
  
 ### breaking changes
-- frontend: migrate to angular6
+- none
+
+
+## 2.0.0
+- upgraded to angular7 + commons5
+- bumped up deps to the newest running versions
+
+### new features
+- none
+ 
+### improvements
+- bumped up deps to the newest running versions
+
+### bug fixes
+- none
+ 
+### breaking changes
+- upgraded to angular7 + commons5
 
 
 ## 1.1.0

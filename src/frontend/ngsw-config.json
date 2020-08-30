@@ -1,0 +1,57 @@
+{
+    "index": "/index.html",
+    "assetGroups": [
+        {
+            "name": "app",
+            "installMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/favicon.ico",
+                    "/index.html",
+                    "/*.bundle.css",
+                    "/*.bundle.js",
+                    "/*.chunk.js"
+                ]
+            }
+        },
+        {
+            "name": "assets",
+            "installMode": "lazy",
+            "updateMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/*.jpg",
+                    "/*.gif",
+                    "/assets/**"
+                ],
+                "urls": [
+                ]
+            }
+        }
+    ],
+    "dataGroups": [
+        {
+            "name": "dev",
+            "urls": [
+                "http://localhost:4200/**"
+            ],
+            "cacheConfig": {
+                "maxSize": 100,
+                "maxAge": "1d",
+                "strategy": "freshness"
+            }
+        },
+        {
+            "name": "prod",
+            "urls": [
+                "http://localhost:43*/**",
+                "http://www.myshp.de/**"
+            ],
+            "cacheConfig": {
+                "maxSize": 100,
+                "maxAge": "1d",
+                "strategy": "performance"
+            }
+        }
+    ]
+}

@@ -2,13 +2,6 @@
   "compilerOptions": {
     "allowJs": true,
     "sourceMap": true,
-    "diagnostics": false,
-    "traceResolution": false,
-    "listFiles": false,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "strictFunctionTypes": false,
-    "noStrictGenericChecks": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -21,16 +14,11 @@
     ],
     "outDir": "../../dist/tsc-out/backend",
     "module": "es2015",
-    "baseUrl": "./",
-    "types": ["node"],
-    "paths": {
-      "*": [ "../../node_modules/@types/*", "*"]
-    }
+    "baseUrl": "",
+    "types": ["node"]
   },
   "exclude": [
-    "node_modules",
     "test.ts",
-    "**/*.spec.ts",
-    "dist"
+    "**/*.spec.ts"
   ]
 }

@@ -1,28 +1,24 @@
 {
   "compilerOptions": {
     "sourceMap": false,
-    "declaration": true,
+    "declaration": false,
     "moduleResolution": "node",
-    "skipLibCheck": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "module": "es2015",
     "lib": [
       "es2016",
       "dom"
     ],
-    "traceResolution": false,
-    "outDir": "../../dist/tsc-out/frontend",
-    "baseUrl": "./",
-    "paths": {
-      "@angular/*": ["../../node_modules/@angular/*"],
-      "rxjs/*": ["../../node_modules/rxjs/*"],
-      "*": [ "../../node_modules/@types/*", "*"]
-    }
+    "outDir": "../out-tsc/frontend",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": []
+  },
+  "angularCompilerOptions": {
+    "preserveWhitespaces": true
   },
   "exclude": [
-    "node_modules",
     "test.ts",
     "**/*.spec.ts"
   ]

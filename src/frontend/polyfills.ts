@@ -1,3 +1,5 @@
+(window as any).global = window;  // workaround to fix global not defined
+
 import 'core-js/es6/symbol';
 import 'core-js/es6/object';
 import 'core-js/es6/function';
@@ -12,7 +14,6 @@ import 'core-js/es6/regexp';
 import 'core-js/es6/map';
 import 'core-js/es6/set';
 import 'core-js/es6/reflect';
-import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 
 // If you need to support the browsers/features below, uncomment the import
@@ -20,16 +21,17 @@ import 'zone.js/dist/zone';
 // Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
 
 // Needed for: IE9
-// TODO import 'classlist.js';
+// import 'classlist.js';
 
 // Animations
 // Needed for: All but Chrome and Firefox, Not supported in IE9
-// TODO import 'web-animations-js';
+// TODO check if this will this with ie...
+// import 'web-animations-js';
 
 // Date, currency, decimal and percent pipes
 // Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
-// TODO import 'intl';
+// import 'intl';
 
 // NgClass on SVG elements
 // Needed for: IE10, IE11
-// import 'classlist.js';
+import 'classlist.js';

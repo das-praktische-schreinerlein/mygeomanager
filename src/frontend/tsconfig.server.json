@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "sourceMap": false,
-    "declaration": true,
+    "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -10,22 +10,18 @@
       "es2016",
       "dom"
     ],
-    "outDir": "../../dist/out-tsc/frontend-server",
+    "outDir": "../out-tsc/frontend",
     "module": "commonjs",
-    "baseUrl": "./",
-    "paths": {
-      "@angular/*": ["../../node_modules/@angular/*"],
-      "rxjs/*": ["../../node_modules/rxjs/*"],
-      "*": [ "../../node_modules/@types/*", "*"]
-    }
+    "baseUrl": "",
+    "types": []
   },
   // Add "angularCompilerOptions" with the AppServerModule you wrote
   // set as the "entryModule".
   "angularCompilerOptions": {
-    "entryModule": "app/app.server.module#AppServerModule"
+      "preserveWhitespaces": true,
+      "entryModule": "app/app.server.module#AppServerModule"
   },
   "exclude": [
-    "node_modules",
     "test.ts",
     "**/*.spec.ts"
   ]

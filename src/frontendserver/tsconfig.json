@@ -2,13 +2,6 @@
   "compilerOptions": {
     "allowJs": true,
     "sourceMap": false,
-    "diagnostics": false,
-    "traceResolution": false,
-    "listFiles": false,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "strictFunctionTypes": false,
-    "noStrictGenericChecks": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -19,23 +12,18 @@
       "es2016",
       "dom"
     ],
-    "outDir": "../../dist/tsc-out-frontentserver",
+    "outDir": "../../dist/tsc-out-frontent",
     "module": "es2015",
-    "baseUrl": "./",
-    "types": ["node"],
-    "paths": {
-      "@angular/*": ["../../node_modules/@angular/*"],
-      "rxjs/*": ["../../node_modules/rxjs/*"],
-      "express": ["../../node_modules/express/*"],
-      "body-parser": ["../../node_modules/body-parser/*"],
-      "XRegExp": ["../../node_modules/xregexp/*"],
-      "*": [ "../../node_modules/@types/*", "*"]
-      }
-    },
+    "baseUrl": "",
+    "types": ["node"]
+  },
+  "angularCompilerOptions": {
+    "preserveWhitespaces": true
+  },
   "exclude": [
-    "node_modules",
     "test.ts",
     "**/*.spec.ts",
+    "node_modules",
     "dist"
   ]
 }

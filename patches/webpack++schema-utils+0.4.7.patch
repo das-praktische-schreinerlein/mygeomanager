@@ -1,0 +1,14 @@
+diff --git a/node_modules/webpack/node_modules/schema-utils/src/validateOptions.js b/node_modules/webpack/node_modules/schema-utils/src/validateOptions.js
+index f6d9f22..01215d9 100644
+--- a/node_modules/webpack/node_modules/schema-utils/src/validateOptions.js
++++ b/node_modules/webpack/node_modules/schema-utils/src/validateOptions.js
+@@ -26,8 +26,8 @@ const validateOptions = (schema, options, name) => {
+     schema = fs.readFileSync(path.resolve(schema), 'utf8');
+     schema = JSON.parse(schema);
+   }
+-
+   if (!ajv.validate(schema, options)) {
++    console.error('webpack schema-validation error', ajv.errors, options, schema);
+     throw new ValidationError(ajv.errors, name);
+   }
+ 

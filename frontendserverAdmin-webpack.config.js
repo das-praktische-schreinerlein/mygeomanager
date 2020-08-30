@@ -40,8 +40,9 @@ if (profile === 'prod-de') {
 }
 
 module.exports = {
-    entry: './dist/tsc-out-frontentserver/frontendserverAdmin.js',
+    entry: './dist/tsc-out-frontent/frontendserverAdmin.js',
     resolve: { extensions: ['.js', '.ts', '.json'] },
+    mode: 'production',
     target: 'async-node',
     // this makes sure we include node_modules and other 3rd party libraries
     externals: {
