@@ -10,6 +10,6 @@ For more information take a look at documentation:
 - [usage instructions](docs/DATAIMPORT.md)
 - [credits for used libraries](docs/CREDITS.md)
 
-MyGeoManager bases on mysimplehomepage-1.0.0.
+MyGeoManager bases on mysimplehomepage-2.0.0.
 
 ![searchpage](docs/images/searchpage-x400.png)

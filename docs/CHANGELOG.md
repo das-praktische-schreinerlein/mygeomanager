@@ -18,6 +18,7 @@
 
 
 ## 2.0.0
+- now bases on mysimplehomepage-2.0.0
 - upgraded to angular7 + commons5
 - bumped up deps to the newest running versions
 

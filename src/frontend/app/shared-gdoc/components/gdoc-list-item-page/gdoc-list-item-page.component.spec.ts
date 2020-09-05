@@ -14,15 +14,14 @@ import {RouterStub} from '@dps/mycms-frontend-commons/dist/angular-commons/testi
 import {GeoDocDateFormatPipe} from '../../pipes/gdoc-dateformat.pipe';
 import {DatePipe} from '@angular/common';
 import {AngularHtmlService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-html.service';
-import {MarkdownService} from 'angular2-markdown';
 import {AngularMarkdownService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-markdown.service';
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
-import {HttpClientModule} from '@angular/common/http';
 import {GeoDocDataService} from '../../../../shared/gdoc-commons/services/gdoc-data.service';
 import {GeoDocSearchFormConverter} from '../../services/gdoc-searchform-converter.service';
 import {SearchParameterUtils} from '@dps/mycms-commons/dist/search-commons/services/searchparameter.utils';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
 import {SearchFormUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/searchform-utils.service';
+import {NgxMdModule, NgxMdService} from "ngx-md";
 
 describe('GeoDocListItemPageComponent', () => {
     let component: GeoDocListItemPageComponent;
@@ -41,16 +40,17 @@ describe('GeoDocListItemPageComponent', () => {
                 CommonDocRoutingService,
                 SearchFormUtils,
                 GeoDocContentUtils,
-                MarkdownService,
+                NgxMdService,
                 AngularMarkdownService,
                 AngularHtmlService,
                 DatePipe,
                 { provide: GenericAppService, useValue: new AppServiceStub() }
             ],
             schemas: [NO_ERRORS_SCHEMA],
-            imports: [NgbModule.forRoot(),
+            imports: [
+                NgbModule.forRoot(),
                 TranslateModule.forRoot(),
-                HttpClientModule]
+                NgxMdModule.forRoot()],
         })
             .compileComponents();
     }));

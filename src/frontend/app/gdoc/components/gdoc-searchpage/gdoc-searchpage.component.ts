@@ -101,6 +101,7 @@ export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoD
         return {
             baseSearchUrl: ['gdoc'].join('/'),
             baseSearchUrlDefault: ['gdoc'].join('/'),
+            availableCreateActionTypes: [],
             maxAllowedM3UExportItems: BeanUtils.getValue(config, 'services.serverItemExport.maxAllowedM3UItems')
         };
     }

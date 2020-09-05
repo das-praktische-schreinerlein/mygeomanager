@@ -54,27 +54,7 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
     }
 
     mapValuesToRecord(mapper: Mapper, values: {}): GeoDocRecord {
-        const record = GeoDocRecordFactory.createSanitized(values);
-
-        for (const mapperKey of []) {
-            const subMapper = mapper['datastore']._mappers[mapperKey];
-            let subValues;
-            for (const key in values) {
-                if (key.startsWith(mapperKey + '.')) {
-                    const subKey = key.replace(mapperKey + '.', '');
-                    subValues = subValues || {};
-                    subValues[subKey] = values[key];
-                }
-            }
-
-            if (subValues) {
-                record.set(mapperKey, subMapper.createRecord(subValues));
-            } else {
-                record.set(mapperKey, undefined);
-            }
-        }
-
-        return record;
+        return GeoDocRecordFactory.createSanitized(values);
     }
 
     mapResponseDocument(mapper: Mapper, doc: any, mapping: {}): Record {
@@ -159,6 +139,9 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
     }
 
     mapDetailDataToAdapterDocument(mapper: Mapper, profile: string, record: Record, docs: any[]): void {
+    }
+
+    mapDetailResponseDocuments(mapper: Mapper, profile: string, record: Record, docs: any): void {
     }
 
 }

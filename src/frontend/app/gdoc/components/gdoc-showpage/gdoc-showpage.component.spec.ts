@@ -13,7 +13,6 @@ import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generi
 import {ErrorResolver} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/resolver/error.resolver';
 import {PageUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/page.utils';
 import {AngularMarkdownService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-markdown.service';
-import {MarkdownModule, MarkdownService} from 'angular2-markdown';
 import {AngularHtmlService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-html.service';
 import {CommonRoutingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
 import {RouterStub} from '@dps/mycms-frontend-commons/dist/angular-commons/testing/router-stubs';
@@ -30,6 +29,7 @@ import {GeoDocContentUtils} from '../../../shared-gdoc/services/gdoc-contentutil
 import {SearchFormUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/searchform-utils.service';
 import {GeoDocRoutingService} from '../../../../shared/gdoc-commons/services/gdoc-routing.service';
 import {ToastrServiceStub} from '@dps/mycms-frontend-commons/dist/testing/toasts-stubs';
+import {NgxMdModule, NgxMdService} from "ngx-md";
 
 describe('GeoDocShowpageComponent', () => {
     let component: GeoDocShowpageComponent;
@@ -41,7 +41,7 @@ describe('GeoDocShowpageComponent', () => {
             imports: [
                 NgbModule.forRoot(),
                 TranslateModule.forRoot(),
-                MarkdownModule.forRoot()],
+                NgxMdModule.forRoot()],
             providers: [
                 { provide: ActivatedRoute, useValue: new ActivatedRouteStub() },
                 { provide: Router, useValue: new RouterStub() },
@@ -54,7 +54,7 @@ describe('GeoDocShowpageComponent', () => {
                 GeoDocRoutingService,
                 { provide: ToastrService, useValue: new ToastrServiceStub() },
                 TranslateService,
-                MarkdownService,
+                NgxMdService,
                 AngularMarkdownService,
                 AngularHtmlService,
                 ErrorResolver,

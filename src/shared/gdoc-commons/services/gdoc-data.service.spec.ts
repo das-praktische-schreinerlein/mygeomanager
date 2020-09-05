@@ -1,10 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import {GeoDocRecord} from '../model/records/gdoc-record';
 import {GeoDocDataService} from './gdoc-data.service';
-import {Observable} from 'rxjs/Observable';
+import {from, forkJoin} from 'rxjs';
 import {GeoDocDataStore, GeoDocTeamFilterConfig} from './gdoc-data.store';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/observable/forkJoin';
 import {SearchParameterUtils} from '@dps/mycms-commons/dist/search-commons/services/searchparameter.utils';
 
 describe('GeoDocDataService', () => {
@@ -29,7 +27,7 @@ describe('GeoDocDataService', () => {
     describe('#getAll()', () => {
         it('should return an empty array by default', done => {
             // WHEN
-            Observable.fromPromise(service.getAll()).subscribe(
+            from(service.getAll()).subscribe(
                 gdocs => {
                     // THEN
                     expect(gdocs).toEqual([]);
@@ -47,7 +45,7 @@ describe('GeoDocDataService', () => {
 
         it('should return all gdocs', done => {
             // GIVEN
-            Observable.forkJoin(
+            forkJoin(
                 service.addMany([gdoc1, gdoc2]),
                 service.getAll()
             ).subscribe(
@@ -72,7 +70,7 @@ describe('GeoDocDataService', () => {
 
         it('should automatically assign an incrementing id', done => {
             // GIVEN
-            Observable.forkJoin(
+            forkJoin(
                 service.addMany([gdoc1, gdoc2]),
                 service.getById('1'),
                 service.getById('2')
@@ -100,7 +98,7 @@ describe('GeoDocDataService', () => {
     describe('#deleteById(id)', () => {
 
         it('should remove record with the corresponding id', done => {
-            Observable.forkJoin(
+            forkJoin(
                 service.addMany([gdoc1, gdoc2]),
                 service.getAll(),
                 service.deleteById('1'),
@@ -130,7 +128,7 @@ describe('GeoDocDataService', () => {
         });
 
         it('should not removing anything if record with corresponding id is not found', done => {
-            Observable.forkJoin(
+            forkJoin(
                 service.addMany([gdoc1, gdoc2]),
                 service.getAll(),
                 service.deleteById('3'),
@@ -159,7 +157,7 @@ describe('GeoDocDataService', () => {
     describe('#updateById(id, values)', () => {
 
         it('should return record with the corresponding id and updated data', done => {
-            Observable.forkJoin(
+            forkJoin(
                 service.addMany([gdoc1, gdoc2]),
                 service.getAll(),
                 service.updateById('1', {
@@ -187,7 +185,7 @@ describe('GeoDocDataService', () => {
         });
 
         it('should return null if record is not found', done => {
-            Observable.forkJoin(
+            forkJoin(
                 service.addMany([gdoc1, gdoc2]),
                 service.getAll(),
                 service.updateById('26', {
