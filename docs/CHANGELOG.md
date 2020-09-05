@@ -11,7 +11,7 @@
 - none
 
 ### bug fixes
-- frontend: IE till 11 not functional (can block rendering sometimes)
+- none
  
 ### breaking changes
 - none
@@ -28,7 +28,7 @@
 - bumped up deps to the newest running versions
 
 ### bug fixes
-- none
+- frontend: IE now functional
  
 ### breaking changes
 - upgraded to angular7 + commons5

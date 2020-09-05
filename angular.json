@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
@@ -17,11 +17,11 @@
                         "tsConfig": "src/frontend/tsconfig.app.json",
                         "preserveSymlinks": true,
                         "polyfills": "src/frontend/polyfills.ts",
-      "assets": [
+                        "assets": [
                             "src/frontend/assets",
                             "src/frontend/manifest.json"
-      ],
-      "styles": [
+                        ],
+                        "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/ngx-toastr/toastr.css",
                             "node_modules/ngx-lightbox/lightbox.css",
@@ -137,7 +137,7 @@
                                     "replace": "src/frontend/environments/environment.ts",
                                     "with": "src/frontend/environments/environment.prod.ts"
                                 }
-      ],
+                            ],
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -201,8 +201,8 @@
                         "karmaConfig": "./frontend-karma.conf.js",
                         "polyfills": "src/frontend/polyfills.ts",
                         "tsConfig": "src/frontend/tsconfig.spec.json",
-      "scripts": [],
-      "styles": [
+                        "scripts": [],
+                        "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/ngx-toastr/toastr.css",
                             "node_modules/ngx-lightbox/lightbox.css",
@@ -231,7 +231,7 @@
                         "tsConfig": [
                             "src/frontend/tsconfig.app.json",
                             "src/frontend/tsconfig.spec.json"
-      ],
+                        ],
                         "exclude": []
                     }
                 }
@@ -310,7 +310,7 @@
                                 {
                                     "replace": "src/frontend/environments/environment.ts",
                                     "with": "src/frontend/environments/environment.beta.ts"
-      }
+                                }
                             ],
                             "optimization": true,
                             "outputHashing": "all",
@@ -344,8 +344,8 @@
                                 {
                                     "replace": "src/frontend/environments/environment.ts",
                                     "with": "src/frontend/environments/environment.prod.ts"
-    }
-  ],
+                                }
+                            ],
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -362,13 +362,13 @@
             "sourceRoot": "src/e2e",
             "projectType": "application",
             "architect": {
-  "e2e": {
+                "e2e": {
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "./frontend-protractor.conf.js",
                         "devServerTarget": "frontend:serve"
-    }
-  },
+                    }
+                },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
@@ -386,9 +386,9 @@
         "@schematics/angular:component": {
             "prefix": "app",
             "styleext": "css"
-    },
+        },
         "@schematics/angular:directive": {
             "prefix": "app"
+        }
     }
-  }
 }
