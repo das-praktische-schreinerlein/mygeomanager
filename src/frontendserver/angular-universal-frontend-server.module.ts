@@ -1,13 +1,9 @@
-import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
+import 'zone.js/dist/zone-node';
 import {join} from 'path';
 import * as express from 'express';
-// Express Engine
-import {ngExpressEngine} from '@nguniversal/express-engine';
-// Import module map for lazy loading
-import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 import * as fs from 'fs';
-import {CacheModeType, SimpleFrontendServerModule, ServerModuleConfig} from './simple-frontend-server.module';
+import {CacheModeType, ServerModuleConfig, SimpleFrontendServerModule} from './simple-frontend-server.module';
 import {LogUtils} from '@dps/mycms-commons/dist/commons/utils/log.utils';
 
 export class AngularUniversalFrontendServerModule extends SimpleFrontendServerModule {
@@ -32,7 +28,7 @@ export class AngularUniversalFrontendServerModule extends SimpleFrontendServerMo
         const domino = require('domino');
         const win: Window = domino.createWindow(template);
         global['window'] = win;
-        Object.defineProperty(win.document, 'referrer', {get : function(){ return 'https://www.mygeom.de'; }});
+        Object.defineProperty(win.document, 'referrer', {get : function() { return 'https://www.mygeom.de'; }});
         global['document'] = win.document;
         global['navigator'] = { userAgent: 'chrome', product: 'ReactNative', platform: 'Win'};
         global['window']['devicePixelRatio'] = 1;
@@ -40,8 +36,9 @@ export class AngularUniversalFrontendServerModule extends SimpleFrontendServerMo
     }
 
     public configureViewEngine(): void {
+        // import angular-resources from SERVER_BUNDLE to prvent probelms instantiating factories.
         // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-        const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../../dist/' + this.config.distServerProfile + 'main.bundle');
+        const { AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap } = require('SERVER_BUNDLE');
 
         this.app.engine('html', ngExpressEngine({
             bootstrap: AppServerModuleNgFactory,

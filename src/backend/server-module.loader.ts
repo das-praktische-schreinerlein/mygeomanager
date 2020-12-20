@@ -5,20 +5,14 @@ import {DnsBLModule} from '@dps/mycms-server-commons/dist/server-commons/dnsbl.m
 import {FirewallModule} from '@dps/mycms-server-commons/dist/server-commons/firewall.module';
 import {PDocDataService} from '@dps/mycms-commons/dist/pdoc-commons/services/pdoc-data.service';
 import {PDocDataServiceModule} from './modules/pdoc-dataservice.module';
-import {CacheConfig, DataCacheModule} from '@dps/mycms-server-commons/dist/server-commons/datacache.module';
+import {DataCacheModule} from '@dps/mycms-server-commons/dist/server-commons/datacache.module';
+import {BackendConfigType} from './modules/backend.commons';
+import {CommonServerConfigType} from '@dps/mycms-server-commons/dist/server-commons/server.commons';
 import {GeoDocDataServiceModule} from "./modules/gdoc-dataservice.module";
 import {GeoDocDataService} from "shared/gdoc-commons/services/gdoc-data.service";
 import {GeoDocServerModule} from "./modules/gdoc-server.module";
 
-export interface ServerConfig {
-    apiDataPrefix: string;
-    apiAssetsPrefix: string;
-    apiPublicPrefix: string;
-    filePathErrorDocs: string;
-    backendConfig: {
-        cacheConfig: CacheConfig;
-    };
-    firewallConfig: FirewallConfig;
+export interface ServerConfig extends CommonServerConfigType<BackendConfigType, FirewallConfig> {
 }
 
 export class ServerModuleLoader {

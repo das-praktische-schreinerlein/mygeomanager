@@ -17,6 +17,26 @@
 - none
 
 
+## 3.0.0
+- improved build-process
+- use typed configuration and extended firewall-options
+
+### new features
+- scripts: added start-scripts
+ 
+### improvements
+- build: improved build-process
+- backend: use typed configuration and extended firewall-options
+- use current deps in package-lock.version
+- build: improved backend-build 
+
+### bug fixes
+- build: fixed angular-universal and site-caching
+ 
+### breaking changes
+- configuration: removed default-config and renamed default-environment to dev
+
+
 ## 2.0.0
 - now bases on mysimplehomepage-2.0.0
 - upgraded to angular7 + commons5

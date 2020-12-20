@@ -2,7 +2,7 @@
 
 ## Backend
 
-### API-Server Config: config/backend.json
+### API-Server Config: config/backend.PROFILE.json
 The configuration-file to configure the backend-api-server.
 
 - server-port for backend-api
@@ -12,7 +12,7 @@ The configuration-file to configure the backend-api-server.
 }
 ```
 
-### Frontendserver: config/frontend.json
+### Frontendserver: config/frontend.PROFILE.json
 The configuration for the frontendserver.
 
 - configure port and cachefolder
@@ -23,7 +23,7 @@ The configuration for the frontendserver.
 } 
 ```
 
-### Backend-Firewall: config/firewall.json
+### Backend-Firewall: config/firewall.PROFILE.json
 The configuration-file to configure the firewall for backend-api-server and frontend-server.
 
 - if you habe a dns-blacklist-account

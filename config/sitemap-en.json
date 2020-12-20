@@ -1,7 +1,7 @@
 {
     "fileDir": "dist/",
-    "sitemapBaseUrl": "http://localhost:4200/",
-    "showBaseUrl": "http://localhost:4200/",
+    "sitemapBaseUrl": "http://localhost:4001/myshpdev/en/",
+    "showBaseUrl": "http://localhost:4001/myshpdev/en/",
     "locale": "en",
     "perPage": 999,
     "mdocSearchForm": {

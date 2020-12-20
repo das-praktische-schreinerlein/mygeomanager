@@ -1,4 +1,5 @@
-import express from 'express';
+// These are important and needed before anything else
+import * as express from 'express';
 import * as fs from 'fs';
 import minimist from 'minimist';
 import {ServerConfig, ServerModuleLoader} from './server-module.loader';
@@ -6,8 +7,13 @@ import {ServerConfig, ServerModuleLoader} from './server-module.loader';
 const argv = minimist(process.argv.slice(2));
 
 const debug = argv['debug'] || false;
-const filePathConfigJson = argv['c'] || argv['backend'] || 'config/backend.json';
-const filePathFirewallConfigJson = argv['f'] || argv['firewall'] || 'config/firewall.json';
+const filePathConfigJson = argv['c'] || argv['backend'];
+const filePathFirewallConfigJson = argv['f'] || argv['firewall'];
+if (filePathConfigJson === undefined || filePathFirewallConfigJson === undefined) {
+    console.error('ERROR - parameters required backendConfig: "-c | --backend" firewallConfig: "-f | --firewall"');
+    process.exit(-1);
+}
+
 const serverConfig: ServerConfig = {
     apiDataPrefix: '/api/v1',
     apiAssetsPrefix: '/api/assets',
@@ -24,7 +30,7 @@ const app = express();
 ServerModuleLoader.loadModules(app, serverConfig);
 
 // start server
-app.listen(serverConfig.backendConfig['port'], function () {
+app.listen(serverConfig.backendConfig.port, function () {
     console.log('MyGeoM app listening on port ' + serverConfig.backendConfig['port']);
     if (!debug) {
         console.log = function() {};
