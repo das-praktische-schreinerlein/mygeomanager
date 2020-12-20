@@ -2,21 +2,6 @@
  
 # Versions
  
-## Planned
-
-### new features
-- none
-
-### improvements
-- none
-
-### bug fixes
-- none
- 
-### breaking changes
-- none
-
-
 ## 3.0.0
 - improved build-process
 - use typed configuration and extended firewall-options
