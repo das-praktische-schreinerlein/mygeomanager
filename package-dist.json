@@ -1,5 +1,5 @@
 {
-  "name": "mysimplehomepage",
+  "name": "mygeomanager",
   "version": "3.0.0",
   "license": "Apache-2.0",
   "angular-cli": {},
@@ -21,7 +21,7 @@
     "init-cache-dev": "node dist/backend/serverAdmin.js -c config/backend.dev.json --command initCache ",
     "init-cache-beta": "node dist/backend/serverAdmin.js -c config/backend.beta.json --command initCache",
     "init-cache-prod": "node dist/backend/serverAdmin.js -c config/backend.prod.json --command initCache",
-    "init-frontendserver-cache-dev-de": "node dist/frontendserver-dev-de/frontendserverAdmin.js --localSitemapUrl http://localhost:4001/myshpdev/de/sitemap-pdoc-de.xml --sitemapbase http://localhost:4001/myshpdev/de/ -c config/backend.dev.json --frontend config/frontend.dev.json",
+    "init-frontendserver-cache-dev-de": "node dist/frontendserver-dev-de/frontendserverAdmin.js --localSitemapUrl http://localhost:4001/mygeomdev/de/sitemap-pdoc-de.xml --sitemapbase http://localhost:4001/mygeomdev/de/ -c config/backend.dev.json --frontend config/frontend.dev.json",
     "init-frontendserver-cache-beta-de": "node dist/frontendserver-beta-de/frontendserverAdmin.js -c config/backend.beta.json --frontend config/frontend.beta.json",
     "init-frontendserver-cache-prod-de": "node dist/frontendserver-de/frontendserverAdmin.js -c config/backend.prod.json --frontend config/frontend.prod.json"
   },

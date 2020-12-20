@@ -45,7 +45,7 @@
             "name": "prod",
             "urls": [
                 "http://localhost:43*/**",
-                "http://www.myshp.de/**"
+                "http://www.mygeom.de/**"
             ],
             "cacheConfig": {
                 "maxSize": 100,

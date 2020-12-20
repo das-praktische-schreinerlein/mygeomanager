@@ -34,7 +34,7 @@ module.exports = {
     module: {
         rules: [
             // exclude node_modules and server-main to prevent problem with strict-mode (for instance domino)
-            { test: /\.js$/, exclude: /node_modules|myshpdev-server|myshpbeta-server|myshp-server/, loaders: ['babel-loader'] }
+            { test: /\.js$/, exclude: /node_modules|mygeomdev-server|mygeombeta-server|mygeom-server/, loaders: ['babel-loader'] }
         ]
     },
     externals: nodeModules,
