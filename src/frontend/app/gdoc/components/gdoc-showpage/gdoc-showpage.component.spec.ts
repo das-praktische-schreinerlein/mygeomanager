@@ -29,7 +29,7 @@ import {GeoDocContentUtils} from '../../../shared-gdoc/services/gdoc-contentutil
 import {SearchFormUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/searchform-utils.service';
 import {GeoDocRoutingService} from '../../../../shared/gdoc-commons/services/gdoc-routing.service';
 import {ToastrServiceStub} from '@dps/mycms-frontend-commons/dist/testing/toasts-stubs';
-import {NgxMdModule, NgxMdService} from "ngx-md";
+import {NgxMdModule, NgxMdService} from 'ngx-md';
 
 describe('GeoDocShowpageComponent', () => {
     let component: GeoDocShowpageComponent;

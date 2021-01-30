@@ -3,6 +3,7 @@
 # Versions
  
 ## 4.0.0
+- now bases on mysimplehomepage-4.0.0
 - improved security
 - added admin-server and parameter-validation on serverAdmin
 - use commons-5.2.0

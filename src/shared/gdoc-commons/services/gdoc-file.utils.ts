@@ -3,6 +3,16 @@ import {isArray} from 'util';
 import {DateUtils} from '@dps/mycms-commons/dist/commons/utils/date.utils';
 
 export class GeoDocFileUtils {
+    public static normalizeCygwinPath(path: string): string {
+        if (!path) {
+            return path;
+        }
+
+        path = path.replace(/^\/cygdrive\/([a-z])\//g, '$1:/');
+
+        return path;
+    }
+
     public static parseRecordSourceFromJson(json: string): any[] {
         let data = JSON.parse(json);
         const records = [];

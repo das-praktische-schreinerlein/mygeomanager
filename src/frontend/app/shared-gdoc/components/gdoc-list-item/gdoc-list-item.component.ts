@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inp
 import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {CommonDocListItemComponent} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/components/cdoc-list-item/cdoc-list-item.component';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
-import {GeoDocRecord} from "../../../../shared/gdoc-commons/model/records/gdoc-record";
-import {CommonDocRecord} from "@dps/mycms-commons/dist/search-commons/model/records/cdoc-entity-record";
+import {GeoDocRecord} from '../../../../shared/gdoc-commons/model/records/gdoc-record';
+import {CommonDocRecord} from '@dps/mycms-commons/dist/search-commons/model/records/cdoc-entity-record';
 
 @Component({
     selector: 'app-gdoc-list-item',

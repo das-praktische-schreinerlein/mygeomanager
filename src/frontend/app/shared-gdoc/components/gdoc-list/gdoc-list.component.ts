@@ -7,7 +7,7 @@ import {Layout} from '@dps/mycms-frontend-commons/dist/angular-commons/services/
 import {GeoDocSearchForm} from '../../../../shared/gdoc-commons/model/forms/gdoc-searchform';
 import {CommonDocListComponent} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/components/cdoc-list/cdoc-list.component';
 import {CommonDocLightboxAlbumConfig} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-lightbox.service';
-import {CommonDocRecord} from "@dps/mycms-commons/dist/search-commons/model/records/cdoc-entity-record";
+import {CommonDocRecord} from '@dps/mycms-commons/dist/search-commons/model/records/cdoc-entity-record';
 
 @Component({
     selector: 'app-gdoc-list',

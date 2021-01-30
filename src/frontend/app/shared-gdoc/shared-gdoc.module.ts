@@ -28,11 +28,11 @@ import {FileDropModule} from 'ngx-file-drop';
 import {FrontendCommonDocCommonsModule} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/frontend-cdoc-commons.module';
 import {GeoDocKeywordsComponent} from './components/gdoc-keywords/gdoc-keywords.component';
 import {GeoDocMultiActionHeaderComponent} from './components/gdoc-multiactionheader/gdoc-multiactionheader.component';
-import {GeoDocListItemSmallComponent} from "./components/gdoc-list-item-small/gdoc-list-item-small.component";
-import {GeoDocListItemFlatComponent} from "./components/gdoc-list-item-flat/gdoc-list-item-flat.component";
-import {GeoDocListItemPageComponent} from "./components/gdoc-list-item-page/gdoc-list-item-page.component";
-import {GeoDocListItemThinComponent} from "./components/gdoc-list-item-thin/gdoc-list-item-thin.component";
-import {GeoDocMapCodePipe} from "./pipes/gdoc-mapcode.pipe";
+import {GeoDocListItemSmallComponent} from './components/gdoc-list-item-small/gdoc-list-item-small.component';
+import {GeoDocListItemFlatComponent} from './components/gdoc-list-item-flat/gdoc-list-item-flat.component';
+import {GeoDocListItemPageComponent} from './components/gdoc-list-item-page/gdoc-list-item-page.component';
+import {GeoDocListItemThinComponent} from './components/gdoc-list-item-thin/gdoc-list-item-thin.component';
+import {GeoDocMapCodePipe} from './pipes/gdoc-mapcode.pipe';
 
 @NgModule({
     declarations: [

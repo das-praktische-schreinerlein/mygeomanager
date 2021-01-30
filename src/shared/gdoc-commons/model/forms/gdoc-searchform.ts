@@ -14,7 +14,7 @@ import {
     CommonDocSearchFormFactory,
     CommonDocSearchFormValidator
 } from '@dps/mycms-commons/dist/search-commons/model/forms/cdoc-searchform';
-import {NumberValidationRule} from "@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util";
+import {NumberValidationRule} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
 
 export class GeoDocSearchForm extends CommonDocSearchForm {
     static gdocFields = {

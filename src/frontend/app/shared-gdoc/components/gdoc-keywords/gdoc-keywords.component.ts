@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {AppState, GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
-import {AbstractInlineComponent} from "@dps/mycms-frontend-commons/dist/angular-commons/components/inline.component";
-import {CommonDocRecord} from "@dps/mycms-commons/dist/search-commons/model/records/cdoc-entity-record";
+import {AbstractInlineComponent} from '@dps/mycms-frontend-commons/dist/angular-commons/components/inline.component';
+import {CommonDocRecord} from '@dps/mycms-commons/dist/search-commons/model/records/cdoc-entity-record';
 
 @Component({
     selector: 'app-gdoc-keywords',

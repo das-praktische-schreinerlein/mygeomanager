@@ -6,7 +6,7 @@ import {MapElement} from '@dps/mycms-frontend-commons/dist/angular-maps/services
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
 import {AbstractInlineComponent} from '@dps/mycms-frontend-commons/dist/angular-commons/components/inline.component';
-import {StringUtils} from "@dps/mycms-commons/dist/commons/utils/string.utils";
+import {StringUtils} from '@dps/mycms-commons/dist/commons/utils/string.utils';
 
 @Component({
     selector: 'app-gdoc-map',

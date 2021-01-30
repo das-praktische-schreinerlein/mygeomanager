@@ -4,8 +4,7 @@ import {GeoDocSearchForm} from '../model/forms/gdoc-searchform';
 import {GeoDocSearchResult} from '../model/container/gdoc-searchresult';
 import {GeoDocAdapterResponseMapper} from './gdoc-adapter-response.mapper';
 import {SolrConfig} from '@dps/mycms-commons/dist/search-commons/services/solr-query.builder';
-import {Mapper} from "js-data";
-import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
+import {Mapper} from 'js-data';
 
 export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSearchForm, GeoDocSearchResult> {
 

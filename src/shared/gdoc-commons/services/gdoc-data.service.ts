@@ -6,7 +6,7 @@ import {ActionTagForm} from '@dps/mycms-commons/dist/commons/utils/actiontag.uti
 import {GeoDocSearchForm} from '../model/forms/gdoc-searchform';
 import {GeoDocSearchResult} from '../model/container/gdoc-searchresult';
 import {CommonDocDataService} from '@dps/mycms-commons/dist/search-commons/services/cdoc-data.service';
-import {GeoDocRecordSchema} from "../model/schemas/gdoc-record-schema";
+import {GeoDocRecordSchema} from '../model/schemas/gdoc-record-schema';
 
 export class GeoDocDataService extends CommonDocDataService<GeoDocRecord, GeoDocSearchForm, GeoDocSearchResult> {
     public defaultLocIdParent = 1;

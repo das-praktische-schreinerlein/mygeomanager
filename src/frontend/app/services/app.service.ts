@@ -7,9 +7,9 @@ import {MinimalHttpBackendClient} from '@dps/mycms-commons/dist/commons/services
 import {CommonRoutingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
 import {BaseEntityRecord} from '@dps/mycms-commons/dist/search-commons/model/records/base-entity-record';
-import {GeoDocHttpAdapter} from "../../shared/gdoc-commons/services/gdoc-http.adapter";
-import {GeoDocDataStore} from "../../shared/gdoc-commons/services/gdoc-data.store";
-import {GeoDocDataService} from "../../shared/gdoc-commons/services/gdoc-data.service";
+import {GeoDocHttpAdapter} from '../../shared/gdoc-commons/services/gdoc-http.adapter';
+import {GeoDocDataStore} from '../../shared/gdoc-commons/services/gdoc-data.store';
+import {GeoDocDataService} from '../../shared/gdoc-commons/services/gdoc-data.service';
 
 @Injectable()
 export class AppService extends GenericAppService {

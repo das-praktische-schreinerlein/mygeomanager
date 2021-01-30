@@ -21,7 +21,7 @@ import {GeoDocSearchFormConverter} from '../../services/gdoc-searchform-converte
 import {SearchParameterUtils} from '@dps/mycms-commons/dist/search-commons/services/searchparameter.utils';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
 import {SearchFormUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/searchform-utils.service';
-import {NgxMdModule, NgxMdService} from "ngx-md";
+import {NgxMdModule, NgxMdService} from 'ngx-md';
 
 describe('GeoDocListItemPageComponent', () => {
     let component: GeoDocListItemPageComponent;

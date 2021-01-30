@@ -16,7 +16,7 @@ import {GeoDocDateFormatPipe} from '../../pipes/gdoc-dateformat.pipe';
 import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {CommonDocDataServiceStub} from '@dps/mycms-frontend-commons/dist/testing/cdoc-dataservice-stubs';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
-import {GeoDocMapCodePipe} from "../../pipes/gdoc-mapcode.pipe";
+import {GeoDocMapCodePipe} from '../../pipes/gdoc-mapcode.pipe';
 
 describe('GeoDocListItemFlatComponent', () => {
     let component: GeoDocListItemFlatComponent;

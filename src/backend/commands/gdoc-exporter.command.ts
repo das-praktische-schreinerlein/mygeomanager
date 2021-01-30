@@ -1,4 +1,3 @@
-import {AbstractCommand} from '@dps/mycms-server-commons/dist/backend-commons/commands/abstract.command';
 import * as fs from 'fs';
 import {GeoDocDataServiceModule} from '../modules/gdoc-dataservice.module';
 import {GeoDocAdapterResponseMapper} from '../shared/gdoc-commons/services/gdoc-adapter-response.mapper';
@@ -9,22 +8,50 @@ import {CommonDocSearchResult} from '@dps/mycms-commons/dist/search-commons/mode
 import {GenericAdapterResponseMapper} from '@dps/mycms-commons/dist/search-commons/services/generic-adapter-response.mapper';
 import {CommonDocTransportModule} from '@dps/mycms-server-commons/dist/backend-commons/modules/cdoc-transport.module';
 import {utils} from 'js-data';
+import {
+    CommonAdminCommand,
+    SimpleConfigFilePathValidationRule,
+    SimpleFilePathValidationRule
+} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
+import {
+    ValidationRule,
+    WhiteListValidationRule
+} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
+import {DateUtils} from '@dps/mycms-commons/dist/commons/utils/date.utils';
+import {FileUtils} from '@dps/mycms-commons/dist/commons/utils/file.utils';
+import {GeoDocFileUtils} from '../shared/gdoc-commons/services/gdoc-file.utils';
 
-export class GeoDocExporterCommand implements AbstractCommand {
-    public process(argv): Promise<any> {
+export class GeoDocExporterCommand extends CommonAdminCommand {
+    protected createValidationRules(): {[key: string]: ValidationRule} {
+        return {
+            backend: new SimpleConfigFilePathValidationRule(true),
+            file: new SimpleFilePathValidationRule(true),
+            renameFileIfExists: new WhiteListValidationRule(false, [true, false, 'true', 'false'], false)
+        };
+    }
+
+    protected definePossibleActions(): string[] {
+        return ['exportDocs'];
+    }
+
+    protected processCommandArgs(argv: {}): Promise<any> {
         const perRun = 999;
         const typeOrder = ['location', 'news', 'trip', 'route', 'track', 'image', 'video'];
 
-        const filePathConfigJson = argv['c'] || argv['backend'] || 'config/backend.json';
+        const filePathConfigJson = argv['backend'];
+        if (filePathConfigJson === undefined) {
+            return Promise.reject('ERROR - parameters required backendConfig: "--backend"');
+        }
+
+
         const serverConfig = {
             backendConfig: JSON.parse(fs.readFileSync(filePathConfigJson, { encoding: 'utf8' })),
             readOnly: false
         };
 
-        const dataFileName = argv['f'] || argv['file'];
+        const dataFileName = GeoDocFileUtils.normalizeCygwinPath(argv['file']);
         if (dataFileName === undefined) {
-            console.error('option --file expected');
-            return;
+            return Promise.reject('option --file expected');
         }
 
         const dataService: CommonDocDataService<CommonDocRecord, CommonDocSearchForm,
@@ -37,10 +64,27 @@ export class GeoDocExporterCommand implements AbstractCommand {
         };
         const transporter: CommonDocTransportModule = new CommonDocTransportModule();
 
+        const renameFileIfExists = !!argv['renameFileIfExists'];
+        let fileCheckPromise: Promise<any>;
+        if (fs.existsSync(dataFileName)) {
+            if (!renameFileIfExists) {
+                return Promise.reject('exportfile already exists');
+            }
+
+            const newFile = dataFileName + '.' + DateUtils.formatToFileNameDate(new Date(), '', '-', '') + '-export.MOVED';
+            fileCheckPromise = FileUtils.moveFile(dataFileName, newFile, false);
+        } else {
+            fileCheckPromise = Promise.resolve();
+        }
+
+        return fileCheckPromise.then(() => {
         fs.writeFileSync(dataFileName, '{"gdocs": [');
         return transporter.exportDocs(typeOrder, perRun, writerCallback, responseMapper, dataService).then(value => {
             writerCallback(']}');
             return utils.resolve(value);
         });
+        }).catch(reason => {
+            return Promise.reject('exportfile already exists and cant be renamed: ' + reason);
+        })
     }
 }

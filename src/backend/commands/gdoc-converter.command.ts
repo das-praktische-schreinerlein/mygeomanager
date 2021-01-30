@@ -1,19 +1,44 @@
 import * as fs from 'fs';
 import {utils} from 'js-data';
 import {GeoDocAdapterResponseMapper} from '../shared/gdoc-commons/services/gdoc-adapter-response.mapper';
-import {AbstractCommand} from '@dps/mycms-server-commons/dist/backend-commons/commands/abstract.command';
-import {GeoDocDataServiceModule} from "../modules/gdoc-dataservice.module";
-import {GeoDocConverterModule} from "../modules/gdoc-converter.module";
-import {GeoDocSolrAdapter} from "../shared/gdoc-commons/services/gdoc-solr.adapter";
+import {GeoDocDataServiceModule} from '../modules/gdoc-dataservice.module';
+import {GeoDocConverterModule} from '../modules/gdoc-converter.module';
+import {GeoDocSolrAdapter} from '../shared/gdoc-commons/services/gdoc-solr.adapter';
+import {
+    ValidationRule,
+    WhiteListValidationRule
+} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
+import {
+    CommonAdminCommand,
+    SimpleConfigFilePathValidationRule,
+    SimpleFilePathValidationRule
+} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
+import {GeoDocFileUtils} from '../shared/gdoc-commons/services/gdoc-file.utils';
 
-export class GeoDocConverterCommand implements AbstractCommand {
-    public process(argv): Promise<any> {
-        const filePathConfigJson = argv['c'] || argv['backend'] || 'config/backend.json';
+export class GeoDocConverterCommand extends CommonAdminCommand {
+    protected createValidationRules(): {[key: string]: ValidationRule} {
+        return {
+            backend: new SimpleConfigFilePathValidationRule(true),
+            srcFile: new SimpleFilePathValidationRule(true),
+            mode: new WhiteListValidationRule(true, ['SOLR', 'RESPONSE'], false)
+        };
+    }
+
+    protected definePossibleActions(): string[] {
+        return ['convertGeoJsonToGeoDoc'];
+    }
+
+    protected processCommandArgs(argv: {}): Promise<any> {
+        const filePathConfigJson = argv['backend'];
+        if (filePathConfigJson === undefined) {
+            return Promise.reject('ERROR - parameters required backendConfig: "--backend"');
+        }
+
         const backendConfig = JSON.parse(fs.readFileSync(filePathConfigJson, {encoding: 'utf8'}));
         const writable = backendConfig['gdocWritable'] === true || backendConfig['gdocWritable'] === 'true';
         const dataService = GeoDocDataServiceModule.getDataService('gdocSolrReadOnly', backendConfig);
         const action = argv['action'];
-        const srcFile = argv['srcFile'];
+        const srcFile = GeoDocFileUtils.normalizeCygwinPath(argv['srcFile']);
         const mode = argv['mode'];
         if (writable) {
             dataService.setWritable(true);
@@ -55,7 +80,7 @@ export class GeoDocConverterCommand implements AbstractCommand {
                 break;
             default:
                 console.error('unknown action:', argv);
-                promise = utils.reject('unknown action');
+                promise =Promise.reject('unknown action');
         }
 
         return promise;

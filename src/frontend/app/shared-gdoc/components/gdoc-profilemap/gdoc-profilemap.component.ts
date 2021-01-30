@@ -5,7 +5,7 @@ import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/
 import {MapElement} from '@dps/mycms-frontend-commons/dist/angular-maps/services/leaflet-geo.plugin';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
 import {AbstractInlineComponent} from '@dps/mycms-frontend-commons/dist/angular-commons/components/inline.component';
-import {StringUtils} from "@dps/mycms-commons/dist/commons/utils/string.utils";
+import {StringUtils} from '@dps/mycms-commons/dist/commons/utils/string.utils';
 
 @Component({
     selector: 'app-gdoc-profilemap',
