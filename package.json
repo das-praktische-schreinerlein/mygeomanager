@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "angular-cli": {},
   "config": {
-    "solrgoal": "noop",
+    "solrgoal": "install-solr-doit",
     "solrdownloadurl": "https://archive.apache.org/dist/lucene/solr/6.6.0/solr-6.6.0.tgz",
     "set_this_for_solrgoal_withsolr": "install-solr-doit",
     "set_this_for_solrgoal_withouthsolr": "noop"
@@ -18,6 +18,7 @@
     "backend-prepare-appenv-dev": "node dist/backend/serverAdmin.js --preparedCommand prepareAppEnv --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json",
     "backend-prepare-appenv-beta": "node dist/backend/serverAdmin.js --preparedCommand prepareAppEnv --adminclibackend config/adminCli.beta.json --backend config/backend.beta.json",
     "backend-prepare-appenv-prod": "node dist/backend/serverAdmin.js --preparedCommand prepareAppEnv --adminclibackend config/adminCli.prod.json --backend config/backend.prod.json",
+    "backend-load-data": "node dist/backend/serverAdmin.js --preparedCommand loadData --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json",
     "backend-serve-dev": "node dist/backend/backend.js --backend config/backend.dev.json --firewall config/firewall.dev.json",
     "backend-serve-beta": "node dist/backend/backend.js --backend config/backend.beta.json --firewall config/firewall.beta.json",
     "backend-serve-prod": "node dist/backend/backend.js --backend config/backend.prod.json --firewall config/firewall.prod.json",
@@ -32,7 +33,7 @@
     "build-prod-de": "ng build frontend --base-href=/mygeom/de/ --configuration=prod-de --aot true --output-path dist/static/mygeom/de ",
     "build-prod-en": "ng build frontend --base-href=/mygeom/en/ --configuration=prod-en --aot true --output-path dist/static/mygeom/en ",
     "build-after-copy-contrib": "cpx \"contrib/**/*\" dist/contrib/ && cpx --verbose \"installer/solr/**/*\" dist/contrib/solr/server/solr/",
-    "build-after-copy-contrib-solrlang": "cpx --verbose \"contrib/solr/contrib/lang/*.*\" dist/contrib/solr/server/solr/coremygeombeta/conf/lang/ && cpx --verbose \"contrib/solr/contrib/lang/*.*\" dist/contrib/solr/server/solr/coremygeomprod/conf/lang/",
+    "build-after-copy-contrib-solrlang": "cpx --verbose \"contrib/solr/contrib/lang/*.*\" dist/contrib/solr/server/solr/coremygeo/conf/lang/",
     "build-after-copy-overrides-config": "cpx --verbose \"overrides/after-build/config/**/*.*\" config/",
     "build-after-copy-overrides-dist-dev": "cpx --verbose \"overrides/after-build/dist/mygeomdev/**/*.*\" dist/static/mygeomdev/ && cpx \"overrides/after-build/dist/mygeomdev/**/*.*\" dist/mygeomdev-server/",
     "build-after-copy-overrides-dist-beta": "cpx --verbose \"overrides/after-build/dist/mygeombeta/**/*.*\" dist/static/mygeombeta/ && cpx \"overrides/after-build/dist/mygeombeta**/*.*\" dist/mygeombeta-server/",
@@ -83,9 +84,10 @@
     "install-solr-download": "cd contrib && cross-var curl $npm_package_config_solrdownloadurl -o solr.tgz",
     "install-solr-download-langfiles": "cd contrib && curl https://raw.githubusercontent.com/elastic/hunspell/master/dicts/de_DE/de_DE.dic -o solr/contrib/lang/hunspell_de_DE.dic && curl https://raw.githubusercontent.com/elastic/hunspell/master/dicts/de_DE/de_DE.aff -o solr/contrib/lang/hunspell_de_DE.aff && curl https://netix.dl.sourceforge.net/project/germandict/german.7z -o solr/contrib/lang/german.7z",
     "install-solr-convert-langfiles": "sed \"s/\\\\/.*//g\" contrib/solr/contrib/lang/hunspell_de_DE.dic > contrib/solr/contrib/lang/dictionary.txt && iconv -f \"windows-1252\" -t \"UTF-8\" contrib/solr/contrib/lang/dictionary.txt > contrib/solr/contrib/lang/dictionary_de.txt",
-    "install-solr-download-dataimport": "npm run install-solr-download-dataimport-mysql && npm run install-solr-download-dataimport-sqlite",
+    "install-solr-download-dataimport": "npm run install-solr-download-dataimport-mysql && npm run install-solr-download-dataimport-sqlite && npm run install-solr-download-dataimport-jts",
     "install-solr-download-dataimport-mysql": "cd contrib && curl https://downloads.mariadb.com/Connectors/java/connector-java-2.7.1/mariadb-java-client-2.7.1.jar -o solr/contrib/dataimporthandler/lib/mariadb-java-client.jar",
     "install-solr-download-dataimport-sqlite": "cd contrib && curl https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.34.0/sqlite-jdbc-3.34.0.jar -o solr/contrib/dataimporthandler/lib/sqlite-jdbc.jar",
+    "install-solr-download-dataimport-jts": "cd contrib && curl https://repo1.maven.org/maven2/com/vividsolutions/jts-core/1.14.0/jts-core-1.14.0.jar -o solr/server/solr-webapp/webapp/WEB-INF/lib/jts-core.jar",
     "install-solr-unpack": "cd contrib && tar xzf solr.tgz -C solr --strip-components=1",
     "install-solr-cleanout": "cross-os install-solr-cleanout-os",
     "install-solr-cleanout-os": {

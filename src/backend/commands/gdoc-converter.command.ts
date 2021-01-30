@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import {utils} from 'js-data';
 import {GeoDocAdapterResponseMapper} from '../shared/gdoc-commons/services/gdoc-adapter-response.mapper';
 import {GeoDocDataServiceModule} from '../modules/gdoc-dataservice.module';
 import {GeoDocConverterModule} from '../modules/gdoc-converter.module';
@@ -13,6 +12,8 @@ import {
     SimpleConfigFilePathValidationRule,
     SimpleFilePathValidationRule
 } from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
+import {DateUtils} from '@dps/mycms-commons/dist/commons/utils/date.utils';
+import {FileUtils} from '@dps/mycms-commons/dist/commons/utils/file.utils';
 import {GeoDocFileUtils} from '../shared/gdoc-commons/services/gdoc-file.utils';
 
 export class GeoDocConverterCommand extends CommonAdminCommand {
@@ -20,6 +21,8 @@ export class GeoDocConverterCommand extends CommonAdminCommand {
         return {
             backend: new SimpleConfigFilePathValidationRule(true),
             srcFile: new SimpleFilePathValidationRule(true),
+            file: new SimpleFilePathValidationRule(true),
+            renameFileIfExists: new WhiteListValidationRule(false, [true, false, 'true', 'false'], false),
             mode: new WhiteListValidationRule(true, ['SOLR', 'RESPONSE'], false)
         };
     }
@@ -38,49 +41,71 @@ export class GeoDocConverterCommand extends CommonAdminCommand {
         const writable = backendConfig['gdocWritable'] === true || backendConfig['gdocWritable'] === 'true';
         const dataService = GeoDocDataServiceModule.getDataService('gdocSolrReadOnly', backendConfig);
         const action = argv['action'];
-        const srcFile = GeoDocFileUtils.normalizeCygwinPath(argv['srcFile']);
-        const mode = argv['mode'];
         if (writable) {
             dataService.setWritable(true);
         }
 
         const gdocConverterModule = new GeoDocConverterModule(backendConfig, dataService);
-        
+
         let promise: Promise<any>;
         switch (action) {
             case 'convertGeoJsonToGeoDoc':
-                if (srcFile === undefined) {
-                    console.error(srcFile + ' missing parameter - usage: --srcFile SRCFILE', argv);
-                    promise = utils.reject(mode + ' missing parameter - usage: --srcFile SRCFILE');
-                    return promise;
-                }
-                if (mode === undefined || (mode !== 'SOLR' && mode !== 'RESPONSE')) {
-                    console.error(mode + ' missing parameter - usage: --mode SOLR|RESPONSE', argv);
-                    promise = utils.reject(mode + ' missing parameter - usage: --mode SOLR|RESPONSE');
-                    return promise;
+                const dataFileName = GeoDocFileUtils.normalizeCygwinPath(argv['file']);
+                if (dataFileName === undefined) {
+                    return Promise.reject('option --file expected');
                 }
 
-                promise = gdocConverterModule.convertGeoJSONOGeoDoc(srcFile);
-                promise.then(value => {
-                    const responseMapper = new GeoDocAdapterResponseMapper(backendConfig);
-                    const solrAdapter = new GeoDocSolrAdapter({});
-                    const gdocs = [];
-                    for (const gdoc of value) {
-                        if (mode === 'SOLR') {
-                            gdocs.push(solrAdapter.mapToAdapterDocument(gdoc));
-                        } else {
-                            gdocs.push(responseMapper.mapToAdapterDocument({}, gdoc));
-                        }
+                const srcFile = GeoDocFileUtils.normalizeCygwinPath(argv['srcFile']);
+                if (srcFile === undefined) {
+                    console.error(srcFile + ' missing parameter - usage: --srcFile SRCFILE', argv);
+                    return Promise.reject(srcFile + ' missing parameter - usage: --srcFile SRCFILE');
+                }
+
+                const mode = argv['mode'];
+                if (mode === undefined || (mode !== 'SOLR' && mode !== 'RESPONSE')) {
+                    console.error(mode + ' missing parameter - usage: --mode SOLR|RESPONSE', argv);
+                    return Promise.reject(mode + ' missing parameter - usage: --mode SOLR|RESPONSE');
+                }
+
+                const renameFileIfExists = !!argv['renameFileIfExists'];
+                let fileCheckPromise: Promise<any>;
+                if (fs.existsSync(dataFileName)) {
+                    if (!renameFileIfExists) {
+                        return Promise.reject('exportfile already exists');
                     }
-                    console.log(JSON.stringify({ gdocs: gdocs}, undefined, ' '));
+
+                    const newFile = dataFileName + '.' + DateUtils.formatToFileNameDate(new Date(), '', '-', '') + '-export.MOVED';
+                    fileCheckPromise = FileUtils.moveFile(dataFileName, newFile, false);
+                } else {
+                    fileCheckPromise = Promise.resolve();
+                }
+
+                promise = fileCheckPromise.then(() => {
+                    return gdocConverterModule.convertGeoJSONOGeoDoc(srcFile).then(value => {
+                        const responseMapper = new GeoDocAdapterResponseMapper(backendConfig);
+                        const solrAdapter = new GeoDocSolrAdapter({});
+                        const gdocs = [];
+                        for (const gdoc of value) {
+                            if (mode === 'SOLR') {
+                                gdocs.push(solrAdapter.mapToAdapterDocument(gdoc));
+                            } else {
+                                gdocs.push(responseMapper.mapToAdapterDocument({}, gdoc));
+                            }
+                        }
+
+                        fs.writeFileSync(dataFileName, JSON.stringify({ gdocs: gdocs}, undefined, ' '));
+                    }).catch(reason => {
+                        console.error('something went wrong:', reason);
+                        return Promise.reject(reason);
+                    });
                 }).catch(reason => {
-                    console.error('something went wrong:', reason);
-                });
+                    return Promise.reject('exportfile already exists and cant be renamed: ' + reason);
+                })
 
                 break;
             default:
                 console.error('unknown action:', argv);
-                promise =Promise.reject('unknown action');
+                return Promise.reject('unknown action');
         }
 
         return promise;

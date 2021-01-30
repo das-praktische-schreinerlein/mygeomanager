@@ -7,8 +7,8 @@
         "dataFile": "D:/tmp/test/mygeo.json"
     },
     "GeoDocSolrAdapter": {
-        "solrCoreGeoDoc": "http://localhost:8983/solr/mygeodev/",
-        "solrCoreGeoDocReadUsername": "mytbread",
+        "solrCoreGeoDoc": "http://localhost:9999/solr/coremygeo/",
+        "solrCoreGeoDocReadUsername": "mygeomadmin",
         "solrCoreGeoDocReadPassword": "SolrRocks"
     },
     "mapperConfig": {

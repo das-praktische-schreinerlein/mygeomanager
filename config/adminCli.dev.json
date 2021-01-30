@@ -8,6 +8,68 @@
             "description": "prepare app-environment (no actions required)",
             "commands": [
             ]
+        },
+        "loadData": {
+            "description": "load data",
+            "commands": [
+                {
+                    "parameters": {
+                        "command": "convertGeoDoc",
+                        "action": "convertGeoJsonToGeoDoc",
+                        "backend": "config/backend.dev.json",
+                        "srcFile": "d:\\docs\\import-peaks-canaren.geojson",
+                        "mode": "SOLR",
+                        "file": "d:\\docs\\import-gdocs-peaks-canaren.json",
+                        "renameFileIfExists": true
+                    }
+                },
+                {
+                    "parameters": {
+                        "command": "convertGeoDoc",
+                        "action": "convertGeoJsonToGeoDoc",
+                        "backend": "config/backend.dev.json",
+                        "srcFile": "d:\\docs\\import-alpine-huts.geojson",
+                        "mode": "SOLR",
+                        "file": "d:\\docs\\import-gdocs-alpine-huts.json",
+                        "renameFileIfExists": true
+                    }
+                },
+                {
+                    "parameters": {
+                        "command": "convertGeoDoc",
+                        "action": "convertGeoJsonToGeoDoc",
+                        "backend": "config/backend.dev.json",
+                        "srcFile": "d:\\docs\\import-peaks-alpen.geojson",
+                        "mode": "SOLR",
+                        "file": "d:\\docs\\import-gdocs-peaks-alpen.json",
+                        "renameFileIfExists": true
+                    }
+                },
+                {
+                    "parameters": {
+                        "command": "loadGeoDoc",
+                        "action": "loadGeoDocs",
+                        "backend": "config/backend.dev.json",
+                        "file": "d:\\docs\\import-gdocs-peaks-canaren.json"
+                    }
+                },
+                {
+                    "parameters": {
+                        "command": "loadGeoDoc",
+                        "action": "loadGeoDocs",
+                        "backend": "config/backend.dev.json",
+                        "file": "d:\\docs\\import-gdocs-alpine-huts.json"
+                    }
+                },
+                {
+                    "parameters": {
+                        "command": "loadGeoDoc",
+                        "action": "loadGeoDocs",
+                        "backend": "config/backend.dev.json",
+                        "file": "d:\\docs\\import-gdocs-peaks-alpen.json"
+                    }
+                }
+            ]
         }
     },
     "constantParameters": {

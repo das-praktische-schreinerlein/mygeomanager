@@ -19,57 +19,11 @@ npm prune && npm install
 ### prepare solr
 
 #### install-solr
-- install solr 6.6.0 [Download](http://mirror.netcologne.de/apache.org/lucene/solr/6.6.0/)
-- add mysql-downloader
-    - solr-6.6.0/contrib/dataimporthandler/libmysql-connector-java-5.1.40-bin.jar
-- add cores from mytb
-- download [hunspell-language-files](https://github.com/elastic/hunspell/tree/master/dicts/de_DE) and put them as *lang/hunspell_de_DE.dic* and *lang/hunspell_de_DE.aff* into core-config
-- download [grman dictionary](https://netix.dl.sourceforge.net/project/germandict/german.7z) and put as *lang/dictionary_de.txt* into core-config
-- or use hunspell-dictionary
-```bash
-cp hunspell_de_DE.dic dictionary.txt
-sed -i.bak s/\\/.*//g dictionary.txt
-iconv -f "windows-1252" -t "UTF-8" dictionary.txt -o dictionary_de.txt
-rm dictionary.txt dictionary.txt.bak
+- run install script
 ```
-
-#### secure solr
-- create an seen on [Enable Authentification](https://cwiki.apache.org/confluence/display/solr/Authentication+and+Authorization+Plugins#AuthenticationandAuthorizationPlugins-EnabledPluginswithsecurity.json)
-    - file on server.solr/security.json
-- with [Basic-Athentfication[https://cwiki.apache.org/confluence/display/solr/Basic+Authentication+Plugin]
-    - solr-6.6.0/server/solr/security.json
-```json
-{
-  "authentication":{
-    "blockUnknown":true,
-    "class":"solr.BasicAuthPlugin",
-    "credentials":{
-      "alladmin":"XXXXX",
-      "mytbadmin":"XXXXX",
-      "mytbread":"XXXXX"}},
-  "authorization":{
-    "class":"solr.RuleBasedAuthorizationPlugin",
-    "permissions":[
-      {
-        "name":"all",
-        "role":"role_alladmin",
-        "index":1},
-      {
-        "name":"update",
-        "role":"role_mytbupdate",
-        "index":2},
-      {
-        "name":"read",
-        "role":"role_mytbread",
-        "index":2}
-    ],
-    "user-role":{
-      "alladmin":["role_alladmin"],
-      "mytbadmin":["role_mytbread", "role_mytbupdate"],
-      "mytbread":"role_mytbread"},
-    "":{"v":0}}}
+npm install 
+npm run install-solr
 ```
-- set roles as seen on (Rule-Based autorisation)[https://cwiki.apache.org/confluence/display/solr/Rule-Based+Authorization+Plugin]
 
 ### install redis
 - make redis

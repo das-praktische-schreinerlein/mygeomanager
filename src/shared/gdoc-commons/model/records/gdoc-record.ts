@@ -149,7 +149,6 @@ export class GeoDocRecordValidator extends CommonDocRecordValidator {
     public static instance = new GeoDocRecordValidator();
 
     isValid(doc: BaseEntityRecord, errFieldPrefix?: string): boolean {
-        console.warn('GeoDocRecordValidator: validation-errors', this.validate(doc, errFieldPrefix));
         // TODO: validate subtype requitred for TRACK, ROUTE, LOCATION
         return this.validate(doc, errFieldPrefix).length === 0;
     }

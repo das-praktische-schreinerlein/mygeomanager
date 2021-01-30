@@ -30,7 +30,7 @@ export class GeoDocLoaderCommand extends CommonAdminCommand {
     }
 
     protected definePossibleActions(): string[] {
-        return ['loadDocs'];
+        return ['loadGeoDocs'];
     }
 
     protected processCommandArgs(argv: {}): Promise<any> {

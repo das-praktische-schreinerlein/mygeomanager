@@ -31,7 +31,7 @@ export class GeoDocExporterCommand extends CommonAdminCommand {
     }
 
     protected definePossibleActions(): string[] {
-        return ['exportDocs'];
+        return ['exportGeoDocs'];
     }
 
     protected processCommandArgs(argv: {}): Promise<any> {
@@ -78,11 +78,11 @@ export class GeoDocExporterCommand extends CommonAdminCommand {
         }
 
         return fileCheckPromise.then(() => {
-        fs.writeFileSync(dataFileName, '{"gdocs": [');
-        return transporter.exportDocs(typeOrder, perRun, writerCallback, responseMapper, dataService).then(value => {
-            writerCallback(']}');
-            return utils.resolve(value);
-        });
+            fs.writeFileSync(dataFileName, '{"gdocs": [');
+            return transporter.exportDocs(typeOrder, perRun, writerCallback, responseMapper, dataService).then(value => {
+                writerCallback(']}');
+                return utils.resolve(value);
+            });
         }).catch(reason => {
             return Promise.reject('exportfile already exists and cant be renamed: ' + reason);
         })

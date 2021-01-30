@@ -74,3 +74,4 @@ overrides/after-build/dist/mygeom/en/*
 !/overrides/before-build/sbin/.gitkeep
 /overrides/before-build/src/*
 !/overrides/before-build/src/.gitkeep
+/contrib
