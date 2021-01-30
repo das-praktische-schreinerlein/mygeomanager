@@ -1,0 +1,42 @@
+{
+    "commandConfig": {
+        "adminWritable": true,
+        "preparedCommands": {
+            "generateSitemap": {
+                "description": "generate sitemaps",
+                "commands": [
+                    {
+                        "parameters": {
+                            "command": "generateSitemap",
+                            "action": "generateSitemap",
+                            "backend": "config/backend.dev.json",
+                            "sitemap": "config/sitemap-de.json"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "generateSitemap",
+                            "action": "generateSitemap",
+                            "backend": "config/backend.dev.json",
+                            "sitemap": "config/sitemap-en.json"
+                        }
+                    }
+                ]
+            }
+        },
+        "constantParameters": {
+            "overrides": "override this parameters from request",
+            "outputDir": "notexists",
+            "outputFile": "notexists",
+            "backend": "config/backend.dev.json",
+            "sitemap": "config/sitemap-de.json"
+        }
+    },
+    "outputDir": "notexists",
+    "outputFile": "notexists",
+    "backend": "config/backend.dev.json",
+    "sitemap": "config/sitemap-de.json",
+    "port": 4900,
+    "bindIp": "127.0.0.1",
+    "corsOrigin": true
+}

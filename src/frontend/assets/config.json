@@ -147,6 +147,9 @@
         },
         "serverItemExport": {
             "maxAllowedM3UItems": -1
+        },
+        "adminJobArea": {
+            "jobsAllowed": true
         }
     }
 }

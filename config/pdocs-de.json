@@ -17,6 +17,7 @@
    "flgShowTopTen": false,
    "flgShowNews": false,
    "flgShowSearch": true,
+   "flgShowAdminArea": true,
    "heading": "Thats MyGeoManager",
    "name": "Willkommen",
    "subSectionIds": "",

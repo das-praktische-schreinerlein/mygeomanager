@@ -17,5 +17,7 @@ export const environment: AppEnvironment = {
     gdocMaxItemsPerAlbum: 2000,
     backendApiBaseUrl: 'http://localhost:4100/api/v1/',
     cookieLawSeenName: 'cookieLawSeenV20180525',
-    trackingProviders: [Angulartics2Piwik]
+    trackingProviders: [Angulartics2Piwik],
+    adminBackendApiBaseUrl: 'http://localhost:4900/adminapi/v1/',
+    adminWritable: true
 };

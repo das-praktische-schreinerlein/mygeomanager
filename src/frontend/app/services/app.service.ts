@@ -14,8 +14,10 @@ import {GeoDocDataService} from "../../shared/gdoc-commons/services/gdoc-data.se
 @Injectable()
 export class AppService extends GenericAppService {
     private appConfig = {
+        adminBackendApiBaseUrl: environment.adminBackendApiBaseUrl,
         backendApiBaseUrl: environment.backendApiBaseUrl,
         permissions: {
+            adminWritable: environment.adminWritable,
         },
         components: {},
         services: {}

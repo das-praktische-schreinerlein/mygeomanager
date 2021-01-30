@@ -21,21 +21,20 @@ fs.readdirSync('node_modules')
     });
 
 module.exports = {
-    entry: './dist/tsc-out/backend/serverAdmin.js',
+    entry: './dist/tsc-out/backend/adminServer.js',
     mode: 'production',
     target: 'async-node',
     output: {
         path: path.join(__dirname, 'dist/backend/'),
-        filename: 'serverAdmin.js'
+        filename: 'adminServer.js'
     },
     resolveLoader: {
         moduleExtensions: ['-loader']
     },
     module: {
         rules: [
-            // exclude node_modules and server-main to prevent problem with strict-mode (for instance domino)
-            { test: /\.js$/, exclude: /node_modules|mygeomdev-server|mygeombeta-server|mygeom-server/, loaders: ['babel-loader'] }
-        ]
+            { test: /\.ts$/, loader: 'ts-loader' }
+        ],
     },
     externals: nodeModules,
     plugins: [

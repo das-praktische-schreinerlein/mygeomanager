@@ -6,8 +6,8 @@ import {FirewallModule} from '@dps/mycms-server-commons/dist/server-commons/fire
 import {PDocDataService} from '@dps/mycms-commons/dist/pdoc-commons/services/pdoc-data.service';
 import {PDocDataServiceModule} from './modules/pdoc-dataservice.module';
 import {DataCacheModule} from '@dps/mycms-server-commons/dist/server-commons/datacache.module';
-import {BackendConfigType} from './modules/backend.commons';
 import {CommonServerConfigType} from '@dps/mycms-server-commons/dist/server-commons/server.commons';
+import {BackendConfigType} from './modules/backend.commons';
 import {GeoDocDataServiceModule} from "./modules/gdoc-dataservice.module";
 import {GeoDocDataService} from "shared/gdoc-commons/services/gdoc-data.service";
 import {GeoDocServerModule} from "./modules/gdoc-server.module";

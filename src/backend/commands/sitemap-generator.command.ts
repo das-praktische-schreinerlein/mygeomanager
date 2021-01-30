@@ -3,15 +3,29 @@ import {SitemapConfig, SitemapGeneratorModule} from '@dps/mycms-server-commons/d
 import {PDocSearchForm} from '@dps/mycms-commons/dist/pdoc-commons/model/forms/pdoc-searchform';
 import {PDocRecord} from '@dps/mycms-commons/dist/pdoc-commons/model/records/pdoc-record';
 import {PDocDataServiceModule} from '../modules/pdoc-dataservice.module';
-import {AbstractCommand} from '@dps/mycms-server-commons/dist/backend-commons/commands/abstract.command';
+import {
+    CommonAdminCommand,
+    SimpleConfigFilePathValidationRule
+} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
+import {ValidationRule} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
 
-export class SiteMapGeneratorCommand implements AbstractCommand {
-    public process(argv): Promise<any> {
-        const filePathConfigJson = argv['c'] || argv['backend'];
-        const filePathSitemapConfigJson = argv['s'] || argv['sitemap'] || argv['_'][0];
+export class SiteMapGeneratorCommand extends CommonAdminCommand {
+    protected createValidationRules(): {[key: string]: ValidationRule} {
+        return {
+            backend: new SimpleConfigFilePathValidationRule(true),
+            sitemap: new SimpleConfigFilePathValidationRule(true)
+        };
+    }
+
+    protected definePossibleActions(): string[] {
+        return ['generateSitemap'];
+    }
+
+    protected processCommandArgs(argv: {}): Promise<any> {
+        const filePathConfigJson = argv['backend'];
+        const filePathSitemapConfigJson = argv['sitemap'];
         if (filePathConfigJson === undefined || filePathSitemapConfigJson === undefined) {
-            console.error('ERROR - parameters required backendConfig: "-c | --backend" sitemapConfig: "-s | --sitemap"');
-            process.exit(-1);
+            return Promise.reject('ERROR - parameters required backendConfig: "--backend" sitemapConfig: "--sitemap"');
         }
 
         const generatorConfig = {
