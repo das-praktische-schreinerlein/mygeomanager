@@ -20,7 +20,7 @@ body {
  * color-themes
  */
 .fx-bg-theme {
-    background: #F3F7FB;
+    background: rgb(165, 241, 146);
     background: -moz-linear-gradient(right, #ffffff 0%, rgb(165, 241, 146) 100%);
     background: -webkit-gradient(linear, right top, left top, color-stop(0%, #ffffff), color-stop(100%, rgb(165, 241, 146)) );
     background: -webkit-linear-gradient(right, #ffffff 0%, rgb(165, 241, 146) 100%);
@@ -40,7 +40,7 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(110, 204, 57, 0.6)', endColorstr='#ffffff', GradientType=1 );
 }
 .fx-bg-name {
-    background: #F3F7FB;
+    background: rgb(165, 241, 146);
     background: -moz-linear-gradient(left, #ffffff 0%, rgb(165, 241, 146) 100%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0%, #ffffff), color-stop(100%, rgb(165, 241, 146)) );
     background: -webkit-linear-gradient(left, #ffffff 0%, rgb(165, 241, 146) 100%);
