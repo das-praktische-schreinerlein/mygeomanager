@@ -21,6 +21,7 @@
 - backend: added scripts to prepare app-environment on startup
 - install: for derived apps - optional use local solr 
 - build: use commons-5.2.0
+- frontend: improved colors
 
 ### bug fixes
 - none
