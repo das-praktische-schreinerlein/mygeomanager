@@ -52,44 +52,6 @@ export class GeoDocShowpageComponent extends CommonDocShowpageComponent<GeoDocRe
             angularMarkdownService, angularHtmlService, cd, trackingProvider, appService, platformService, layoutService, environment);
     }
 
-    onRouteTracksFound(searchresult: GeoDocSearchResult) {
-        this.onTackCloudRoutesFound(searchresult);
-        this.onTracksFound(searchresult);
-    }
-
-    onTackCloudRoutesFound(searchresult: GeoDocSearchResult) {
-        this.tagcloudSearchResult = searchresult;
-    }
-
-    onTracksFound(searchresult: GeoDocSearchResult) {
-        const realTracks = [];
-        if (searchresult !== undefined && searchresult.currentRecords !== undefined) {
-            for (const record of searchresult.currentRecords) {
-                if (record.gpsTrackBasefile || record.geoLoc !== undefined
-                    || (record.gpsTrackSrc !== undefined && record.gpsTrackSrc.length > 20)) {
-                    realTracks.push(record);
-                    this.flgMapAvailable = true;
-                    this.flgProfileMapAvailable = true;
-
-                    this.flgShowMap = this.flgMapAvailable;
-                    this.calcShowMaps();
-                }
-            }
-        }
-        this.tracks = realTracks;
-
-        this.cd.markForCheck();
-    }
-
-    getFiltersForType(record: GeoDocRecord, type: string): any {
-        const minPerPage = 0;
-
-        const filters = (<GeoDocContentUtils>this.contentUtils).getGeoDocSubItemFiltersForType(record, type,
-            (this.pdoc ? this.pdoc.theme : undefined), minPerPage);
-
-        return filters;
-    }
-
     protected onResize(layoutSizeData: LayoutSizeData): void {
         super.onResize(layoutSizeData);
         this.layoutSize = layoutSizeData;
@@ -101,11 +63,6 @@ export class GeoDocShowpageComponent extends CommonDocShowpageComponent<GeoDocRe
             baseSearchUrl: ['gdoc'].join('/'),
             baseSearchUrlDefault: ['gdoc'].join('/')
         };
-    }
-
-    protected configureProcessingOfResolvedData(): void {
-        const me = this;
-        const config = me.appService.getAppConfig();
     }
 
     protected getConfiguredIndexableTypes(config: {}): string[] {
