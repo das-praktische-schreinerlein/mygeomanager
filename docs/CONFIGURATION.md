@@ -84,7 +84,62 @@ Configure the mapping of the section-page-ids to specifiv filters a "berge -> KW
    "klettern": { "keywords_txt": { "in": ["kw_klettern", "kw_sachsenklettern", "kw_sportklettern", "kw_alpinklettern"] } }
 }
 ```
- 
+
+### Admin-API-Server Config: config/adminServer.PROFILE.json
+- port
+```
+    "port": 4900,
+```
+- the flag that admin is available and the available predefined admin-commands to execute via web
+```
+    "commandConfig": {
+    "commandConfig": {
+        "adminWritable": true,
+        "preparedCommands": {
+            "generateSitemap": {
+                "description": "generate sitemaps",
+                "commands": [
+                    {
+                        "parameters": {
+                            "command": "generateSitemap",
+                            "action": "generateSitemap",
+                            "backend": "config/backend.dev.json",
+                            "sitemap": "config/sitemap-de.json"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "generateSitemap",
+                            "action": "generateSitemap",
+                            "backend": "config/backend.dev.json",
+                            "sitemap": "config/sitemap-en.json"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+```
+
+### CLI Config: config/adminCli.PROFILE.json
+- the flag that admin is available and the available admin-commands to execute via cli
+```
+    "adminWritable": true,
+    "availableCommands": {
+        "*": "*"
+    },
+    "preparedCommands": {
+        "prepareAppEnv": {
+            "description": "prepare app-environment (no actions required)",
+            "commands": [
+            ]
+        }
+    },
+    "constantParameters": {
+        "noOverrides": "use all parameters as put to commandline"
+    }
+```
+
 ## Frontend
 
 ### Build-Environment: src/frontend/environments/environment.*.ts

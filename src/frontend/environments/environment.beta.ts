@@ -1,4 +1,3 @@
-import {Angulartics2Piwik} from 'angulartics2/piwik';
 import {AppEnvironment} from './app-environment';
 
 export const environment: AppEnvironment = {
@@ -12,5 +11,5 @@ export const environment: AppEnvironment = {
     gdocMaxItemsPerAlbum: 2000,
     backendApiBaseUrl: 'http://localhost:4101/api/v1/',
     cookieLawSeenName: 'cookieLawSeenV20180525',
-    trackingProviders: [Angulartics2Piwik]
+    trackingProviders: [] // Angulartics2Piwik
 };
