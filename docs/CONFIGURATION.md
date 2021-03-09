@@ -11,6 +11,36 @@ The configuration-file to configure the backend-api-server.
     "port": 4100
 }
 ```
+- writable or readonly
+```json
+{
+    "gdocWritable": true,
+}
+```
+- datastore and specific connection-attributes
+```json
+{
+    "gdocDataStoreAdapter": "GeoDocSolrAdapter",
+    "GeoDocItemsJsAdapter": {
+        "dataFile": "D:/tmp/test/mygeo.json"
+    },
+    "GeoDocSolrAdapter": {
+        "solrCoreGeoDoc": "http://localhost:9999/solr/coremygeo/",
+        "solrCoreGeoDocReadUsername": "mygeomread",
+        "solrCoreGeoDocReadPassword": "SolrRocks"
+    },
+}
+```
+- IMPORTANT if you use an external solr you must remove the solrPasswordReset on startup in the config/adminCli.PROFILE.json !!!!!
+```
+    {
+        "parameters": {
+            "command": "initConfig",
+            "action": "resetSolrPasswords",
+            "solrconfigbasepath": "dist/contrib/solr/server/solr"
+        }
+    }
+```
 
 ### Frontendserver: config/frontend.PROFILE.json
 The configuration for the frontendserver.
@@ -139,6 +169,26 @@ Configure the mapping of the section-page-ids to specifiv filters a "berge -> KW
         "noOverrides": "use all parameters as put to commandline"
     }
 ```
+- **IMPORTANT if you DON'T want to reset passwords -> remove such actions from config/adminCli.PROFILE.json !!!!!**
+```
+    {
+        "parameters": {
+            "command": "initConfig",
+            "action": "resetSolrPasswords",
+            "solrconfigbasepath": "dist/contrib/solr/server/solr"
+        }
+    }
+```
+- **IMPORTANT if you use an external solr you must remove the solrPasswordReset on startup in the config/adminCli.PROFILE.json !!!!!**
+```
+    {
+        "parameters": {
+            "command": "initConfig",
+            "action": "resetSolrPasswords",
+            "solrconfigbasepath": "dist/contrib/solr/server/solr"
+        }
+    }
+```
 
 ## Frontend
 
@@ -147,6 +197,7 @@ Configure the mapping of the section-page-ids to specifiv filters a "berge -> KW
 - connection-urls of the backend-api
 ```typescript
 export const environment = {
+    backendApiBaseUrl: 'http://localhost:4100/api/v1/'
 };
 ```
 - production and writable-flags

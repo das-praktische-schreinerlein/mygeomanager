@@ -17,19 +17,34 @@
                 {
                     "parameters": {
                         "command": "initConfig",
-                        "action": "resetServicePasswords"
+                        "action": "resetServicePasswords",
+                        "solrconfigbasepath": "dist/contrib/solr/server/solr"
                     }
                 }
             ]
         },
         "prepareAppEnvAfterUpdate": {
-            "description": "prepare app-environment after update (no actions required)",
+            "description": "prepare app-environment after update (reset solr passwords)",
             "commands": [
+                {
+                    "parameters": {
+                        "command": "initConfig",
+                        "action": "resetSolrPasswords",
+                        "solrconfigbasepath": "dist/contrib/solr/server/solr"
+                    }
+                }
             ]
         },
         "prepareAppEnv": {
             "description": "prepare app-environment on every startup (reset runtime passwords)",
             "commands": [
+                {
+                    "parameters": {
+                        "command": "initConfig",
+                        "action": "resetSolrPasswords",
+                        "solrconfigbasepath": "dist/contrib/solr/server/solr"
+                    }
+                },
                 {
                     "parameters": {
                         "command": "initConfig",
