@@ -83,6 +83,11 @@ bash
 ./build-dev.bash
 ```
 
+## Run scripts to initially reset database-passwords...
+```bash
+npm run backend-prepare-appenv-beforebuild
+```
+
 ## Build beta
 Run for the beta-versions in `dist/`.
 ```bash
@@ -134,6 +139,20 @@ Install packages
 ```bash
 cd $APPDIR
 npm install 
+```
+
+On first install - Run scripts to initially reset passwords per environment
+```bash
+npm run backend-prepare-appenv-afterinstall-dev
+npm run backend-prepare-appenv-afterinstall-beta
+npm run backend-prepare-appenv-afterinstall-prod
+```
+
+On update - Run scripts to reset passwords per environment
+```bash
+npm run backend-prepare-appenv-afterupdate-dev
+npm run backend-prepare-appenv-afterupdate-beta
+npm run backend-prepare-appenv-afterupdate-prod
 ```
 
 Set permissions and rights für `$APPDIR`
