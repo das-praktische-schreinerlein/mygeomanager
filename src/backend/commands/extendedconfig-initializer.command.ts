@@ -7,7 +7,6 @@ import {ConfigInitializerCommand} from '@dps/mycms-server-commons/dist/backend-c
 
 export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
     protected solrconfigbasepath: string;
-    protected installerdbbasepath: string;
 
     public static replaceTourDocSolrPasswordInBackendConfig(file: string, solrPassword: string, required: boolean): Promise<boolean> {
         return ConfigInitializerUtil.replaceSolrPasswordInBackendConfig(file, 'solrCoreGeoDocReadPassword', solrPassword, required);
@@ -16,8 +15,7 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
     protected createValidationRules(): {[key: string]: ValidationRule} {
         return {
             ...super.createValidationRules(),
-            'solrconfigbasepath': new SimpleConfigFilePathValidationRule(false),
-            'installerdbbasepath': new SimpleConfigFilePathValidationRule(false)
+            'solrconfigbasepath': new SimpleConfigFilePathValidationRule(false)
         };
     }
 
