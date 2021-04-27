@@ -19,7 +19,7 @@
 
 
 
-## 4.0.0
+## 4.0.0 (2021-02-06)
 - now bases on mysimplehomepage-4.0.0
 - improved security
 - added admin-server and parameter-validation on serverAdmin
@@ -48,7 +48,7 @@
 - backend: serverAdmin requires action-parameters
 
 
-## 3.0.0
+## 3.0.0 (2020-12-20)
 - now bases on mysimplehomepage-3.0.0
 - improved build-process
 - use typed configuration and extended firewall-options
@@ -69,7 +69,7 @@
 - configuration: removed default-config and renamed default-environment to dev
 
 
-## 2.0.0
+## 2.0.0 (2020-09-05)
 - now bases on mysimplehomepage-2.0.0
 - upgraded to angular7 + commons5
 - bumped up deps to the newest running versions
@@ -87,7 +87,7 @@
 - upgraded to angular7 + commons5
 
 
-## 1.1.0
+## 1.1.0 (2020-03-20)
 - improved build-process - activated tests+coverage
 - bumped up deps
 
@@ -108,7 +108,7 @@
 - none
 
 
-## 1.0.0
+## 1.0.0 (2019-09-07)
 - initial version based on mysimplehomepage-1.0.0
 
 ### new features
