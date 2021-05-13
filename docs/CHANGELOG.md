@@ -3,6 +3,7 @@
 # Versions
 
 ## 4.1.0 (2020-05-13)
+- now bases on mysimplehomepage-4.1.0
 - improved security with tools to reset service-passwords
 
 ### new features
