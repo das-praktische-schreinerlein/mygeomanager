@@ -3,6 +3,7 @@
 # Versions
 
 ## 4.2.0 (2021-11-25)
+- now bases on mysimplehomepage-4.2.0
 - bumped up to commons 5.4.0
 
 ### new features
