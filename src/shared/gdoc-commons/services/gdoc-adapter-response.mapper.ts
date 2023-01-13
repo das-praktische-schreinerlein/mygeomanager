@@ -25,30 +25,42 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
         values['geo_lat_s'] = props.geoLat;
         values['geo_ele_s'] = props.geoEle;
         values['geo_ele_f'] = props.geoEle;
+        values['data_tech_alt_max_i'] = props.geoEle;
         values['geo_loc_p'] = props.geoLoc;
         values['gpstrack_src_s'] = props.gpsTrackSrc;
         values['gpstracks_basefile_s'] = props.gpsTrackBasefile;
         values['keywords_txt'] =
-            (props.keywords ? props.keywords.split(', ').join(',') : '');
-        values['loc_lochirarchie_s'] = (props.locHirarchie ? props.locHirarchie
-            .toLowerCase()
-            .replace(/[ ]*->[ ]*/g, ',,')
-            .replace(/ /g, '_') : '');
-        values['loc_lochirarchie_ids_s'] = (props.locHirarchieIds ? props.locHirarchieIds
-            .toLowerCase()
-            .replace(/,/g, ',,')
-            .replace(/ /g, '_') : '');
+            (props.keywords
+                ? props.keywords.split(', ').join(',')
+                : undefined);
+        values['loc_lochirarchie_s'] = (props.locHirarchie
+            ? props.locHirarchie
+                .toLowerCase()
+                .replace(/[ ]*->[ ]*/g, ',,')
+                .replace(/ /g, '_')
+            : undefined);
+        values['loc_lochirarchie_ids_s'] = (props.locHirarchieIds
+            ? props.locHirarchieIds
+                .toLowerCase()
+                .replace(/,/g, ',,')
+                .replace(/ /g, '_')
+            : undefined);
         values['name_s'] = props.name;
         values['playlists_txt'] =
-            (props.playlists ? props.playlists.split(', ').join(',,') : '');
+            (props.playlists
+                ? props.playlists.split(', ').join(',,')
+                : undefined);
         values['type_s'] = props.type;
         values['subtype_s'] = props.subtype;
 
         values['html_txt'] = [
-            values['desc_txt'],
+            values['type_s'],
             values['name_s'],
-            values['keywords_txt'],
-            values['type_s']].join(' ');
+            values['keywords_txt']
+                ? values['keywords_txt']
+                : '',
+            values['desc_txt']
+        ].join(' ');
 
         return values;
     }
@@ -65,7 +77,7 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
 
         const subtypeField = doc[this.mapperUtils.mapToAdapterFieldName(mapping, 'subtypes_ss')];
         if (subtypeField !== undefined && Array.isArray(subtypeField)) {
-           values['subtypes'] = subtypeField.join(',');
+            values['subtypes'] = subtypeField.join(',');
         }
         values['blocked'] = this.mapperUtils.getMappedAdapterNumberValue(mapping, doc, 'blocked_i', undefined);
         values['descTxt'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'desc_txt', undefined);
@@ -73,9 +85,27 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
         values['descMd'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'desc_md_txt', undefined);
 
         const origKeywordsArr = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'keywords_txt', '').split(',');
-        const newKeywordsArr = [];
         const allowedKeywordPatterns = BeanUtils.getValue(this.config, 'mapperConfig.allowedKeywordPatterns');
-        for (let keyword of origKeywordsArr) {
+        const replaceKeywordPatterns = BeanUtils.getValue(this.config, 'mapperConfig.replaceKeywordPatterns');
+
+        const srcKeywordsArr = [];
+        if (replaceKeywordPatterns && replaceKeywordPatterns.length > 0) {
+            for (let keyword of origKeywordsArr) {
+                keyword = keyword.trim();
+                if (keyword === '') {
+                    continue;
+                }
+
+                for (const pattern of replaceKeywordPatterns) {
+                    keyword = keyword.replace(new RegExp(pattern[0]), pattern[1]);
+                }
+
+                srcKeywordsArr.push(keyword);
+            }
+        }
+
+        const newKeywordsArr = [];
+        for (let keyword of srcKeywordsArr) {
             keyword = keyword.trim();
             if (keyword === '') {
                 continue;
@@ -90,16 +120,6 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
                 }
             } else {
                 newKeywordsArr.push(keyword);
-            }
-        }
-        const replaceKeywordPatterns = BeanUtils.getValue(this.config, 'mapperConfig.replaceKeywordPatterns');
-        if (replaceKeywordPatterns && replaceKeywordPatterns.length > 0) {
-            for (let i = 0; i < newKeywordsArr.length; i++) {
-                let keyword = newKeywordsArr[i];
-                for (const pattern of replaceKeywordPatterns) {
-                    keyword = keyword.replace(new RegExp(pattern[0]), pattern[1]);
-                }
-                newKeywordsArr[i] = keyword;
             }
         }
         values['keywords'] = newKeywordsArr.join(', ');

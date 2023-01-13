@@ -83,10 +83,14 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             desc_txt: props.descTxt,
             desc_md_txt: props.descMd,
             desc_html_txt: props.descHtml,
-            keywords_txt: (props.keywords ? props.keywords.split(', ').join(',,') : ''),
+            keywords_txt: (props.keywords
+                ? props.keywords.split(', ').join(',,')
+                : undefined),
 
             name_s: props.name,
-            playlists_txt: (props.playlists ? props.playlists.split(', ').join(',,') : ''),
+            playlists_txt: (props.playlists
+                ? props.playlists.split(', ').join(',,')
+                : undefined),
             type_s: props.type,
             type_txt: props.type,
 
@@ -95,20 +99,32 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             geo_ele_s: props.geoEle,
             geo_ele_f: props.geoEle,
             geo_ele_facet_is: this.parseFacet(props.geoEle, 500),
+            data_tech_alt_max_i: props.geoEle,
             geo_loc_p: props.geoLoc,
             gpstracks_basefile_s: props.gpsTrackBasefile,
             gpstracks_src_s: props.gpsTrackSrc,
-            loc_lochirarchie_s: (props.locHirarchie ? props.locHirarchie
-                .toLowerCase()
-                .replace(/[ ]*->[ ]*/g, ',,')
-                .replace(/ /g, '_') : ''),
-            loc_lochirarchie_ids_s: (props.locHirarchieIds ? props.locHirarchieIds
-                .toLowerCase()
-                .replace(/,/g, ',,')
-                .replace(/ /g, '_') : '')
+            loc_lochirarchie_s: (props.locHirarchie
+                ? props.locHirarchie
+                    .toLowerCase()
+                    .replace(/[ ]*->[ ]*/g, ',,')
+                    .replace(/ /g, '_')
+                : undefined),
+            loc_lochirarchie_ids_s: (props.locHirarchieIds
+                ? props.locHirarchieIds
+                    .toLowerCase()
+                    .replace(/,/g, ',,')
+                    .replace(/ /g, '_')
+                : undefined)
 
         };
-        values['html_txt'] = [values.desc_txt, values.name_s, values.keywords_txt, values.type_s].join(' ');
+        values['html_txt'] = [
+            values.type_s,
+            values.name_s,
+            values.keywords_txt
+                ? values.keywords_txt
+                : '',
+            values.desc_txt,
+        ].join(' ');
 
         return values;
     }
