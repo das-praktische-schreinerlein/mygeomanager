@@ -12,8 +12,6 @@
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
                         "outputPath": "dist/browser/",
-                        "index": "src/frontend/index.html",
-                        "main": "src/frontend/main.ts",
                         "tsConfig": "src/frontend/tsconfig.app.json",
                         "preserveSymlinks": true,
                         "polyfills": "src/frontend/polyfills.ts",
@@ -47,18 +45,24 @@
                         "de": {
                             "i18nFile": "src/frontend/locales/messages.de.xlf",
                             "i18nFormat": "xlf",
-                            "i18nLocale": "de"
+                            "i18nLocale": "de",
+                            "index": "src/frontend/index.html",
+                            "main": "src/frontend/main.dev.ts"
                         },
                         "en": {
                             "i18nFile": "src/frontend/locales/messages.en.xlf",
                             "i18nFormat": "xlf",
-                            "i18nLocale": "en"
+                            "i18nLocale": "en",
+                            "index": "src/frontend/index.html",
+                            "main": "src/frontend/main.dev.ts"
                         },
                         "dev-de": {
                             "progress":  false,
                             "i18nFile": "src/frontend/locales/messages.de.xlf",
                             "i18nFormat": "xlf",
                             "i18nLocale": "de",
+                            "index": "src/frontend/index.html",
+                            "main": "src/frontend/main.dev.ts",
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -75,6 +79,8 @@
                             "i18nFile": "src/frontend/locales/messages.en.xlf",
                             "i18nFormat": "xlf",
                             "i18nLocale": "en",
+                            "index": "src/frontend/index.html",
+                            "main": "src/frontend/main.dev.ts",
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -91,6 +97,8 @@
                             "i18nFile": "src/frontend/locales/messages.de.xlf",
                             "i18nFormat": "xlf",
                             "i18nLocale": "de",
+                            "index": "src/frontend/index.html",
+                            "main": "src/frontend/main.beta.ts",
                             "fileReplacements": [
                                 {
                                     "replace": "src/frontend/environments/environment.ts",
@@ -113,6 +121,8 @@
                             "i18nFile": "src/frontend/locales/messages.en.xlf",
                             "i18nFormat": "xlf",
                             "i18nLocale": "en",
+                            "index": "src/frontend/index.html",
+                            "main": "src/frontend/main.beta.ts",
                             "fileReplacements": [
                                 {
                                     "replace": "src/frontend/environments/environment.ts",
@@ -135,6 +145,8 @@
                             "i18nFile": "src/frontend/locales/messages.de.xlf",
                             "i18nFormat": "xlf",
                             "i18nLocale": "de",
+                            "index": "src/frontend/index.html",
+                            "main": "src/frontend/main.prod.ts",
                             "fileReplacements": [
                                 {
                                     "replace": "src/frontend/environments/environment.ts",
@@ -157,10 +169,60 @@
                             "i18nFile": "src/frontend/locales/messages.en.xlf",
                             "i18nFormat": "xlf",
                             "i18nLocale": "en",
+                            "index": "src/frontend/index.html",
+                            "main": "src/frontend/main.prod.ts",
                             "fileReplacements": [
                                 {
                                     "replace": "src/frontend/environments/environment.ts",
                                     "with": "src/frontend/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": true,
+                            "ngswConfigPath": "src/frontend/ngsw-config.json"
+                        },
+                        "viewer-de": {
+                            "i18nFile": "src/frontend/locales/messages.de.xlf",
+                            "i18nFormat": "xlf",
+                            "i18nLocale": "de",
+                            "index": "src/frontend/index.viewer.html",
+                            "main": "src/frontend/main.viewer.ts",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/frontend/environments/environment.ts",
+                                    "with": "src/frontend/environments/environment.viewer.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": true,
+                            "ngswConfigPath": "src/frontend/ngsw-config.json"
+                        },
+                        "viewer-en": {
+                            "i18nFile": "src/frontend/locales/messages.en.xlf",
+                            "i18nFormat": "xlf",
+                            "i18nLocale": "en",
+                            "index": "src/frontend/index.viewer.html",
+                            "main": "src/frontend/main.viewer.ts",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/frontend/environments/environment.ts",
+                                    "with": "src/frontend/environments/environment.viewer.ts"
                                 }
                             ],
                             "optimization": true,

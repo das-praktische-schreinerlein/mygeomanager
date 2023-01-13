@@ -37,6 +37,7 @@ export class ServerAdminCommandManager extends CommonServerAdminCommandManager<S
             initializedArgs['srcFile'] = undefined;
             initializedArgs['sitemap'] = undefined;
             initializedArgs['file'] = undefined;
+            initializedArgs['mode'] = undefined;
 
             // TODO check and reset
 

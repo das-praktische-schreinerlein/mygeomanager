@@ -14,10 +14,8 @@ registerLocaleData(localeDe);
         AppCommonModule,
         AppRoutingModule
     ],
-    providers: [
-    ],
     // Since the bootstrapped component is not inherited from your
     // imported AppModule, it needs to be repeated here.
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppReadOnlyModule {}

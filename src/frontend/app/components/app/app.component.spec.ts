@@ -31,10 +31,10 @@ describe('AppComponent', () => {
             ],
             providers: [
                 TranslateService,
-                {provide: GenericAppService, useValue: new AppServiceStub() },
+                { provide: GenericAppService, useValue: new AppServiceStub() },
                 CommonRoutingService,
                 { provide: Router, useValue: new RouterStub() },
-                {provide: ToastrService, useValue: new ToastrServiceStub() },
+                { provide: ToastrService, useValue: new ToastrServiceStub() },
                 PlatformService,
                 PageUtils,
                 LayoutService

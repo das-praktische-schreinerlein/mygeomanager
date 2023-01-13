@@ -10,6 +10,7 @@ import {PageUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/servic
 import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {environment} from '../../../environments/environment';
 import {ToastrService} from 'ngx-toastr';
+import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
 
 @Component({
     selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent {
     showLoadingSpinner = true;
     title = 'MyGeoManager';
     showLaw = false;
+    hideCopyrightFooter = environment.hideCopyrightFooter;
     cookieLawSeenName = environment.cookieLawSeenName;
 
     constructor(private appService: GenericAppService, private toastr: ToastrService,
@@ -63,6 +65,10 @@ export class AppComponent {
             appState => {
                 if (appState === AppState.Ready && this.platformService.isClient()) {
                     this.toastr.info('App wurde initialisiert. Viel Spaß :-)', 'Fertig');
+                    const tmpHideCopyrightFooter = BeanUtils.getValue(this.appService.getAppConfig(), 'services.global.hideCopyrightFooter')
+                    if (tmpHideCopyrightFooter !== undefined) {
+                        this.hideCopyrightFooter = tmpHideCopyrightFooter;
+                    }
                 } else if (appState === AppState.Failed) {
                     this.router.navigateByUrl('errorpage');
                 }
@@ -84,7 +90,7 @@ export class AppComponent {
     private doBrowserCheck() {
         // check ie
         const browser = this.layoutService.getBrowser();
-        switch (browser && browser['name']) {
+        switch (browser && browser['name']) { // NOSONAR more possible :-)
             case 'ie':
                 this.toastr.warning('<h4>Auweia</h4>\n' +
                     'Dieser Browser ist leider etwas "..." und wird die Seite wahrscheinlich nicht richtig darstellen können :-(<br />\n' +

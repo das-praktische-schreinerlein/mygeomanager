@@ -2,6 +2,32 @@
  
 # Versions
 
+## 4.3.0
+- bumped up to commons 5.6.0
+- added viewer as separate environment to view static data without backend
+- split components and build for smaller optimized readonly-version
+- frontend: made section-page-elements configurable
+- build: added goals for modules-statistics
+- frontend: hide copyright-footer if configured
+- backend: improved logging-config
+
+### new features
+- viewer: added viewer as separate environment to view static data without backend
+- build: added goals for modules-statistics
+
+### improvements
+- deps: bumped up to mycms-commons 5.6.0
+- frontend: split components and build for smaller optimized readonly-version
+- frontend: hide copyright-footer if configured
+- backend: improved logging-config
+
+### bug fixes
+- none
+
+### breaking changes
+- none
+
+
 ## 4.2.0 (2021-11-25)
 - now bases on mysimplehomepage-4.2.0
 - bumped up to commons 5.4.0

@@ -28,9 +28,9 @@ describe('NavbarComponent', () => {
             providers: [
                 TranslateService,
                 { provide: PDocDataService, useValue: new PDocDataServiceStub() },
-                {provide: ToastrService, useValue: new ToastrServiceStub() },
+                { provide: ToastrService, useValue: new ToastrServiceStub() },
                 { provide: ActivatedRoute, useValue: new ActivatedRouteStub() },
-                {provide: GenericAppService, useValue: new AppServiceStub() },
+                { provide: GenericAppService, useValue: new AppServiceStub() },
                 PageUtils
             ],
         })
