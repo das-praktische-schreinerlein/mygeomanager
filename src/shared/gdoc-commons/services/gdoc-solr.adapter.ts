@@ -99,7 +99,6 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             geo_ele_s: props.geoEle,
             geo_ele_f: props.geoEle,
             geo_ele_facet_is: this.parseFacet(props.geoEle, 500),
-            data_tech_alt_max_i: props.geoEle,
             geo_loc_p: props.geoLoc,
             gpstracks_basefile_s: props.gpsTrackBasefile,
             gpstracks_src_s: props.gpsTrackSrc,

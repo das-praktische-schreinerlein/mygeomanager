@@ -45,7 +45,7 @@ export class GeoDocConverterModule {
                 ? 'https://www.openstreetmap.org/'
                 : undefined;
             const sourceKeyword = flgOsmImport
-                ? 'SOURCE_openstreetmap/'
+                ? 'SOURCE_openstreetmap'
                 : 'SOURCE_GeoJson';
 
             if (rootType !== 'FeatureCollection') {
@@ -182,7 +182,7 @@ export class GeoDocConverterModule {
                         : 'SOURCE_GEOJSON/' +  feature.id,
                     desc_txt: desc,
                     linkedinfos_clob: linkedInfos.join(';;'),
-                    data_tech_alt_max_i: coordinate['ele'],
+                    geo_ele_s: coordinate['ele'],
                     keywords_txt: keywords.join(', '),
                     name_s: name
                 };

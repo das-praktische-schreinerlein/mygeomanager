@@ -19,6 +19,20 @@ export class GeoDocItemsJsAdapter extends GenericItemsJsAdapter<GeoDocRecord, Ge
             'gpstracks_basefile_s', 'keywords_txt', 'loc_lochirarchie_s', 'loc_lochirarchie_ids_s', 'name_s', 'type_s',
             'playlists_txt', 'subtype_ss', 'subtype_s'],
         aggregations: {
+            'geo_ele_facet_is': {
+                filterFunction: function(record) {
+                    return record['geo_ele_f']
+                        ? (Math.round(Number(record['geo_ele_f']) / 500) * 500).toFixed(0)
+                        :  record['geo_ele_s']
+                            ? (Math.round(Number(record['geo_ele_s']) / 500) * 500).toFixed(0)
+                            : undefined
+                },
+                conjunction: false,
+                sort: 'term',
+                order: 'asc',
+                hide_zero_doc_count: true,
+                size: 1000
+            },
             'keywords_txt': {
                 filterFunction: function(record) {
                     return record['keywords_txt']

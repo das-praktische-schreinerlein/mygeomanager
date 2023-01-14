@@ -2,10 +2,17 @@
 
 ## initialize environment (once)
 
-### create solr-core
-- create solr-core
-
 ### initialze with osm-data
+
+#### Export POI-data on osm
+- Infos
+    - Tags https://wiki.openstreetmap.org/wiki/Tag:natural%3Dglacier
+    - select https://overpass-turbo.eu/
+- Samples
+    - Sample: https://forum.openstreetmap.org/viewtopic.php?id=18927
+    - Sample: https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#Sets
+    - Sample: https://observablehq.com/@easz/overpass-api-for-openstreetmap
+- save exported data to F:/playground/mytb-test/mytbbase/poi-import/poi_import.geojson
 - select available tags [available osm-tags](https://taginfo.openstreetmap.org/tags/natural=peak#overview)
 - get data export as geojson  [git via overpass-turbo](http://overpass-turbo.eu/#)
 ```
@@ -27,6 +34,63 @@ out body;
 >;
 out skel qt;
 ```
+
+#### Import poi-data into mytb-database via admin-ui
+- save exported data to F:/playground/mytb-test/mytbbase/poi-import/poi_import.geojson
+- start import-Job on admin-area: "POIIMPORT: importDataFromPoiDatabase"
+    - will convert poi-import/poi_import.geojson -> poi_import-dump.json
+    - will import (insert only not already found records) poi_import-dump.json and rename it afterwards
+
+
+#### prepare files
+- convert geojson files via windows cmd
+```cmd
+for %f in (D:\docs\osm-poi-geojson\*.geojson) do (
+    echo %~nf
+    node dist\backend\serverAdmin.js ^
+        --debug ^
+        --command convertGeoDoc ^
+        --action convertGeoJsonToGeoDoc ^
+        --adminclibackend config/adminCli.dev.json ^
+        --backend config/backend.dev.json ^
+        --srcFile D:\docs\osm-poi-geojson\%~nf.geojson ^
+        --mode RESPONSE ^
+        --file D:\docs\osm-poi-geojson\%~nf.gdoc.json ^
+        --renameFileIfExists true
+)
+```
+
+### prepare a static viewer
+- create viewer-files for directory-entries via bash
+```bash
+FILTER=D:/docs/osm-poi-geojson/*.gdoc.json
+FILES=`echo $FILTER | sed "s/ /,/g"`
+echo $FILES
+sbin/generateViewerFileForStaticData.sh D:/docs/osm-poi-geojson/ $FILES mymm-pois
+```
+
+### import into solr
+
+#### create solr-core
+- create solr-core
+
+#### import files
+- import files via windows cmd
+```cmd
+for %f in (D:\docs\osm-poi-geojson\*.gdoc.json) do (
+    echo %~nf
+    node dist\backend\serverAdmin.js ^
+        --debug ^
+        --command loadGeoDoc ^
+        --action loadDocs ^
+        --adminclibackend config/adminCli.dev.json ^
+        --backend config/backend.dev.json ^
+        --file D:\docs\osm-poi-geojson\%~nf.gdoc.json ^
+        --renameFileAfterSuccess true
+)
+```
+
+#### do it via default-configured data 
 - convert geojson to GeoDoc-json and import
 ```
 f:

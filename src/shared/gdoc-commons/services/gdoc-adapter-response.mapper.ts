@@ -3,9 +3,14 @@ import {GeoDocRecord, GeoDocRecordFactory} from '../model/records/gdoc-record';
 import {MapperUtils} from '@dps/mycms-commons/dist/search-commons/services/mapper.utils';
 import {GenericAdapterResponseMapper} from '@dps/mycms-commons/dist/search-commons/services/generic-adapter-response.mapper';
 import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
+import {ObjectUtils} from '@dps/mycms-commons/dist/commons/utils/object.utils';
 
 export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper {
-    protected mapperUtils = new MapperUtils();
+    private readonly _objectSeparator = ';;';
+    private readonly _fieldSeparator = ':::';
+    private readonly _valueSeparator = '=';
+
+    protected mapperUtils = new MapperUtils(this._objectSeparator, this._fieldSeparator, this._valueSeparator);
     protected config: {} = {};
 
     constructor(config: any) {
@@ -25,7 +30,6 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
         values['geo_lat_s'] = props.geoLat;
         values['geo_ele_s'] = props.geoEle;
         values['geo_ele_f'] = props.geoEle;
-        values['data_tech_alt_max_i'] = props.geoEle;
         values['geo_loc_p'] = props.geoLoc;
         values['gpstrack_src_s'] = props.gpsTrackSrc;
         values['gpstracks_basefile_s'] = props.gpsTrackBasefile;
@@ -54,12 +58,12 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
         values['subtype_s'] = props.subtype;
 
         values['html_txt'] = [
-            values['type_s'],
+            values['desc_txt'],
             values['name_s'],
             values['keywords_txt']
                 ? values['keywords_txt']
                 : '',
-            values['desc_txt']
+            values['type_s'],
         ].join(' ');
 
         return values;
@@ -85,10 +89,8 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
         values['descMd'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'desc_md_txt', undefined);
 
         const origKeywordsArr = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'keywords_txt', '').split(',');
-        const allowedKeywordPatterns = BeanUtils.getValue(this.config, 'mapperConfig.allowedKeywordPatterns');
         const replaceKeywordPatterns = BeanUtils.getValue(this.config, 'mapperConfig.replaceKeywordPatterns');
-
-        const srcKeywordsArr = [];
+        let srcKeywordsArr = [];
         if (replaceKeywordPatterns && replaceKeywordPatterns.length > 0) {
             for (let keyword of origKeywordsArr) {
                 keyword = keyword.trim();
@@ -102,9 +104,12 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
 
                 srcKeywordsArr.push(keyword);
             }
+        } else {
+            srcKeywordsArr = [].concat(origKeywordsArr);
         }
 
-        const newKeywordsArr = [];
+        const allowedKeywordPatterns = BeanUtils.getValue(this.config, 'mapperConfig.allowedKeywordPatterns');
+        let newKeywordsArr = [];
         for (let keyword of srcKeywordsArr) {
             keyword = keyword.trim();
             if (keyword === '') {
@@ -122,6 +127,8 @@ export class GeoDocAdapterResponseMapper implements GenericAdapterResponseMapper
                 newKeywordsArr.push(keyword);
             }
         }
+
+        newKeywordsArr = ObjectUtils.uniqueArray(newKeywordsArr);
         values['keywords'] = newKeywordsArr.join(', ');
 
         values['name'] = this.mapperUtils.getMappedAdapterValue(mapping, doc, 'name_s', undefined);
