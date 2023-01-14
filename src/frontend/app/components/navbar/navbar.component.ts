@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
                     this.config.availableDataModes = [];
                 }
 
-                if (this.config && this.config['tdocMaxItemsPerAlbum'] > 0) {
+                if (this.config && this.config['gdocMaxItemsPerAlbum'] > 0) {
                     this.albumAllowed = true;
                     return;
                 }

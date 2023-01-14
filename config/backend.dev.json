@@ -3,6 +3,8 @@
     "filePathThemeFilterJson": "config/themeFilterConfig.json",
     "gdocDataStoreAdapter": "GeoDocSolrAdapter",
     "gdocWritable": true,
+    "nodejsBinaryPath": "node",
+    "inlineJsPath": "devtools/create-allinone-html.js",
     "GeoDocItemsJsAdapter": {
         "dataFile": "D:/tmp/test/mygeo.json"
     },

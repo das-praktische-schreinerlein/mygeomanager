@@ -10,7 +10,6 @@ import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/se
 import {ErrorResolver} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/resolver/error.resolver';
 import {PageUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/page.utils';
 import {CommonRoutingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
-import * as L from 'leaflet';
 import {GenericTrackingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/generic-tracking.service';
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
 import {MapElement} from '@dps/mycms-frontend-commons/dist/angular-maps/services/leaflet-geo.plugin';
@@ -26,6 +25,7 @@ import {GeoDocActionTagService} from '../../../shared-gdoc/services/gdoc-actiont
 import {GeoDocSearchFormUtils} from '../../../shared-gdoc/services/gdoc-searchform-utils.service';
 import {CommonDocMultiActionManager} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-multiaction.manager';
 import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
+import {LatLng} from 'leaflet';
 
 @Component({
     selector: 'app-gdoc-searchpage',
@@ -35,7 +35,7 @@ import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
 })
 export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoDocRecord, GeoDocSearchForm, GeoDocSearchResult,
     GeoDocDataService> {
-    mapCenterPos: L.LatLng = undefined;
+    mapCenterPos: LatLng = undefined;
     mapZoom = 9;
     mapElements: MapElement[] = [];
     profileMapElements: MapElement[] = [];
@@ -61,7 +61,7 @@ export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoD
         console.log("gdocClicked", gdoc);
     }
 
-    onMapCenterChanged(newCenter: L.LatLng) {
+    onMapCenterChanged(newCenter: LatLng) {
         console.log("newCenter", newCenter);
     }
 
@@ -109,7 +109,7 @@ export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoD
     protected doProcessAfterResolvedData(config: {}): void {
         if (this.searchForm.nearby !== undefined && this.searchForm.nearby.length > 0) {
             const [lat, lon] = this.searchForm.nearby.split('_');
-            this.mapCenterPos = new L.LatLng(+lat, +lon);
+            this.mapCenterPos = new LatLng(+lat, +lon);
         } else {
             this.mapCenterPos = undefined;
         }

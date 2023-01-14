@@ -46,7 +46,7 @@
     "build-viewer-en": "ng build frontend --configuration=viewer-en --aot true --output-path dist/static/mygeomviewer/en && npm run build-after-copy-preinline-en && node devtools/create-allinone-html.js dist/static/mygeomviewer/en/index.viewer.html dist/static/mygeomviewer/en/index.viewer.full.html",
     "build-viewer-de-stats": "ng build frontend --configuration=viewer-de --aot true --stats-json true --output-path dist/static/mygeomviewer/de && npm run build-after-copy-preinline-de && node devtools/create-allinone-html.js dist/static/mygeomviewer/de/index.viewer.html dist/static/mygeomviewer/de/index.viewer.full.html",
     "build-after-copy-contrib": "cpx \"contrib/**/*\" dist/contrib/ && cpx --verbose \"installer/solr/**/*\" dist/contrib/solr/server/solr/",
-    "build-after-copy-contrib-solrlang": "cpx --verbose \"contrib/solr/contrib/lang/*.*\" dist/contrib/solr/server/solr/coremygeombeta/conf/lang/ && cpx --verbose \"contrib/solr/contrib/lang/*.*\" dist/contrib/solr/server/solr/coremygeomprod/conf/lang/",
+    "build-after-copy-contrib-solrlang": "cpx --verbose \"contrib/solr/contrib/lang/*.*\" dist/contrib/solr/server/solr/coremygeo/conf/lang/",
     "build-after-copy-preinline-de": "cpx --verbose \"node_modules/lz-string/libs/lz-string.min.js\" dist/static/mygeomviewer/de/",
     "build-after-copy-preinline-en": "cpx --verbose \"node_modules/lz-string/libs/lz-string.min.js\" dist/static/mygeomviewer/en/",
     "build-after-copy-overrides-config": "cpx --verbose \"overrides/after-build/config/**/*.*\" config/",

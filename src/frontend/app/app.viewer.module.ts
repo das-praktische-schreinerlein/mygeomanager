@@ -12,7 +12,7 @@ registerLocaleData(localeDe);
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: FallbackHttpClient): TranslateLoader {
-    const url = 'assets/staticdata/static.myshptranslations-'
+    const url = 'assets/staticdata/static.mygeomtranslations-'
     return new TranslateJsonPHttpLoader(http, url,  environment.assetsPathVersionSnippet + '.js' + environment.assetsPathVersionSuffix);
 }
 

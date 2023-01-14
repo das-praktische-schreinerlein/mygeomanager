@@ -7,6 +7,10 @@ import * as fs from 'fs';
 import {HttpAdapter} from 'js-data-http';
 import {GeoDocItemsJsAdapter} from '../shared/gdoc-commons/services/gdoc-itemsjs.adapter';
 import {GeoDocFileUtils} from '../shared/gdoc-commons/services/gdoc-file.utils';
+import {
+    ExtendedItemsJsConfig,
+    ItemsJsDataImporter
+} from '@dps/mycms-commons/dist/search-commons/services/itemsjs.dataimporter';
 
 export class GeoDocDataServiceModule {
     private static dataServices = new Map<string, GeoDocDataService>();
@@ -75,14 +79,16 @@ export class GeoDocDataServiceModule {
         const dataService: GeoDocDataService = new GeoDocDataService(dataStore);
 
         // configure adapter
-        const itemsJsConfig = backendConfig['GeoDocItemsJsAdapter'];
+        const options = { skipMediaCheck: false};
+        const itemsJsConfig: ExtendedItemsJsConfig = GeoDocItemsJsAdapter.itemsJsConfig;
+        ItemsJsDataImporter.prepareConfiguration(itemsJsConfig);
         if (itemsJsConfig === undefined) {
             throw new Error('config for GeoDocItemsJsAdapter not exists');
         }
         const records = GeoDocFileUtils.parseRecordSourceFromJson(fs.readFileSync(itemsJsConfig['dataFile'], { encoding: 'utf8' }));
 
-        const adapter = new GeoDocItemsJsAdapter({mapperConfig: backendConfig['mapperConfig']}, records);
-        dataStore.setAdapter('http', adapter, '', {});
+        const gdocAdapter = new GeoDocItemsJsAdapter(options, records, itemsJsConfig);
+        dataStore.setAdapter('http', gdocAdapter, '', {});
 
         return dataService;
     }

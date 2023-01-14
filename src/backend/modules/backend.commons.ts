@@ -3,4 +3,7 @@ import {CommonBackendConfigType} from '@dps/mycms-server-commons/dist/backend-co
 import {CommonKeywordMapperConfigType} from '@dps/mycms-server-commons/dist/backend-commons/modules/backend.commons';
 
 export interface BackendConfigType extends CommonBackendConfigType<CommonKeywordMapperConfigType, CacheConfig> {
+    gdocImportConverterAdditionalKeywords?: string[],
+    nodejsBinaryPath: string,
+    inlineJsPath: string
 }

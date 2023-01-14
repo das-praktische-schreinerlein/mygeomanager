@@ -20,20 +20,32 @@ import {MinimalHttpBackendClient} from '@dps/mycms-commons/dist/commons/services
 import {AngularHtmlService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-html.service';
 import {CommonRoutingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {GenericTrackingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/generic-tracking.service';
+import {
+    GenericTrackingService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/generic-tracking.service';
 import {TrackingService} from './services/tracking.service';
 import {Angulartics2Module} from 'angulartics2';
 import {registerLocaleData} from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
-import {DynamicComponentService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/dynamic-components.service';
+import {
+    DynamicComponentService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/dynamic-components.service';
 import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {CookieLawModule} from 'angular2-cookie-law';
 import {environment} from '../environments/environment';
 import {FallbackHttpClient} from './services/fallback-http-client';
 import {NgModule} from '@angular/core';
 import {AppCommonRoutingModule} from './app.common.router';
-import {CommonDocRoutingService} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-routing.service';
+import {GeoDocDataStore, GeoDocTeamFilterConfig} from '../shared/gdoc-commons/services/gdoc-data.store';
+import {GeoDocModule} from './gdoc/gdoc.module';
+import {GeoDocDataService} from '../shared/gdoc-commons/services/gdoc-data.service';
+import {GeoDocDynamicComponentService} from './shared-gdoc/services/gdoc-dynamic-components.service';
+import {GeoDocAlbumService} from './shared-gdoc/services/gdoc-album.service';
+import {GeoDocDataCacheService} from './shared-gdoc/services/gdoc-datacache.service';
+import {GeoDocActionTagService} from './shared-gdoc/services/gdoc-actiontag.service';
+import {GeoDocPlaylistService} from './shared-gdoc/services/gdoc-playlist.service';
+import {GeoDocActionTagsComponent} from './shared-gdoc/components/gdoc-actiontags/gdoc-actiontags.component';
 
 registerLocaleData(localeDe);
 
@@ -55,11 +67,12 @@ export function getAngulartics2Providers(): any {
         ErrorPageComponent
     ],
     entryComponents: [
+        GeoDocActionTagsComponent
     ],
     imports: [
         HttpClientModule,
         NgbCollapseModule,
-        BrowserModule.withServerTransition({appId: 'pdoc-app'}),
+        BrowserModule.withServerTransition({appId: 'gdoc-app'}),
         ToastrModule.forRoot(),
         TranslateModule.forRoot({
             loader: {
@@ -70,6 +83,7 @@ export function getAngulartics2Providers(): any {
         }),
         Angulartics2Module.forRoot(getAngulartics2Providers()),
         AngularCommonsModule,
+        GeoDocModule,
         SectionsModule,
         CookieLawModule,
         AppCommonRoutingModule
@@ -78,19 +92,26 @@ export function getAngulartics2Providers(): any {
         {provide: MinimalHttpBackendClient, useClass: BackendHttpClient},
         // customUrlSerializerProvider, // activate this to get parenthes in parameters running, but then suburls dont run anymore
         CommonRoutingService,
-        CommonDocRoutingService,
         {provide: GenericAppService, useClass: AppService},
         FallbackHttpClient,
         DynamicComponentService,
+        GeoDocDynamicComponentService,
+        GeoDocTeamFilterConfig,
+        GeoDocDataStore,
+        GeoDocDataService,
         PDocDataStore,
+        GeoDocAlbumService,
         PDocDataService,
+        GeoDocDataCacheService,
         SearchFormUtils,
         {provide: GenericTrackingService, useClass: TrackingService},
         AngularHtmlService,
         {provide: SearchParameterUtils, useClass: SearchParameterUtils},
         PageUtils,
         {provide: PlatformService, useClass: PlatformService},
-        LayoutService
+        LayoutService,
+        GeoDocActionTagService,
+        GeoDocPlaylistService
     ],
     bootstrap: [AppComponent]
 })

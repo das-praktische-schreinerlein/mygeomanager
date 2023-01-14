@@ -7,6 +7,7 @@ import {ExtendedConfigInitializerCommand} from './extendedconfig-initializer.com
 import {GeoDocConverterCommand} from './gdoc-converter.command';
 import {GeoDocLoaderCommand} from './gdoc-loader.command';
 import {GeoDocExporterCommand} from './gdoc-exporter.command';
+import {MediaManagerCommand} from './media-manager.command';
 
 export interface AdminCommandConfigType extends CommonAdminCommandConfigType {
 }
@@ -18,6 +19,7 @@ export class AdminCommandManager extends CommonAdminCommandManager<AdminCommandC
             'convertGeoDoc': new GeoDocConverterCommand(),
             'loadGeoDoc': new GeoDocLoaderCommand(),
             'exportGeoDoc': new GeoDocExporterCommand(),
+            'mediaManager': new MediaManagerCommand(),
             'generateSitemap': new SiteMapGeneratorCommand()
         }, adminCommandConfig);
     }

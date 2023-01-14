@@ -4,14 +4,13 @@ import {GeoDocRecord} from '../../../shared/gdoc-commons/model/records/gdoc-reco
 import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
 import {MapElement} from '@dps/mycms-frontend-commons/dist/angular-maps/services/leaflet-geo.plugin';
 import {CommonDocRoutingService} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-routing.service';
-import * as L from 'leaflet';
+import {LatLng} from 'leaflet';
 import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
 import {
     CommonDocContentUtils,
     CommonDocContentUtilsConfig,
     CommonItemData
 } from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-contentutils.service';
-import LatLng = L.LatLng;
 
 export interface GeoDocItemData extends CommonItemData {
     tracks?: GeoDocRecord[];

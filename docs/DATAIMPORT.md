@@ -41,7 +41,6 @@ node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action conver
 node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file d:\docs\import-gdocs-peaks-canaren.json
 node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file d:\docs\import-gdocs-alpine-huts.json
 node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file d:\docs\import-gdocs-peaks-alpen.json
-
 ```
 
 ### configure local environments

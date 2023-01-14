@@ -32,231 +32,231 @@
         <note priority="1" from="description">Heading alert errorpage</note>
         <note priority="1" from="meaning">heading alert errorpage</note>
       </trans-unit>
-      <trans-unit id="accordion.details.mdoc.title" datatype="html">
+      <trans-unit id="accordion.details.gdoc.title" datatype="html">
         <source>Details</source>
         <target>details</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/mdoc/components/mdoc-showpage/mdoc-showpage.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/gdoc/components/gdoc-showpage/gdoc-showpage.component.ts</context>
           <context context-type="linenumber">35</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-item/mdoc-list-item.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-item/gdoc-list-item.component.ts</context>
           <context context-type="linenumber">55</context>
         </context-group>
         <note priority="1" from="description">Title for details accordion</note>
         <note priority="1" from="meaning">title accordion details</note>
       </trans-unit>
-      <trans-unit id="a.show.mdoc.back2search" datatype="html">
+      <trans-unit id="a.show.gdoc.back2search" datatype="html">
         <source>Back to Search</source>
         <target>Back to Search</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/mdoc/components/mdoc-showpage/mdoc-showpage.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/gdoc/components/gdoc-showpage/gdoc-showpage.component.ts</context>
           <context context-type="linenumber">50</context>
         </context-group>
-        <note priority="1" from="description">Linktext back to search mdoc</note>
-        <note priority="1" from="meaning">link back2search mdoc</note>
+        <note priority="1" from="description">Linktext back to search gdoc</note>
+        <note priority="1" from="meaning">link back2search gdoc</note>
       </trans-unit>
-      <trans-unit id="accordion.map.mdoc.title" datatype="html">
+      <trans-unit id="accordion.map.gdoc.title" datatype="html">
         <source>Map</source>
         <target>map</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-item/mdoc-list-item.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-item/gdoc-list-item.component.ts</context>
           <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-item/mdoc-list-item.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-item/gdoc-list-item.component.ts</context>
           <context context-type="linenumber">62</context>
         </context-group>
         <note priority="1" from="description">Title for map accordion</note>
         <note priority="1" from="meaning">title accordion map</note>
       </trans-unit>
-      <trans-unit id="button.listitemaction.mdoc.show" datatype="html">
+      <trans-unit id="button.listitemaction.gdoc.show" datatype="html">
         <source>Show</source>
         <target>show</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-item/mdoc-list-item.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-item/gdoc-list-item.component.ts</context>
           <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-item/mdoc-list-item.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-item/gdoc-list-item.component.ts</context>
           <context context-type="linenumber">77</context>
         </context-group>
-        <note priority="1" from="description">Buttontext to listitemaction:show mdoc</note>
-        <note priority="1" from="meaning">button listitemaction show mdoc</note>
+        <note priority="1" from="description">Buttontext to listitemaction:show gdoc</note>
+        <note priority="1" from="meaning">button listitemaction show gdoc</note>
       </trans-unit>
-      <trans-unit id="placeholder.form.mdoc.name" datatype="html">
+      <trans-unit id="placeholder.form.gdoc.name" datatype="html">
         <source>name</source>
         <target>name</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-editform/mdoc-editform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-editform/gdoc-editform.component.ts</context>
           <context context-type="linenumber">2</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-createform/mdoc-createform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-createform/gdoc-createform.component.ts</context>
           <context context-type="linenumber">2</context>
         </context-group>
         <note priority="1" from="description">Placeholder for name</note>
         <note priority="1" from="meaning">name placeholder</note>
       </trans-unit>
-      <trans-unit id="placeholder.form.mdoc.desc" datatype="html">
+      <trans-unit id="placeholder.form.gdoc.desc" datatype="html">
         <source>description</source>
         <target>description</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-editform/mdoc-editform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-editform/gdoc-editform.component.ts</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-createform/mdoc-createform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-createform/gdoc-createform.component.ts</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <note priority="1" from="description">Placeholder for desc</note>
         <note priority="1" from="meaning">desc placeholder</note>
       </trans-unit>
-      <trans-unit id="button.form.mdoc.edit" datatype="html">
+      <trans-unit id="button.form.gdoc.edit" datatype="html">
         <source>Save</source>
         <target>save</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-editform/mdoc-editform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-editform/gdoc-editform.component.ts</context>
           <context context-type="linenumber">4</context>
         </context-group>
-        <note priority="1" from="description">Buttontext to edit mdoc</note>
-        <note priority="1" from="meaning">button edit mdoc</note>
+        <note priority="1" from="description">Buttontext to edit gdoc</note>
+        <note priority="1" from="meaning">button edit gdoc</note>
       </trans-unit>
-      <trans-unit id="label.searchform.mdoc.where" datatype="html">
+      <trans-unit id="label.searchform.gdoc.where" datatype="html">
         <source>Where:</source>
         <target>where:</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">4</context>
         </context-group>
         <note priority="1" from="description">Label for filter: where</note>
         <note priority="1" from="meaning">where label</note>
       </trans-unit>
-      <trans-unit id="label.searchform.mdoc.nearby" datatype="html">
+      <trans-unit id="label.searchform.gdoc.nearby" datatype="html">
         <source>Nahe:</source>
         <target>near by:</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
         <note priority="1" from="description">Label for filter: nearby</note>
         <note priority="1" from="meaning">nearby label</note>
       </trans-unit>
-      <trans-unit id="placeholder.searchform.mdoc.nearby" datatype="html">
+      <trans-unit id="placeholder.searchform.gdoc.nearby" datatype="html">
         <source>Nahe</source>
         <target>near by</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">16</context>
         </context-group>
         <note priority="1" from="description">Placeholder for nearby</note>
         <note priority="1" from="meaning">nearby placeholder</note>
       </trans-unit>
-      <trans-unit id="label.searchform.mdoc.nearbyDistance" datatype="html">
+      <trans-unit id="label.searchform.gdoc.nearbyDistance" datatype="html">
         <source>Umkreis:</source>
         <target>distance:</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">20</context>
         </context-group>
         <note priority="1" from="description">Label for filter: nearbyDistance</note>
         <note priority="1" from="meaning">nearbyDistance label</note>
       </trans-unit>
-      <trans-unit id="placeholder.searchform.mdoc.nearbyDistance" datatype="html">
+      <trans-unit id="placeholder.searchform.gdoc.nearbyDistance" datatype="html">
         <source>Umkreis in km</source>
         <target>distance in km</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">21</context>
         </context-group>
         <note priority="1" from="description">Placeholder for nearbyDistance</note>
         <note priority="1" from="meaning">nearbyDistance placeholder</note>
       </trans-unit>
-      <trans-unit id="label.searchform.mdoc.when" datatype="html">
+      <trans-unit id="label.searchform.gdoc.when" datatype="html">
         <source>When:</source>
         <target>when:</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">25</context>
         </context-group>
         <note priority="1" from="description">Label for filter: when</note>
         <note priority="1" from="meaning">when label</note>
       </trans-unit>
-      <trans-unit id="label.searchform.mdoc.fulltext" datatype="html">
+      <trans-unit id="label.searchform.gdoc.fulltext" datatype="html">
         <source>Fulltext:</source>
         <target>fulltext:</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">38</context>
         </context-group>
         <note priority="1" from="description">Label for filter: fulltext</note>
         <note priority="1" from="meaning">fulltext label</note>
       </trans-unit>
-      <trans-unit id="placeholder.searchform.mdoc.fulltext" datatype="html">
+      <trans-unit id="placeholder.searchform.gdoc.fulltext" datatype="html">
         <source>Suchtext</source>
         <target>searchtext</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">39</context>
         </context-group>
         <note priority="1" from="description">Placeholder for fulltext</note>
         <note priority="1" from="meaning">fulltext placeholder</note>
       </trans-unit>
-      <trans-unit id="label.searchform.mdoc.what" datatype="html">
+      <trans-unit id="label.searchform.gdoc.what" datatype="html">
         <source>What:</source>
         <target>what:</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">43</context>
         </context-group>
         <note priority="1" from="description">Label for filter: what</note>
         <note priority="1" from="meaning">what label</note>
       </trans-unit>
-      <trans-unit id="label.searchform.mdoc.type" datatype="html">
+      <trans-unit id="label.searchform.gdoc.type" datatype="html">
         <source>Types:</source>
         <target>types:</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">54</context>
         </context-group>
         <note priority="1" from="description">Label for filter: type</note>
         <note priority="1" from="meaning">type label</note>
       </trans-unit>
-      <trans-unit id="button.searchform.mdoc.search" datatype="html">
+      <trans-unit id="button.searchform.gdoc.search" datatype="html">
         <source>Search</source>
         <target>Let's Roll</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-searchform/mdoc-searchform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-searchform/gdoc-searchform.component.ts</context>
           <context context-type="linenumber">65</context>
         </context-group>
-        <note priority="1" from="description">Buttontext to search mdoc</note>
-        <note priority="1" from="meaning">button search mdoc</note>
+        <note priority="1" from="description">Buttontext to search gdoc</note>
+        <note priority="1" from="meaning">button search gdoc</note>
       </trans-unit>
-      <trans-unit id="button.form.mdoc.create" datatype="html">
+      <trans-unit id="button.form.gdoc.create" datatype="html">
         <source>Create</source>
         <target>create</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-createform/mdoc-createform.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-createform/gdoc-createform.component.ts</context>
           <context context-type="linenumber">4</context>
         </context-group>
-        <note priority="1" from="description">Buttontext to create mdoc</note>
-        <note priority="1" from="meaning">button create mdoc</note>
+        <note priority="1" from="description">Buttontext to create gdoc</note>
+        <note priority="1" from="meaning">button create gdoc</note>
       </trans-unit>
-      <trans-unit id="text.search.mdoc.result" datatype="html">
+      <trans-unit id="text.search.gdoc.result" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no result} =1 {one result} other {<x id="START_TAG_STRONG" ctype="x-strong"/><x id="INTERPOLATION"/><x id="CLOSE_TAG_STRONG" ctype="x-strong"/> results} }</source>
         <target>{VAR_PLURAL, plural, =0 {no result :-(} =1 {EXACTLY one result :-)} other {UiUiUi <x id="START_TAG_STRONG" ctype="x-strong"/><x id="INTERPOLATION"/><x id="CLOSE_TAG_STRONG" ctype="x-strong"/> results :-)} }</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-header/mdoc-list-header.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-header/gdoc-list-header.component.ts</context>
           <context context-type="linenumber">5</context>
         </context-group>
-        <note priority="1" from="description">Text for searchresult mdoc</note>
-        <note priority="1" from="meaning">searchresult text mdoc</note>
+        <note priority="1" from="description">Text for searchresult gdoc</note>
+        <note priority="1" from="meaning">searchresult text gdoc</note>
       </trans-unit>
       <trans-unit id="label.pageHeader.cdoc.sort" datatype="html">
         <source>Sort:</source>
         <target> </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-header/mdoc-list-header.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-header/gdoc-list-header.component.ts</context>
           <context context-type="linenumber">19</context>
         </context-group>
         <note priority="1" from="description">Label for header: sort</note>
@@ -266,7 +266,7 @@
         <source>per Page:</source>
         <target> </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-header/mdoc-list-header.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-header/gdoc-list-header.component.ts</context>
           <context context-type="linenumber">25</context>
         </context-group>
         <note priority="1" from="description">Label for header: perPage</note>
@@ -276,7 +276,7 @@
         <source>Layout:</source>
         <target> </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-mdoc/components/mdoc-list-header/mdoc-list-header.component.ts</context>
+          <context context-type="sourcefile">D:/Projekte/mytourbook/src/frontend/app/shared-gdoc/components/gdoc-list-header/gdoc-list-header.component.ts</context>
           <context context-type="linenumber">31</context>
         </context-group>
         <note priority="1" from="description">Label for header: listLayout</note>

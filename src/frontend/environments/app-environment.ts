@@ -12,4 +12,5 @@ export interface AppEnvironment extends CommonEnvironment {
     startDataMode?: DataMode;
     availableDataModes?: DataMode[];
     staticPDocsFile?: string;
+    staticGDocsFiles?: string[];
 }

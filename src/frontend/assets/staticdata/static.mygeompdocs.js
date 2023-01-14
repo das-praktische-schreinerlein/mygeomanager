@@ -18,10 +18,10 @@ window.importStaticDataPDocsJsonP = `
    "flgShowTopTen": false,
    "flgShowNews": false,
    "flgShowSearch": false,
-   "heading": "Thats MySimpleHomePage",
+   "heading": "Thats MyGeoManager",
    "name": "Willkommen",
    "subSectionIds": "skills,me",
-   "teaser": "Willkommen bei MySimpleHomePage",
+   "teaser": "Willkommen bei MyGeoManager",
    "type": "SectionOverviewPage"
   },
   {
@@ -91,12 +91,11 @@ window.importStaticDataPDocsJsonP = `
    "type": "SimplePage"
   }
  ]
-}
-`;
+}`;
 
 var script = document.createElement('script');
 script.type='application/json';
-script.id = 'assets/staticdata/static.myshppdocs.js';
+script.id = 'assets/staticdata/static.mygeompdocs.js';
 var text = document.createTextNode(importStaticDataPDocsJsonP);
 script.appendChild(text);
 document.head.appendChild(script);
