@@ -2,7 +2,7 @@ SET MYSCRIPTPATH=%~dp0
 set MYCMS=%MYSCRIPTPATH%..\
 set CONFIG_BASEDIR=%MYCMS%config\
 
-set GEO_EXPORT_BASEDIR=F:\playground\mygeom-tes\\export\
+set GEO_EXPORT_BASEDIR=F:\playground\mygeom-test\\export\
 
 set OSMDIR=F:\playground\osm-poi-geojson
 

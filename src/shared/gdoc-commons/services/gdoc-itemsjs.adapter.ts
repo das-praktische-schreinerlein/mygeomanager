@@ -84,30 +84,30 @@ export class GeoDocItemsJsAdapter extends GenericItemsJsAdapter<GeoDocRecord, Ge
                 hide_zero_doc_count: true,
                 size: 1000
             }
-       },
+        },
         sortings: {
             'date': {
                 field: ['dateonly_s'],
                 order: ['desc']
             },
             'dateAsc': {
-                sort: ['date_dt'],
+                field: ['date_dt'],
                 order: ['asc']
             },
             'distance': {
-                sort: ['geodist()'],
+                field: ['geodist()'],
                 order: ['asc']
             },
             'eleDesc': {
-                sort: ['geo_ele_f'],
+                field: ['geo_ele_f'],
                 order: ['desc']
             },
             'eleAsc': {
-                sort: ['geo_ele_f'],
+                field: ['geo_ele_f'],
                 order: ['asc']
             },
             'location': {
-                sort: ['loc_lochirarchie_s'],
+                field: ['loc_lochirarchie_s'],
                 order: ['asc']
             },
             'relevance': {
