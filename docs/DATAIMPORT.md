@@ -41,11 +41,21 @@ out skel qt;
     - will convert poi-import/poi_import.geojson -> poi_import-dump.json
     - will import (insert only not already found records) poi_import-dump.json and rename it afterwards
 
-
-#### prepare files
+#### do it per scripts
 - convert geojson files via windows cmd
 ```cmd
-for %f in (D:\docs\osm-poi-geojson\*.geojson) do (
+sbin\osm-geojson-convert.bat
+```
+- create viewer-files for directory-entries via bash
+```bash
+sbin/osm-geojson-generate-viewer.sh
+```
+
+#### do it manually
+- convert geojson files via windows cmd
+```cmd
+OSMDIR=F:\playground\osm-poi-geojson
+for %f in (%OSMDIR%\*.geojson) do (
     echo %~nf
     node dist\backend\serverAdmin.js ^
         --debug ^
@@ -53,20 +63,19 @@ for %f in (D:\docs\osm-poi-geojson\*.geojson) do (
         --action convertGeoJsonToGeoDoc ^
         --adminclibackend config/adminCli.dev.json ^
         --backend config/backend.dev.json ^
-        --srcFile D:\docs\osm-poi-geojson\%~nf.geojson ^
+        --srcFile %OSMDIR%\%~nf.geojson ^
         --mode RESPONSE ^
-        --file D:\docs\osm-poi-geojson\%~nf.gdoc.json ^
+        --file %OSMDIR%\%~nf.gdoc.json ^
         --renameFileIfExists true
 )
 ```
-
-### prepare a static viewer
 - create viewer-files for directory-entries via bash
 ```bash
-FILTER=D:/docs/osm-poi-geojson/*.gdoc.json
+OSMDIR=F:/playground/osm-poi-geojson
+FILTER=$OSMDIR/*.gdoc.json
 FILES=`echo $FILTER | sed "s/ /,/g"`
 echo $FILES
-sbin/generateViewerFileForStaticData.sh D:/docs/osm-poi-geojson/ $FILES mymm-pois
+sbin/generateViewerFileForStaticData.sh $OSMDIR/ $FILES mymm-pois
 ```
 
 ### import into solr
@@ -75,9 +84,14 @@ sbin/generateViewerFileForStaticData.sh D:/docs/osm-poi-geojson/ $FILES mymm-poi
 - create solr-core
 
 #### import files
-- import files via windows cmd
+- import files via windows cmd per script
 ```cmd
-for %f in (D:\docs\osm-poi-geojson\*.gdoc.json) do (
+sbin\osm-geojson-import.bat
+```
+- OR import files via windows cmd manualy
+```cmd
+OSMDIR=F:\playground\osm-poi-geojson
+for %f in (%OSMDIR%\*.gdoc.json) do (
     echo %~nf
     node dist\backend\serverAdmin.js ^
         --debug ^
@@ -85,7 +99,7 @@ for %f in (D:\docs\osm-poi-geojson\*.gdoc.json) do (
         --action loadDocs ^
         --adminclibackend config/adminCli.dev.json ^
         --backend config/backend.dev.json ^
-        --file D:\docs\osm-poi-geojson\%~nf.gdoc.json ^
+        --file %OSMDIR%\%~nf.gdoc.json ^
         --renameFileAfterSuccess true
 )
 ```
