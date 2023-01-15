@@ -20,7 +20,6 @@ for %f in (%OSMDIR%\*.gdoc.json) do (
         --file %OSMDIR%/%%~nf.gdoc.json ^
         --renameFileAfterSuccess true
 )
-)
 
 cd %CWD%
 
