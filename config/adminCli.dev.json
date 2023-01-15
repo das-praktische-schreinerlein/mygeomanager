@@ -73,9 +73,9 @@
                         "command": "convertGeoDoc",
                         "action": "convertGeoJsonToGeoDoc",
                         "backend": "config/backend.dev.json",
-                        "srcFile": "d:\\docs\\import-peaks-canaren.geojson",
+                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-peaks-canaren.geojson",
                         "mode": "SOLR",
-                        "file": "d:\\docs\\import-gdocs-peaks-canaren.json",
+                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-peaks-canaren.json",
                         "renameFileIfExists": true
                     }
                 },
@@ -84,9 +84,9 @@
                         "command": "convertGeoDoc",
                         "action": "convertGeoJsonToGeoDoc",
                         "backend": "config/backend.dev.json",
-                        "srcFile": "d:\\docs\\import-alpine-huts.geojson",
+                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-alpine-huts.geojson",
                         "mode": "SOLR",
-                        "file": "d:\\docs\\import-gdocs-alpine-huts.json",
+                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-alpine-huts.json",
                         "renameFileIfExists": true
                     }
                 },
@@ -95,9 +95,9 @@
                         "command": "convertGeoDoc",
                         "action": "convertGeoJsonToGeoDoc",
                         "backend": "config/backend.dev.json",
-                        "srcFile": "d:\\docs\\import-peaks-alpen.geojson",
+                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-peaks-alpen.geojson",
                         "mode": "SOLR",
-                        "file": "d:\\docs\\import-gdocs-peaks-alpen.json",
+                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-peaks-alpen.json",
                         "renameFileIfExists": true
                     }
                 },
@@ -106,7 +106,7 @@
                         "command": "loadGeoDoc",
                         "action": "loadGeoDocs",
                         "backend": "config/backend.dev.json",
-                        "file": "d:\\docs\\import-gdocs-peaks-canaren.json"
+                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-peaks-canaren.json"
                     }
                 },
                 {
@@ -114,7 +114,7 @@
                         "command": "loadGeoDoc",
                         "action": "loadGeoDocs",
                         "backend": "config/backend.dev.json",
-                        "file": "d:\\docs\\import-gdocs-alpine-huts.json"
+                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-alpine-huts.json"
                     }
                 },
                 {
@@ -122,7 +122,7 @@
                         "command": "loadGeoDoc",
                         "action": "loadGeoDocs",
                         "backend": "config/backend.dev.json",
-                        "file": "d:\\docs\\import-gdocs-peaks-alpen.json"
+                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-peaks-alpen.json"
                     }
                 }
             ]

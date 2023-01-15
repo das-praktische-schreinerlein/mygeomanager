@@ -100,7 +100,7 @@ export class MediaManagerCommand extends CommonAdminCommand {
                             },
                             function (html: string, jsonPFileName: string) {
                                 return viewerManagerModule.jsonToJsTargetContentConverter(html, jsonPFileName,
-                                    'importStaticDataMDocsJsonP');
+                                    'importStaticDataGDocsJsonP');
                             },
                             function (html: string, dataFileConfigName: string) {
                                 return viewerManagerModule.htmlInlineFileConverter(html, dataFileConfigName,
