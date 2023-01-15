@@ -1,0 +1,18 @@
+diff --git a/node_modules/@types/vis/index.d.ts b/node_modules/@types/vis/index.d.ts
+index b473949..d2fea18 100644
+--- a/node_modules/@types/vis/index.d.ts
++++ b/node_modules/@types/vis/index.d.ts
+@@ -24,6 +24,13 @@ export type MomentConstructor2 =
+ 
+ export type MomentConstructor = MomentConstructor1 | MomentConstructor2;
+ 
++export class Graph3d {
++    constructor(container: HTMLElement,
++                items: any,
++                options?: any);
++
++    setCameraPosition(pos);
++}
+ export type IdType = string | number;
+ export type SubgroupType = IdType;
+ export type DateType = Date | number | string;
