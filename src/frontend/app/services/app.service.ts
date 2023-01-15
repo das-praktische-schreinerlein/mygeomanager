@@ -230,9 +230,7 @@ export class AppService extends GenericAppService {
                 me.pdocDataService.setWritable(false);
 
                 const promises = [];
-                console.log('add promises for', me.appConfig.staticGDocsFiles);
                 for (const staticTDocsFile of me.appConfig.staticGDocsFiles) {
-                    console.log('add promise for', staticTDocsFile);
                     promises.push(function () {
                         return me.fallBackHttpClient.loadJsonPData(staticTDocsFile, 'importStaticDataTDocsJsonP', 'gdocs');
                     });
@@ -244,7 +242,6 @@ export class AppService extends GenericAppService {
                     for (let i = 0; i < arrayOfResults.length; i++) {
                         const data = arrayOfResults[i];
                         if (data['gdocs']) {
-                            console.log('loaded gdoc-file i/count', i, data['gdocs'].length);
                             const exportRecords = data['gdocs'].map(doc => {
                                 return importer.extendAdapterDocument(doc);
                             });
@@ -275,7 +272,7 @@ export class AppService extends GenericAppService {
                     return Promise.reject(reason);
                 });
             }).then(function onDocParsed(gdocs: any[]) {
-                console.log('initially loaded gdocs from assets', gdocs);
+                console.log('initially loaded gdocs from assets', gdocs ? gdocs.length : 0);
                 const records = importer.mapToItemJsDocuments(gdocs);
                 const gdocAdapter = new GeoDocItemsJsAdapter(options, records, itemsJsConfig);
 

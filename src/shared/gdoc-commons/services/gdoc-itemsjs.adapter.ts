@@ -121,7 +121,7 @@ export class GeoDocItemsJsAdapter extends GenericItemsJsAdapter<GeoDocRecord, Ge
     };
 
     constructor(config: any, records: any, itemsJsConfig: ExtendedItemsJsConfig) {
-        console.debug('init itemsjs with config', itemsJsConfig, records);
+        console.debug('init itemsjs with config', itemsJsConfig, records ? records.length : 0);
         super(config, new GeoDocAdapterResponseMapper(config), records, itemsJsConfig);
     }
 
