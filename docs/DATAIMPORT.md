@@ -96,10 +96,10 @@ for %f in (%OSMDIR%\*.gdoc.json) do (
     node dist\backend\serverAdmin.js ^
         --debug ^
         --command loadGeoDoc ^
-        --action loadDocs ^
+        --action loadGeoDocs ^
         --adminclibackend config/adminCli.dev.json ^
         --backend config/backend.dev.json ^
-        --file %OSMDIR%\%~nf.gdoc.json ^
+        --file %OSMDIR%\%~nf.json ^
         --renameFileAfterSuccess true
 )
 ```
