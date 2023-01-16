@@ -232,7 +232,7 @@ export class AppService extends GenericAppService {
                 const promises = [];
                 for (const staticTDocsFile of me.appConfig.staticGDocsFiles) {
                     promises.push(function () {
-                        return me.fallBackHttpClient.loadJsonPData(staticTDocsFile, 'importStaticDataTDocsJsonP', 'gdocs');
+                        return me.fallBackHttpClient.loadJsonPData(staticTDocsFile, 'importStaticDataGDocsJsonP', 'gdocs');
                     });
                 }
 
