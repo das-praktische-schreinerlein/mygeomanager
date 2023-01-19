@@ -2,7 +2,7 @@
  
 # Versions
 
-## 4.3.0
+## 4.3.0 (2023-01-19)
 - bumped up to commons 5.6.0
 - added viewer as separate environment to view static data without backend
 - split components and build for smaller optimized readonly-version
