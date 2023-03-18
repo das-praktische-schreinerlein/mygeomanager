@@ -3,6 +3,7 @@
 # Versions
 
 ## 4.4.0
+- now bases on mysimplehomepage-4.4.0
 - bumped up to commons 5.7.0
 
 ### new features
