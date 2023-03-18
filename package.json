@@ -215,7 +215,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "0.13.10",
     "@angular-devkit/core": "7.3.10",
-    "@angular/cli": "7.3.10",
+    "@angular/cli": "15.2.4",
     "@angular/compiler-cli": "7.2.16",
     "@compodoc/compodoc": "1.1.11",
     "@types/geojson": "7946.0.7",
