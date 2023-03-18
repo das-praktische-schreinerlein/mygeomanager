@@ -2,6 +2,22 @@
  
 # Versions
 
+## 4.4.0
+- bumped up to commons 5.7.0
+
+### new features
+- none
+
+### improvements
+- deps: bumped up to mycms-commons 5.7.0
+
+### bug fixes
+- none
+
+### breaking changes
+- none
+
+
 ## 4.3.0 (2023-01-19)
 - now bases on mysimplehomepage-4.3.0
 - bumped up to commons 5.6.0
