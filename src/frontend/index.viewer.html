@@ -5,13 +5,18 @@
     <meta name="audience" content="alle">
 
     <meta name="language" content="de">
-    <meta name="page-topic" content="Tourenportal">
+    <meta name="page-topic" content="Portal">
     <title>MyGeoManager</title>
     <meta name="description" lang="de" content="MyGeoManager - Die Homepage">
     <meta name="keywords" lang="de" content="Homepage">
     <meta name="robots" content="index,follow">
 
+    <script type="text/javascript">
+        document.decompressJsSrc = []
+    </script>
+
     <script inline type="text/javascript" src="lz-string.min.js"></script>
+    <script inline type="text/javascript" src="webloader.js"></script>
 
     <script>document.write('<base href="' + document.location + '" />');</script>
     <style>
@@ -51,6 +56,8 @@
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
+
+    <link inline rel="stylesheet" href="print.css" media="print" id="print.css">
 </head>
 
 <body>
@@ -64,28 +71,19 @@
 
 <app-root>Loading...</app-root>
 
-<img id="dummyBannerLoader" src="assets/images/banner-big.jpg" style="display: none" alt="">
+<img src="assets/images/banner-big.jpg" style="display: none" alt=""
+     data-replacementsrc="assets/images/banner-big.jpg"
+     data-replacementfilter=".img-navbar-banner, .img-sidebar-banner" />
 <script>
-    function inlineBannerUtil() {
-        var dummyBannerImage = document.getElementById('dummyBannerLoader');
-        if (!dummyBannerImage) {
-            console.error('banner not found', dummyBannerImage);
-            return;
-        }
-
-        var style = document.createElement('style');
-        style.type = 'text/css';
-        style.innerHTML =
-            '.img-navbar-banner { content: url(\'' + dummyBannerImage.currentSrc + '\'); }' +
-            '.img-sidebar-banner { content: url(\'' + dummyBannerImage.currentSrc + '\'); }';
-
-        document.getElementsByTagName('head')[0].appendChild(style);
-
-        console.log('add banner-style', style);
-    }
-
-    inlineBannerUtil();
+    WebImageLoader.loadInlineImages();
 </script>
 
 </body>
+
+<script type="text/javascript">
+    WebLoader.loadAllDocuments(
+        WebCrypt.getDefaultCryptConfig(),
+        document.decompressJsSrc);
+</script>
+
 </html>

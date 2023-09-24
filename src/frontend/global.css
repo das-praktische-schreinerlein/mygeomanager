@@ -92,12 +92,12 @@ div.humanReadableSearchFilter span.filterValue {
 .list-item-persrate-3 {
 }
 .list-item-persrate-4 {
-    border: 3px solid gold !IMPORTANT;
-    border-color: gold !IMPORTANT;
+    border: 3px solid gold !important;
+    border-color: gold !important;
 }
 .list-item-persrate-5 {
     border: 3px solid gold;
-    border-color: gold !IMPORTANT;
+    border-color: gold !important;
     background: gold;
 }
 
@@ -120,14 +120,14 @@ img.picture-small, img.picture-big, video.picture-big , img.picture-teaser {
 div.leaflet-div-icon-area, div.leaflet-div-icon-end, div.leaflet-div-icon-start, div.leaflet-div-icon-point {
     border: 2px solid #8CACD3;
     border-radius: 2px;
-    padding: 2px !IMPORTANT;
+    padding: 2px !important;
     background-color: white;
-    margin: 2px !IMPORTANT;
+    margin: 2px !important;
     text-overflow: ellipsis;
     overflow: hidden;
-    height: 25px !IMPORTANT;
+    height: 25px !important;
     white-space: nowrap;
-    width: 100px !IMPORTANT;
+    width: 100px !important;
 }
 
 /*******************
@@ -145,10 +145,10 @@ div.leaflet-container {
 }
 
 a.dismiss::after {
-    content: "OK" !IMPORTANT;
+    content: "OK" !important;
 }
 a.dismiss > svg {
-    display: none !IMPORTANT;
+    display: none !important;
 }
 
 
@@ -157,8 +157,8 @@ a.dismiss > svg {
  * Extended-Objects
  *******************/
 app-cdoc-extended-object-properties div.label {
-    min-width: 15px !IMPORTANT;
+    min-width: 15px !important;
 }
 app-cdoc-extended-object-properties div.value {
-    min-width: 15px !IMPORTANT;
+    min-width: 15px !important;
 }

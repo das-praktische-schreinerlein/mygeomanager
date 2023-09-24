@@ -1,5 +1,7 @@
-import {SimpleConfigFilePathValidationRule} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
-import {ValidationRule} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
+import {
+    SimpleConfigFilePathValidationRule,
+    ValidationRule
+} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
 import {PasswordUtils} from '@dps/mycms-commons/dist/commons/utils/password.utils';
 import {ConfigInitializerUtil} from '@dps/mycms-commons/dist/tools/config-initializer.util';
 import * as Promise_serial from 'promise-serial';
@@ -7,6 +9,11 @@ import {ConfigInitializerCommand} from '@dps/mycms-server-commons/dist/backend-c
 
 export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
     protected solrconfigbasepath: string;
+    protected installerdbbasepath: string;
+
+    public static replacePDocSolrPasswordInBackendConfig(file: string, solrPassword: string, required: boolean): Promise<boolean> {
+        return ConfigInitializerUtil.replaceSolrPasswordInBackendConfig(file, 'solrCorePDocReadPassword', solrPassword, required);
+    }
 
     public static replaceTourDocSolrPasswordInBackendConfig(file: string, solrPassword: string, required: boolean): Promise<boolean> {
         return ConfigInitializerUtil.replaceSolrPasswordInBackendConfig(file, 'solrCoreGeoDocReadPassword', solrPassword, required);
@@ -15,7 +22,8 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
     protected createValidationRules(): {[key: string]: ValidationRule} {
         return {
             ...super.createValidationRules(),
-            'solrconfigbasepath': new SimpleConfigFilePathValidationRule(false)
+            'solrconfigbasepath': new SimpleConfigFilePathValidationRule(false),
+            'installerdbbasepath': new SimpleConfigFilePathValidationRule(false)
         };
     }
 
@@ -28,6 +36,7 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
     protected processCommandArgs(argv: {}): Promise<any> {
         this.configbasepath = argv['configbasepath'] || 'config';
         this.solrconfigbasepath = argv['solrconfigbasepath'] || 'installer/solr';
+        this.installerdbbasepath = argv['installerdbbasepath'] || 'installer/db';
         const tokenkey = argv['tokenkey'];
         const newpassword = argv['newpassword'];
 
@@ -56,6 +65,7 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
         return PasswordUtils.createSolrPasswordHash(newpassword).then(solrPasswordHash => {
             const me = this;
             const promises = [];
+
             promises.push(function () {
                 return ExtendedConfigInitializerCommand.replaceTourDocSolrPasswordInBackendConfig(
                     me.configbasepath + '/backend.dev.json', newpassword, false);
@@ -72,6 +82,13 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
                 return ConfigInitializerUtil.replaceSolrDefaultPasswordHashInSolrConfig(
                     me.solrconfigbasepath + '/security.json', solrPasswordHash, false);
             });
+
+            promises.push(function () {
+                return me.setSolrReadPasswords(newpassword, solrPasswordHash);
+            });
+            promises.push(function () {
+                return me.setSolrWritePasswords(newpassword, solrPasswordHash);
+
             promises.push(function () {
                 return ConfigInitializerUtil.replaceSolrUserPasswordInSolrConfig(
                     me.solrconfigbasepath + '/security.json', 'mygeomadmin', solrPasswordHash, false);
@@ -90,6 +107,66 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
             }).catch(reason => {
                 return Promise.reject(reason);
             });
+        });
+    }
+
+    protected setSolrReadPasswords(newpassword: string, solrPasswordHash: string): Promise<any> {
+        if (newpassword === undefined || newpassword.length < 8 || solrPasswordHash === undefined || solrPasswordHash.length < 8) {
+            return Promise.reject('valid newpassword required');
+        }
+
+        const me = this;
+        const promises = [];
+        promises.push(function () {
+            return ExtendedConfigInitializerCommand.replacePDocSolrPasswordInBackendConfig(
+                me.configbasepath + '/backend.dev.json', newpassword, false);
+        });
+        promises.push(function () {
+            return ExtendedConfigInitializerCommand.replacePDocSolrPasswordInBackendConfig(
+                me.configbasepath + '/backend.beta.json', newpassword, false);
+        });
+        promises.push(function () {
+            return ExtendedConfigInitializerCommand.replacePDocSolrPasswordInBackendConfig(
+                me.configbasepath + '/backend.prod.json', newpassword, false);
+        });
+
+        promises.push(function () {
+            return ConfigInitializerUtil.replaceSolrUserPasswordInSolrConfig(
+                me.solrconfigbasepath + '/security.json', 'myshpread', solrPasswordHash, false);
+        });
+
+        return Promise_serial(promises, {parallelize: 1}).then(() => {
+            return Promise.resolve('DONE - setSolrPasswords');
+        }).catch(reason => {
+            return Promise.reject(reason);
+        });
+    }
+
+    protected setSolrWritePasswords(newpassword: string, solrPasswordHash: string): Promise<any> {
+        if (newpassword === undefined || newpassword.length < 8 || solrPasswordHash === undefined || solrPasswordHash.length < 8) {
+            return Promise.reject('valid newpassword required');
+        }
+
+        const me = this;
+        const promises = [];
+
+        promises.push(function () {
+            return ConfigInitializerUtil.replaceSolrPasswordInDbPublishConfig(
+                me.configbasepath + '/dbpublish.json', newpassword, false);
+        });
+        promises.push(function () {
+            return ConfigInitializerUtil.replaceSolrUserPasswordInSolrConfig(
+                me.solrconfigbasepath + '/security.json', 'myshpadmin', solrPasswordHash, false);
+        });
+        promises.push(function () {
+            return ConfigInitializerUtil.replaceSolrUserPasswordInSolrConfig(
+                me.solrconfigbasepath + '/security.json', 'myshpupdate', solrPasswordHash, false);
+        });
+
+        return Promise_serial(promises, {parallelize: 1}).then(() => {
+            return Promise.resolve('DONE - setSolrPasswords');
+        }).catch(reason => {
+            return Promise.reject(reason);
         });
     }
 

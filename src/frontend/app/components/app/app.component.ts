@@ -1,16 +1,18 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Injectable, LOCALE_ID} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {AppState, GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
+import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {CommonRoutingService, RoutingState} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
+import {CommonRoutingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
-import {LogUtils} from '@dps/mycms-commons/dist/commons/utils/log.utils';
 import {PageUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/page.utils';
 import {LayoutService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {environment} from '../../../environments/environment';
 import {ToastrService} from 'ngx-toastr';
-import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
+import {AbstractAppComponent} from '@dps/mycms-frontend-commons/dist/frontend-section-commons/components/abstract-app.component';
+import {PrintOptions, PrintService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/print.service';
+import {ElementFilterType} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.utils';
+import {PdfPrintOptions, PdfPrintService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/pdf-print.service';
 
 @Component({
     selector: 'app-root',
@@ -20,6 +22,8 @@ import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
 })
 @Injectable()
 export class AppComponent {
+    printAvailable: true;
+    pdfPrintAvailable: true;
     showLoadingSpinner = true;
     title = 'MyGeoManager';
     showLaw = false;
@@ -33,74 +37,58 @@ export class AppComponent {
         // this language will be used as a fallback when a translation isn't found in the current language
         translate.setDefaultLang(locale);
 
-        // the lang to use, if the lang isn't available, it will use the current loader to get them
-        translate.use(locale);
-
-        this.showInitState();
-
-        if (this.platformService.isClient()) {
-            this.showLaw = true;
-        }
-
-        // load overrides
-        const url = this.platformService.getAssetsUrl(
-            `./assets/locales/locale-${locale}-overrides` + environment.assetsPathVersionSnippet + `.json` +
-            environment.assetsPathVersionSuffix);
-        // console.log('load locale-override', url);
-        this.http.get(url).toPromise()
-            .then(function onDocsLoaded(res: any) {
-                const i18n: any[] = res;
-                translate.setTranslation(locale, i18n, true);
-                appService.initApp();
-            }).catch(function onError(reason: any) {
-                console.error('loading locale-overrides failed:' + LogUtils.sanitizeLogMsg(url), reason);
-                appService.initApp();
-            });
-
-        this.doBrowserCheck();
+    constructor(appService: GenericAppService, toastr: ToastrService,
+                translate: TranslateService, router: Router, @Inject(LOCALE_ID) locale: string,
+                http: HttpClient, commonRoutingService: CommonRoutingService, cd: ChangeDetectorRef,
+                platformService: PlatformService, pageUtils: PageUtils, layoutService: LayoutService,
+                protected printService: PrintService, protected pdfPrintService: PdfPrintService) {
+        super(appService, toastr, translate, router, locale, http, commonRoutingService, cd, platformService, pageUtils, layoutService,
+            environment);
     }
 
-    private showInitState() {
-        this.appService.getAppState().subscribe(
-            appState => {
-                if (appState === AppState.Ready && this.platformService.isClient()) {
-                    this.toastr.info('App wurde initialisiert. Viel Spaß :-)', 'Fertig');
-                    const tmpHideCopyrightFooter = BeanUtils.getValue(this.appService.getAppConfig(), 'services.global.hideCopyrightFooter')
-                    if (tmpHideCopyrightFooter !== undefined) {
-                        this.hideCopyrightFooter = tmpHideCopyrightFooter;
-                    }
-                } else if (appState === AppState.Failed) {
-                    this.router.navigateByUrl('errorpage');
-                }
-            }
-        );
+    onOpenPrintPreview(elementFilterType: ElementFilterType, filter: string, width?: number, height?: number,
+                            printCssIdRegExp?: string) {
+        const options: PrintOptions = {
+            printElementFilter: {
+                type: elementFilterType,
+                value: filter
+            },
+            previewWindow: {
+                width: width,
+                height: height
+            },
+            printStyleIdFilter: new RegExp(printCssIdRegExp)
+        };
+        this.printService.openPrintPreview(options);
 
-        this.commonRoutingService.getRoutingState().subscribe(
-            routingState => {
-                if (routingState === RoutingState.RUNNING) {
-                    this.showLoadingSpinner = true;
-                } else {
-                    this.showLoadingSpinner = false;
-                }
-                this.cd.markForCheck();
-            }
-        );
+        return false;
     }
 
-    private doBrowserCheck() {
-        // check ie
-        const browser = this.layoutService.getBrowser();
-        switch (browser && browser['name']) { // NOSONAR more possible :-)
-            case 'ie':
-                this.toastr.warning('<h4>Auweia</h4>\n' +
-                    'Dieser Browser ist leider etwas "..." und wird die Seite wahrscheinlich nicht richtig darstellen können :-(<br />\n' +
-                    'Am besten du probierst es mal mit dem neusten Chrome, Firefox, Edge oder Safari. Die sind getestet :-)', 'AuWaia',
-                    { positionClass: 'toast-top-full-width', timeOut: 99999999, closeButton: true, tapToDismiss: true,
-                        enableHtml: true});
-                this.pageUtils.setGlobalStyle('.flg-browser-not-compatible { display: none !important; } ', 'browserCompatible');
-                break;
+    onPrintPdf(elementFilterType: ElementFilterType, filter: string, width?: number, height?: number,
+                    printCssIdRegExp?: string) {
+        const options: PdfPrintOptions = {
+            printElementFilter: {
+                type: elementFilterType,
+                value: filter
+            },
+            previewWindow: {
+                width: width,
+                height: height
+            },
+            printStyleIdFilter: new RegExp(printCssIdRegExp),
+            fileName: 'filename.pdf',
+            pdfOptions: {
+                orientation: 'portrait',
+                format: 'a4'
+            },
+            waitForRenderingMs: 1000
+        };
+        this.pdfPrintService.printPdf(options);
 
-            default:
-        }
+        return false;
+    }
+
+    onScrollToTop() {
+        this.pageUtils.scrollToTop();
     }
 }

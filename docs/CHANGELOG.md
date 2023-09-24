@@ -2,6 +2,36 @@
  
 # Versions
 
+## 5.0.0
+- use commons 6.0.0
+- bumped up deps
+- added optional password-encryption of static-viewer-version
+- backend/frontend: add page-management
+- improve imageInlineLoader
+- backend/frontend: use new fully featured markdown-support with extensions
+- frontend: added print/pdf-support
+
+### new features
+- added optional password-encryption of static-viewer-version
+- backend/frontend: add page-management
+- backend/frontend: use new fully featured markdown-support with extensions
+- frontend: added print/pdf-support
+
+### improvements
+- use commons 6.0.0
+- bumped up deps
+- improve imageInlineLoader
+
+### bug fixes
+- none
+
+### breaking changes
+- use commons 6.0.0
+- bumped up deps
+- use new config
+- use new pdoc-config -> see [Migration-instructions](MIGRATION.md)
+
+
 ## 4.4.0 (2023-03-18)
 - now bases on mysimplehomepage-4.4.0
 - bumped up to commons 5.7.0

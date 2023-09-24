@@ -33,25 +33,27 @@
     "init-cache-dev": "node dist/backend/serverAdmin.js --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --command initCache --action initCache",
     "init-cache-beta": "node dist/backend/serverAdmin.js --adminclibackend config/adminCli.beta.json --backend config/backend.beta.json --command initCache --action initCache",
     "init-cache-prod": "node dist/backend/serverAdmin.js --adminclibackend config/adminCli.prod.json --backend config/backend.prod.json --command initCache --action initCache",
+    "init-config-reset-servicepasswords": "node dist/backend/serverAdmin.js --adminclibackend config/adminCli.dev.json --command initConfig --action resetServicePasswords",
     "init-frontendserver-cache-dev-de": "node dist/frontendserver-dev-de/frontendserverAdmin.js --localSitemapUrl http://localhost:4001/mygeomdev/de/sitemap-pdoc-de.xml --sitemapbase http://localhost:4001/mygeomdev/de/ --backend config/backend.dev.json --frontend config/frontend.dev.json",
     "init-frontendserver-cache-beta-de": "node dist/frontendserver-beta-de/frontendserverAdmin.js --backend config/backend.beta.json --frontend config/frontend.beta.json",
     "init-frontendserver-cache-prod-de": "node dist/frontendserver-de/frontendserverAdmin.js --backend config/backend.prod.json --frontend config/frontend.prod.json"
   },
   "private": true,
   "optionalDeps // do copy these to deps if needed": {
-    "db-migrate": "0.11.11",
-    "db-migrate-mysql": "2.1.1",
-    "db-migrate-sqlite3": "0.4.0",
-    "inline-source": "7.0.0",
-    "knex": "0.19.5",
-    "minimist": "1.2.5",
+    "db-migrate-mysql": "2.2.0",
+    "inline-source": "7.2.0",
+    "lz-string": "1.5.0",
+    "minimist": "1.2.8",
     "mysql": "2.18.1",
-    "redis": "3.0.2",
-    "sqlite3": "5.1.4"
+    "redis": "3.0.2"
   },
   "dependencies": {
     "axios": "0.19.2",
-    "redis": "3.0.2"
+    "db-migrate": "0.11.13",
+    "db-migrate-sqlite3": "0.4.0",
+    "knex": "0.20.10",
+    "redis": "3.1.2",
+    "sqlite3": "5.1.6"
   },
   "devDependencies": {}
 }

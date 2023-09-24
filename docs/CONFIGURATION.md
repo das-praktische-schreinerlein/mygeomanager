@@ -237,8 +237,8 @@ export const environment = {
     "meta.title.prefix.cdocSectionShowPage": "MyGeoManager - {{title}} - {{cdoc}}",
     "meta.desc.prefix.errorPage": "MyGeoManager - Oje ein Fehler ist aufgetreten",
     "meta.desc.prefix.sectionPage": "MyGeoManager - {{title}} - {{teaser}}",
-    "meta.desc.prefix.cdocSearchPage": "MyGeoManager - Touren/Berichte/Regionen/Bilder/Infos",
+    "meta.desc.prefix.cdocSearchPage": "MyGeoManager - Infos",
     "meta.desc.prefix.cdocShowPage": "MyGeoManager - Infos für {{cdoc}}",
-    "meta.desc.prefix.cdocSectionSearchPage": "MyGeoManager - Touren/Berichte/Regionen/Bilder/Infos zum Thema {{title}} - {{teaser}}",
+    "meta.desc.prefix.cdocSectionSearchPage": "MyGeoManager - Infos zum Thema {{title}} - {{teaser}}",
     "meta.desc.prefix.cdocSectionShowPage": "MyGeoManager - {{title}} - Infos für {{cdoc}}",
 ```

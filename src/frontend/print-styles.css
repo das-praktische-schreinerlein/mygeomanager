@@ -1,0 +1,5 @@
+img {
+    page-break-before: auto;
+    page-break-after: auto;
+    page-break-inside: avoid;
+}

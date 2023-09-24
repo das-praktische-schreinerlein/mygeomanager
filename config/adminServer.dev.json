@@ -1,7 +1,236 @@
 {
+    "profile": "dev",
     "commandConfig": {
         "adminWritable": true,
         "preparedCommands": {
+            "PUBLISH Pages: exportPagesToServerConfig": {
+                "description": "export pages to server-configs",
+                "commands": [
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs-de",
+                            "exportDir": "./config/",
+                            "profiles": "profile_dev,profile_beta,profile_prod",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs-dev-de",
+                            "exportDir": "./config/",
+                            "profiles": "profile_dev",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs-beta-de",
+                            "exportDir": "./config/",
+                            "profiles": "profile_beta",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs-prod-de",
+                            "exportDir": "./config/",
+                            "profiles": "profile_prod",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs-en",
+                            "exportDir": "./config/",
+                            "profiles": "profile_dev,profile_beta,profile_prod",
+                            "langkeys": "lang_en"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs-dev-en",
+                            "exportDir": "./config/",
+                            "profiles": "profile_dev",
+                            "langkeys": "lang_en"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs-beta-en",
+                            "exportDir": "./config/",
+                            "profiles": "profile_beta",
+                            "langkeys": "lang_en"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs-prod-en",
+                            "exportDir": "./config/",
+                            "profiles": "profile_prod",
+                            "langkeys": "lang_en"
+                        }
+                    }
+                ]
+            },
+            "PUBLISH Pages: exportPagesToDist": {
+                "description": "export pages to dist",
+                "commands": [
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs",
+                            "exportDir": "./dist/static/myshpviewer/de/assets/",
+                            "profiles": "profile_static",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocViewerFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "static.myshppdocs",
+                            "exportDir": "./dist/static/myshpviewer/de/assets/staticdata/",
+                            "exportId": "assets/staticdata/static.myshppdocs.js",
+                            "profiles": "profile_viewer",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "mediaManager",
+                            "action": "inlineDataOnViewerFile",
+                            "backend": "config/backend.dev.json",
+                            "inlineProfile": "all",
+                            "srcFile": "dist/static/myshpviewer/de/index.viewer.html",
+                            "outputFile": "dist/static/myshpviewer/de/index.viewer.full.html"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs",
+                            "exportDir": "./dist/static/myshpdev/de/assets/",
+                            "profiles": "profile_static",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocViewerFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "static.myshppdocs",
+                            "exportDir": "./dist/static/myshpdev/de/assets/staticdata/",
+                            "exportId": "assets/staticdata/static.myshppdocs.js",
+                            "profiles": "profile_static",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs",
+                            "exportDir": "./dist/static/myshpbeta/de/assets/",
+                            "profiles": "profile_static",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocViewerFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "static.myshppdocs",
+                            "exportDir": "./dist/static/myshpbeta/de/assets/staticdata/",
+                            "exportId": "assets/staticdata/static.myshppdocs.js",
+                            "profiles": "profile_static",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs",
+                            "exportDir": "./dist/static/myshp/de/assets/",
+                            "profiles": "profile_static",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocViewerFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "static.myshppdocs",
+                            "exportDir": "./dist/static/myshp/de/assets/staticdata/",
+                            "exportId": "assets/staticdata/static.myshppdocs.js",
+                            "profiles": "profile_static",
+                            "langkeys": "lang_de"
+                        }
+                    }
+                ]
+            },
+            "PUBLISH Pages: exportPagesToSrc": {
+                "description": "export pages to src",
+                "commands": [
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "pdocs",
+                            "exportDir": "./src/frontend/assets/",
+                            "profiles": "profile_static",
+                            "langkeys": "lang_de"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "pageManager",
+                            "action": "exportPDocViewerFile",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "static.myshppdocs",
+                            "exportDir": "./src/frontend/assets/staticdata/",
+                            "exportId": "assets/staticdata/static.myshppdocs.js",
+                            "profiles": "profile_viewer",
+                            "langkeys": "lang_de"
+                        }
+                    }
+                ]
+            },
             "generateSitemap": {
                 "description": "generate sitemaps",
                 "commands": [

@@ -2,9 +2,9 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {SectionsPDocRecordResolver} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/resolver/sections-pdoc-details.resolver';
 import {SectionsBaseUrlResolver} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/resolver/sections-baseurl.resolver';
-import {SectionBarComponent} from '@dps/mycms-frontend-commons/dist/frontend-pdoc-commons/components/sectionbar/sectionbar.component';
-import {SectionComponent} from '@dps/mycms-frontend-commons/dist/frontend-pdoc-commons/components/section/section.component';
-import {SectionPageComponent} from '@dps/mycms-frontend-commons/dist/frontend-pdoc-commons/components/sectionpage/section-page.component';
+import {SectionBarComponent} from '@dps/mycms-frontend-commons/dist/frontend-section-commons/components/sectionbar/sectionbar.component';
+import {SectionComponent} from '@dps/mycms-frontend-commons/dist/frontend-section-commons/components/section/section.component';
+import {SectionPageComponent} from '@dps/mycms-frontend-commons/dist/frontend-section-commons/components/sectionpage/section-page.component';
 
 const sectionRoutes: Routes = [
     {

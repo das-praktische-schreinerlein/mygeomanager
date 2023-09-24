@@ -1,4 +1,5 @@
 {
+    "profile": "dev",
     "filePathPDocJson": "config/pdocs.json",
     "filePathThemeFilterJson": "config/themeFilterConfig.json",
     "gdocDataStoreAdapter": "GeoDocSolrAdapter",
@@ -16,6 +17,33 @@
     "mapperConfig": {
         "allowedKeywordPatterns": [".*"],
         "replaceKeywordPatterns": []
+    },
+    "startPDocApi": true,
+    "pdocDataStoreAdapter": "PDocSqlAdapter",
+    "pdocWritable": true,
+    "PDocSqlAdapter": {
+        "client": "sqlite3",
+        "connection": {
+            "filename": "F:/playground/myshp-test/myshp.sqlite",
+            "host": "localhost",
+            "user": "testmysqhdb",
+            "password": "testmysqhdb",
+            "database": "testmysqhdb",
+            "port": "3306"
+        },
+        "facetCacheUsage": {
+            "active": false,
+            "entities": {
+            }
+        },
+        "facetCacheConfig": {
+            "datastore": {
+                "scriptPath": "node_modules/@dps/mycms-commons/dist/facetcache-commons/model/db/sqlite3"
+            },
+            "facets": [
+            ],
+            "checkInterval": 2
+        }
     },
     "cacheConfig": {
     },

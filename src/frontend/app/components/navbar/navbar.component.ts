@@ -2,10 +2,11 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@an
 import {ActivatedRoute} from '@angular/router';
 import {PDocRecord} from '@dps/mycms-commons/dist/pdoc-commons/model/records/pdoc-record';
 import {ToastrService} from 'ngx-toastr';
-import {PDocDataService} from '@dps/mycms-commons/dist/pdoc-commons/services/pdoc-data.service';
+import {StaticPagesDataService} from '@dps/mycms-commons/dist/pdoc-commons/services/staticpages-data.service';
 import {PageUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/page.utils';
 import {AppState, GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
 import {DataMode} from '../../../shared/commons/model/datamode.enum';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-navbar',
@@ -17,41 +18,45 @@ export class NavbarComponent implements OnInit {
     private config;
     sections: PDocRecord[];
     availableDataModes: DataMode[] = [];
+    pdocWritable = false;
     albumAllowed = false;
     public isExpanded = false;
 
     constructor(private route: ActivatedRoute, private toastr: ToastrService, private appService: GenericAppService,
-                private pdocDataService: PDocDataService, private pageUtils: PageUtils, private cd: ChangeDetectorRef) {
+                private pagesDataService: StaticPagesDataService, private pageUtils: PageUtils, private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
         // Subscribe to route params
         const me = this;
         this.appService.getAppState().subscribe(appState => {
+            this.pdocWritable = false;
+            this.availableDataModes = [];
+
             if (appState === AppState.Ready) {
                 this.config = this.appService.getAppConfig();
-                me.cd.markForCheck();
-
-                if (this.config && this.config.availableDataModes.length > 1) {
+                if (this.config && this.config.availableDataModes && this.config.availableDataModes.length > 1) {
                     this.availableDataModes = this.config.availableDataModes;
                 } else {
-                    this.config.availableDataModes = [];
+                    this.availableDataModes = [];
                 }
 
                 if (this.config && this.config['gdocMaxItemsPerAlbum'] > 0) {
                     this.albumAllowed = true;
-                    return;
                 }
 
-            }
+                if (environment.pdocWritable === true) {
+                    this.pdocWritable = true;
+                }
 
-            this.albumAllowed = false;
+                me.cd.markForCheck();
+            }
         });
 
         this.route.data.subscribe(
             (data: { pdocs: PDocRecord[] }) => {
                 me.sections = [];
-                this.pdocDataService.getById('menu', {forceLocalStore: true}).then(function onThemesFound(pdoc: PDocRecord) {
+                this.pagesDataService.getById('menu', {forceLocalStore: true}).then(function onThemesFound(pdoc: PDocRecord) {
                     me.sections = me.getSubSections(pdoc);
                     me.cd.markForCheck();
                 }).catch(function onNotFound(error) {
@@ -70,7 +75,7 @@ export class NavbarComponent implements OnInit {
     }
 
     getSubSections(pdoc: PDocRecord): PDocRecord[] {
-        return this.pdocDataService.getSubDocuments(pdoc);
+        return this.pagesDataService.getSubDocuments(pdoc);
     }
 
     doEndFullPage() {

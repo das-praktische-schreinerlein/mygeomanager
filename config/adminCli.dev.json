@@ -1,4 +1,5 @@
 {
+    "profile": "dev",
     "adminWritable": true,
     "availableCommands": {
         "*": "*"
@@ -49,6 +50,22 @@
         "prepareAppEnv": {
             "description": "prepare app-environment on every startup (do database-migrations, reset runtime passwords)",
             "commands": [
+                {
+                    "parameters": {
+                        "command": "dbMigrate",
+                        "action": "migrateDB",
+                        "migrationDbConfigFile": "config/db-migrate-database.json",
+                        "migrationsDir": "migrations/myshpdb",
+                        "migrationEnv": "myshpdb_sqlite3"
+                    }
+                },
+                {
+                    "parameters": {
+                        "command": "initConfig",
+                        "action": "resetSolrPasswords",
+                        "solrconfigbasepath": "dist/contrib/solr/server/solr"
+                    }
+                },
                 {
                     "parameters": {
                         "command": "initConfig",

@@ -9,13 +9,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SectionsPDocsResolver} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/resolver/sections-pdocs.resolver';
 import {ErrorResolver} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/resolver/error.resolver';
 import {PageUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/page.utils';
-import {NgxMdModule} from 'ngx-md';
-import {AngularMarkdownService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-markdown.service';
-import {AngularHtmlService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-html.service';
 import {CommonRoutingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
 import {TranslateModule} from '@ngx-translate/core';
 import {FrontendCommonDocCommonsModule} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/frontend-cdoc-commons.module';
 import {FrontendPDocCommonsModule} from '@dps/mycms-frontend-commons/dist/frontend-pdoc-commons/frontend-pdoc-commons.module';
+import {FrontendSectionCommonsModule} from '@dps/mycms-frontend-commons/dist/frontend-section-commons/frontend-section-commons.module';
 import {SharedGeoDocModule} from '../shared-gdoc/shared-gdoc.module';
 
 @NgModule({
@@ -24,10 +22,10 @@ import {SharedGeoDocModule} from '../shared-gdoc/shared-gdoc.module';
     imports: [
         TranslateModule,
         NgbCollapseModule, NgbTabsetModule,
-        NgxMdModule.forRoot(),
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        FrontendSectionCommonsModule,
         SharedGeoDocModule,
         FrontendPDocCommonsModule,
         SectionsRoutingModule,
@@ -40,9 +38,8 @@ import {SharedGeoDocModule} from '../shared-gdoc/shared-gdoc.module';
         SectionsPDocRecordResolver,
         SectionsPDocsResolver,
         ErrorResolver,
-        AngularHtmlService,
-        AngularMarkdownService,
         PageUtils
     ]
 })
-export class SectionsModule {}
+export class SectionsModule {
+}

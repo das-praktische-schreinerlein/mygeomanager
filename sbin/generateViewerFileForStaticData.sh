@@ -23,7 +23,7 @@ source ${SCRIPTPATH}/configure-environment.bash
 VIEWERSRC=${SCRIPTPATH}/../dist/static/mygeomviewer/de/index.viewer.full.html
 
 if [ ! -d "${EXPORTDIR}" ]; then
-    dofail "USAGE: prepareViewerFileForStaticData.sh EXPORTDIR\nFATAL: $EXPORTDIR must exists" 1
+    dofail "USAGE: generateViewerFileForStaticData.sh EXPORTDIR\nFATAL: $EXPORTDIR must exists" 1
     exit 1
 fi
 

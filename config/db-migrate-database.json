@@ -1,0 +1,15 @@
+{
+    "myshpdb_sqlite3": {
+        "driver": "sqlite3",
+        "filename": "F:/playground/myshp-test/myshp.sqlite"
+    },
+    "myshpdb_mysql": {
+        "driver": "mysql",
+        "host": "localhost",
+        "user": "testmysqhdb",
+        "password": "testmysqhdb",
+        "database": "testmysqhdb",
+        "port": "3306",
+        "multipleStatements": true
+    }
+}
