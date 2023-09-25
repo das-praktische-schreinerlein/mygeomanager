@@ -249,8 +249,6 @@ export class AppService extends GenericAppService {
         ItemsJsDataImporter.prepareConfiguration(itemsJsConfig);
         const importer: ItemsJsDataImporter = new ItemsJsDataImporter(itemsJsConfig);
 
-        const options = { };
-
         return me.fallBackHttpClient.loadJsonPData(me.appConfig.staticPDocsFile, 'importStaticDataPDocsJsonP', 'pdocs')
             .then(function onPDocLoaded(data: any) {
                 if (data['pdocs']) {

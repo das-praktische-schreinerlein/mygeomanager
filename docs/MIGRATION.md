@@ -61,8 +61,8 @@ node dist/backend/serverAdmin.js\
       --adminclibackend ${CONFIG_BASEDIR}adminCli.${CONFIGPROFILE}.json\
       --backend ${CONFIG_BASEDIR}backend.${CONFIGPROFILE}.json\
       --renameFileIfExists true\
-      --srcFile ${PDOC_BASEDIR}staticdata/static.myshppdocs.js \
-      --file ${PDOCS_TMP_BASEDIR}static.myshppdocs-${PROFILE}-${LANG}.json \
+      --srcFile ${PDOC_BASEDIR}staticdata/static.mygeompdocs.js \
+      --file ${PDOCS_TMP_BASEDIR}static.mygeompdocs-${PROFILE}-${LANG}.json \
       --debug 1
 node dist/backend/serverAdmin.js\
       --command convertPDoc\
@@ -70,10 +70,10 @@ node dist/backend/serverAdmin.js\
       --adminclibackend ${CONFIG_BASEDIR}adminCli.${CONFIGPROFILE}.json\
       --backend ${CONFIG_BASEDIR}backend.${CONFIGPROFILE}.json\
       --renameFileIfExists true\
-      --srcFile  ${PDOCS_TMP_BASEDIR}static.myshppdocs-${PROFILE}-${LANG}.json \
+      --srcFile  ${PDOCS_TMP_BASEDIR}static.mygeompdocs-${PROFILE}-${LANG}.json \
       --langkeys lang_de,lang_en \
       --profiles ${PROFILES} \
-      --file  ${PDOCS_TMP_BASEDIR}static.myshppdocs-${PROFILE}-${LANG}.json \
+      --file  ${PDOCS_TMP_BASEDIR}static.mygeompdocs-${PROFILE}-${LANG}.json \
       --debug 1
 node dist/backend/serverAdmin.js\
       --command convertPDoc\
@@ -81,9 +81,9 @@ node dist/backend/serverAdmin.js\
       --adminclibackend ${CONFIG_BASEDIR}adminCli.${CONFIGPROFILE}.json\
       --backend ${CONFIG_BASEDIR}backend.${CONFIGPROFILE}.json\
       --renameFileIfExists true\
-      --srcFile ${PDOCS_TMP_BASEDIR}static.myshppdocs-${PROFILE}-${LANG}.json \
-      --file ${PDOC_BASEDIR}staticdata/static.myshppdocs.js \
-      --exportId assets/staticdata/static.myshppdocs.js \
+      --srcFile ${PDOCS_TMP_BASEDIR}static.mygeompdocs-${PROFILE}-${LANG}.json \
+      --file ${PDOC_BASEDIR}staticdata/static.mygeompdocs.js \
+      --exportId assets/staticdata/static.mygeompdocs.js \
       --debug 1
 ```
 
@@ -168,8 +168,8 @@ node dist/backend/serverAdmin.js\
       --adminclibackend ${CONFIG_BASEDIR}adminCli.${CONFIGPROFILE}.json\
       --backend ${CONFIG_BASEDIR}backend.${CONFIGPROFILE}.json\
       --renameFileIfExists true\
-      --srcFile ${PDOC_BASEDIR}staticdata/static.myshppdocs.js \
-      --file ${PDOCS_TMP_BASEDIR}static.myshppdocs-${PROFILE}-${LANG}.json \
+      --srcFile ${PDOC_BASEDIR}staticdata/static.mygeompdocs.js \
+      --file ${PDOCS_TMP_BASEDIR}static.mygeompdocs-${PROFILE}-${LANG}.json \
       --debug 1
 node dist/backend/serverAdmin.js\
       --command convertPDoc\
@@ -177,8 +177,8 @@ node dist/backend/serverAdmin.js\
       --adminclibackend ${CONFIG_BASEDIR}adminCli.${CONFIGPROFILE}.json\
       --backend ${CONFIG_BASEDIR}backend.${CONFIGPROFILE}.json\
       --renameFileIfExists true\
-      --srcFile ${PDOCS_TMP_BASEDIR}static.myshppdocs-${PROFILE}-${LANG}.json \
-      --file ${PDOCS_TMP_BASEDIR}static.myshppdocs-${PROFILE}-${LANG}-import.json\
+      --srcFile ${PDOCS_TMP_BASEDIR}static.mygeompdocs-${PROFILE}-${LANG}.json \
+      --file ${PDOCS_TMP_BASEDIR}static.mygeompdocs-${PROFILE}-${LANG}-import.json\
       --debug 1
 node dist/backend/serverAdmin.js\
       --command loadPDoc\
@@ -186,7 +186,7 @@ node dist/backend/serverAdmin.js\
       --adminclibackend ${CONFIG_BASEDIR}adminCli.${CONFIGPROFILE}.json\
       --backend ${CONFIG_BASEDIR}backend.${CONFIGPROFILE}.json\
       --renameFileAfterSuccess true\
-      --file ${PDOCS_TMP_BASEDIR}static.myshppdocs-${PROFILE}-${LANG}-import.json \
+      --file ${PDOCS_TMP_BASEDIR}static.mygeompdocs-${PROFILE}-${LANG}-import.json \
       --debug 1
 ```
 - export files from database to current configs

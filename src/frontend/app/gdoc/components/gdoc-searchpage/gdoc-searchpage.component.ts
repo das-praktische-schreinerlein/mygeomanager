@@ -26,6 +26,7 @@ import {GeoDocSearchFormUtils} from '../../../shared-gdoc/services/gdoc-searchfo
 import {CommonDocMultiActionManager} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-multiaction.manager';
 import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
 import {LatLng} from 'leaflet';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-gdoc-searchpage',
@@ -51,10 +52,10 @@ export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoD
                 cd: ChangeDetectorRef, trackingProvider: GenericTrackingService, appService: GenericAppService,
                 platformService: PlatformService, layoutService: LayoutService, searchFormUtils: SearchFormUtils,
                 gdocSearchFormUtils: GeoDocSearchFormUtils, protected actionService: GeoDocActionTagService,
-                protected elRef: ElementRef) {
+                protected elRef: ElementRef, location: Location) {
         super(route, commonRoutingService, errorResolver, gdocDataService, searchFormConverter, cdocRoutingService,
             toastr, pageUtils, cd, trackingProvider, appService, platformService, layoutService, searchFormUtils,
-            gdocSearchFormUtils, new CommonDocMultiActionManager(appService, actionService), environment);
+            gdocSearchFormUtils, new CommonDocMultiActionManager(appService, actionService), environment, location);
     }
 
     onMapGeoDocClicked(gdoc: GeoDocRecord) {
@@ -99,6 +100,7 @@ export class GeoDocSearchpageComponent extends CommonDocSearchpageComponent<GeoD
 
     protected getComponentConfig(config: {}): CommonDocSearchpageComponentConfig {
         return {
+            defaultLayoutPerType: {},
             baseSearchUrl: ['gdoc'].join('/'),
             baseSearchUrlDefault: ['gdoc'].join('/'),
             availableCreateActionTypes: [],

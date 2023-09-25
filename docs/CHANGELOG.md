@@ -3,6 +3,7 @@
 # Versions
 
 ## 5.0.0
+- now bases on mysimplehomepage-5.0.0
 - use commons 6.0.0
 - bumped up deps
 - added optional password-encryption of static-viewer-version

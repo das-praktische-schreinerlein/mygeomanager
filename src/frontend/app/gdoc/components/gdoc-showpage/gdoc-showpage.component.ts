@@ -1,16 +1,20 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
 import {GeoDocRecord} from '../../../../shared/gdoc-commons/model/records/gdoc-record';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {LayoutService, LayoutSizeData} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.service';
 import {ErrorResolver} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/resolver/error.resolver';
 import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
 import {PageUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/page.utils';
 import {GeoDocSearchResult} from '../../../../shared/gdoc-commons/model/container/gdoc-searchresult';
-import {AngularMarkdownService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-markdown.service';
+import {
+    AngularMarkdownService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-markdown.service';
 import {AngularHtmlService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-html.service';
 import {CommonRoutingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
-import {GenericTrackingService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/generic-tracking.service';
+import {
+    GenericTrackingService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/generic-tracking.service';
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
 import {GeoDocSearchForm} from '../../../../shared/gdoc-commons/model/forms/gdoc-searchform';
 import {Facets} from '@dps/mycms-commons/dist/search-commons/model/container/facets';
@@ -47,9 +51,10 @@ export class GeoDocShowpageComponent extends CommonDocShowpageComponent<GeoDocRe
                 angularMarkdownService: AngularMarkdownService, angularHtmlService: AngularHtmlService,
                 cd: ChangeDetectorRef, trackingProvider: GenericTrackingService, appService: GenericAppService,
                 platformService: PlatformService, protected searchFormConverter: GeoDocSearchFormConverter,
-                layoutService: LayoutService) {
+                layoutService: LayoutService, router: Router) {
         super(route, cdocRoutingService, toastr, contentUtils, errorResolver, pageUtils, commonRoutingService,
-            angularMarkdownService, angularHtmlService, cd, trackingProvider, appService, platformService, layoutService, environment);
+            angularMarkdownService, angularHtmlService, cd, trackingProvider, appService, platformService, layoutService,
+            environment, router);
     }
 
     protected onResize(layoutSizeData: LayoutSizeData): void {

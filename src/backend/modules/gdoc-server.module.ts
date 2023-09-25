@@ -1,7 +1,6 @@
 import {GeoDocSearchResult} from '../shared/gdoc-commons/model/container/gdoc-searchresult';
 import {GeoDocSearchForm, GeoDocSearchFormValidator} from '../shared/gdoc-commons/model/forms/gdoc-searchform';
 import {GeoDocDataService} from '../shared/gdoc-commons/services/gdoc-data.service';
-import {Router} from 'js-data-express';
 import express from 'express';
 import {GeoDocRecord} from '../shared/gdoc-commons/model/records/gdoc-record';
 import {DataCacheModule} from '@dps/mycms-server-commons/dist/server-commons/datacache.module';

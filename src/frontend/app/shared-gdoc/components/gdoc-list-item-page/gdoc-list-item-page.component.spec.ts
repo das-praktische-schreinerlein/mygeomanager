@@ -4,7 +4,9 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {GeoDocListItemPageComponent} from './gdoc-list-item-page.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
-import {CommonDocRoutingService} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-routing.service';
+import {
+    CommonDocRoutingService
+} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-routing.service';
 import {TranslateModule} from '@ngx-translate/core';
 import {GeoDocDataServiceStub} from '../../../../testing/gdoc-dataservice-stubs';
 import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
@@ -14,14 +16,21 @@ import {RouterStub} from '@dps/mycms-frontend-commons/dist/angular-commons/testi
 import {GeoDocDateFormatPipe} from '../../pipes/gdoc-dateformat.pipe';
 import {DatePipe} from '@angular/common';
 import {AngularHtmlService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-html.service';
-import {AngularMarkdownService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-markdown.service';
+import {
+    AngularMarkdownService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/angular-markdown.service';
 import {PlatformService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/platform.service';
 import {GeoDocDataService} from '../../../../shared/gdoc-commons/services/gdoc-data.service';
 import {GeoDocSearchFormConverter} from '../../services/gdoc-searchform-converter.service';
 import {SearchParameterUtils} from '@dps/mycms-commons/dist/search-commons/services/searchparameter.utils';
 import {GeoDocContentUtils} from '../../services/gdoc-contentutils.service';
 import {SearchFormUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/searchform-utils.service';
-import {NgxMdModule, NgxMdService} from 'ngx-md';
+import {
+    SimpleAngularHtmlService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/simple-angular-html.service';
+import {
+    SimpleAngularMarkdownService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/simple-angular-markdown.service';
 
 describe('GeoDocListItemPageComponent', () => {
     let component: GeoDocListItemPageComponent;
@@ -40,17 +49,15 @@ describe('GeoDocListItemPageComponent', () => {
                 CommonDocRoutingService,
                 SearchFormUtils,
                 GeoDocContentUtils,
-                NgxMdService,
-                AngularMarkdownService,
-                AngularHtmlService,
+                { provide: AngularMarkdownService, useClass: SimpleAngularMarkdownService },
+                { provide: AngularHtmlService, useClass: SimpleAngularHtmlService },
                 DatePipe,
                 { provide: GenericAppService, useValue: new AppServiceStub() }
             ],
             schemas: [NO_ERRORS_SCHEMA],
             imports: [
                 NgbModule.forRoot(),
-                TranslateModule.forRoot(),
-                NgxMdModule.forRoot()],
+                TranslateModule.forRoot()]
         })
             .compileComponents();
     }));

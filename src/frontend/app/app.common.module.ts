@@ -43,14 +43,25 @@ import {GeoDocDataCacheService} from './shared-gdoc/services/gdoc-datacache.serv
 import {GeoDocActionTagService} from './shared-gdoc/services/gdoc-actiontag.service';
 import {GeoDocPlaylistService} from './shared-gdoc/services/gdoc-playlist.service';
 import {GeoDocActionTagsComponent} from './shared-gdoc/components/gdoc-actiontags/gdoc-actiontags.component';
-import {CommonDocRoutingService} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-routing.service';
+import {
+    CommonDocRoutingService
+} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-routing.service';
 import {PDocDataService} from '@dps/mycms-commons/dist/pdoc-commons/services/pdoc-data.service';
 import {PDocDataStore} from '@dps/mycms-commons/dist/pdoc-commons/services/pdoc-data.store';
 import {PrintService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/print.service';
 import {SimplePrintService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/simple-print.service';
-import {PdfGenerator, PdfPrintService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/pdf-print.service';
-import {SimplePdfPrintService} from '@dps/mycms-frontend-commons/dist/angular-commons/services/simple-pdf-print.service';
-import {PrintDialogPdfGenerator} from '@dps/mycms-frontend-commons/dist/angular-commons/services/print-dialog-pdf.generator';
+import {
+    PdfGenerator,
+    PdfPrintService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/pdf-print.service';
+import {
+    SimplePdfPrintService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/simple-pdf-print.service';
+import {
+    PrintDialogPdfGenerator
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/print-dialog-pdf.generator';
+import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
+import {AppService} from './services/app.service';
 
 registerLocaleData(localeDe);
 

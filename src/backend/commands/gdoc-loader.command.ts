@@ -6,14 +6,14 @@ import {CommonDocRecord} from '@dps/mycms-commons/dist/search-commons/model/reco
 import {CommonDocSearchForm} from '@dps/mycms-commons/dist/search-commons/model/forms/cdoc-searchform';
 import {CommonDocDataService} from '@dps/mycms-commons/dist/search-commons/services/cdoc-data.service';
 import {CommonDocSearchResult} from '@dps/mycms-commons/dist/search-commons/model/container/cdoc-searchresult';
-import {GenericAdapterResponseMapper} from '@dps/mycms-commons/dist/search-commons/services/generic-adapter-response.mapper';
+import {
+    GenericAdapterResponseMapper
+} from '@dps/mycms-commons/dist/search-commons/services/generic-adapter-response.mapper';
 import {CommonDocTransportModule} from '@dps/mycms-server-commons/dist/backend-commons/modules/cdoc-transport.module';
+import {CommonAdminCommand} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
 import {
-    CommonAdminCommand,
     SimpleConfigFilePathValidationRule,
-    SimpleFilePathValidationRule
-} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
-import {
+    SimpleFilePathValidationRule,
     ValidationRule,
     WhiteListValidationRule
 } from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';

@@ -21,7 +21,7 @@ import {PdfPrintOptions, PdfPrintService} from '@dps/mycms-frontend-commons/dist
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 @Injectable()
-export class AppComponent {
+export class AppComponent extends AbstractAppComponent {
     printAvailable: true;
     pdfPrintAvailable: true;
     showLoadingSpinner = true;
@@ -29,13 +29,6 @@ export class AppComponent {
     showLaw = false;
     hideCopyrightFooter = environment.hideCopyrightFooter;
     cookieLawSeenName = environment.cookieLawSeenName;
-
-    constructor(private appService: GenericAppService, private toastr: ToastrService,
-                translate: TranslateService, private router: Router, @Inject(LOCALE_ID) locale: string,
-                private http: HttpClient, private commonRoutingService: CommonRoutingService, private cd: ChangeDetectorRef,
-                private platformService: PlatformService, private pageUtils: PageUtils, private layoutService: LayoutService) {
-        // this language will be used as a fallback when a translation isn't found in the current language
-        translate.setDefaultLang(locale);
 
     constructor(appService: GenericAppService, toastr: ToastrService,
                 translate: TranslateService, router: Router, @Inject(LOCALE_ID) locale: string,

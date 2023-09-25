@@ -18,13 +18,13 @@
         "allowedKeywordPatterns": [".*"],
         "replaceKeywordPatterns": []
     },
-    "startPDocApi": true,
+    "startPDocApi": false,
     "pdocDataStoreAdapter": "PDocSqlAdapter",
-    "pdocWritable": true,
+    "pdocWritable": false,
     "PDocSqlAdapter": {
         "client": "sqlite3",
         "connection": {
-            "filename": "F:/playground/myshp-test/myshp.sqlite",
+            "filename": "F:/playground/mygeom-test/mygeom.sqlite",
             "host": "localhost",
             "user": "testmysqhdb",
             "password": "testmysqhdb",

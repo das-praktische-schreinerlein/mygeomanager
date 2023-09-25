@@ -10,12 +10,12 @@ import {CommonDocTransportModule} from '@dps/mycms-server-commons/dist/backend-c
 import {utils} from 'js-data';
 import {
     CommonAdminCommand,
-    SimpleConfigFilePathValidationRule,
-    SimpleFilePathValidationRule
 } from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
 import {
     ValidationRule,
-    WhiteListValidationRule
+    WhiteListValidationRule,
+    SimpleConfigFilePathValidationRule,
+    SimpleFilePathValidationRule
 } from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
 import {DateUtils} from '@dps/mycms-commons/dist/commons/utils/date.utils';
 import {FileUtils} from '@dps/mycms-commons/dist/commons/utils/file.utils';

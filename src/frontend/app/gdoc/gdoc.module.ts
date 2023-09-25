@@ -42,6 +42,15 @@ import {
     FrontendCommonDocCommonsModule
 } from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/frontend-cdoc-commons.module';
 import {GeoDocRoutingService} from '../../shared/gdoc-commons/services/gdoc-routing.service';
+import {
+    HtmlTogglerRenderer,
+    SimpleHtmlTogglerRenderer
+} from '@dps/mycms-frontend-commons/dist/angular-commons/htmlrenderer/html-toggler.renderer';
+import {
+    HtmlLocalLinkRenderer
+} from '@dps/mycms-frontend-commons/dist/angular-commons/htmlrenderer/html-locallink.renderer';
+import {SpecificAngularHtmlService} from '../services/specific-angular-html.service';
+import {SpecificAngularMarkdownService} from '../services/specific-angular-markdown.service';
 
 @NgModule({
     declarations: [
@@ -81,10 +90,12 @@ import {GeoDocRoutingService} from '../../shared/gdoc-commons/services/gdoc-rout
         ErrorResolver,
         PageUtils,
         GeoDocLightBoxService,
-        AngularHtmlService,
-        AngularMarkdownService,
         GeoDocAlbumResolver,
-        LayoutService
+        LayoutService,
+        {provide: AngularMarkdownService, useClass: SpecificAngularMarkdownService},
+        {provide: AngularHtmlService, useClass: SpecificAngularHtmlService},
+        HtmlLocalLinkRenderer,
+        {provide: HtmlTogglerRenderer, useClass: SimpleHtmlTogglerRenderer}
     ],
     exports: [
         GeoDocSearchpageComponent

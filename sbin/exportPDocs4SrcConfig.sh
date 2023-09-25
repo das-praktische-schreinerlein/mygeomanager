@@ -34,9 +34,9 @@ node dist/backend/serverAdmin.js\
      --backend ${CONFIG_BASEDIR}backend.${CONFIGPROFILE}.json\
      --command pageManager\
      --action exportPDocViewerFile\
-     --exportName "static.myshppdocs"\
+     --exportName "static.mygeompdocs"\
      --exportDir "${SRCPREFIXDIR}src/frontend/assets/staticdata/"\
-     --exportId "assets/staticdata/static.myshppdocs.js"\
+     --exportId "assets/staticdata/static.mygeompdocs.js"\
      --profiles "profile_viewer" \
      --langkeys "lang_de" \
      --debug 1

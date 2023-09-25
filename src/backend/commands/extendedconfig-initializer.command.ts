@@ -86,8 +86,10 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
             promises.push(function () {
                 return me.setSolrReadPasswords(newpassword, solrPasswordHash);
             });
+
             promises.push(function () {
                 return me.setSolrWritePasswords(newpassword, solrPasswordHash);
+            });
 
             promises.push(function () {
                 return ConfigInitializerUtil.replaceSolrUserPasswordInSolrConfig(
@@ -132,7 +134,7 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
 
         promises.push(function () {
             return ConfigInitializerUtil.replaceSolrUserPasswordInSolrConfig(
-                me.solrconfigbasepath + '/security.json', 'myshpread', solrPasswordHash, false);
+                me.solrconfigbasepath + '/security.json', 'mygeomread', solrPasswordHash, false);
         });
 
         return Promise_serial(promises, {parallelize: 1}).then(() => {
@@ -156,11 +158,11 @@ export class ExtendedConfigInitializerCommand extends ConfigInitializerCommand {
         });
         promises.push(function () {
             return ConfigInitializerUtil.replaceSolrUserPasswordInSolrConfig(
-                me.solrconfigbasepath + '/security.json', 'myshpadmin', solrPasswordHash, false);
+                me.solrconfigbasepath + '/security.json', 'mygeomadmin', solrPasswordHash, false);
         });
         promises.push(function () {
             return ConfigInitializerUtil.replaceSolrUserPasswordInSolrConfig(
-                me.solrconfigbasepath + '/security.json', 'myshpupdate', solrPasswordHash, false);
+                me.solrconfigbasepath + '/security.json', 'mygeomupdate', solrPasswordHash, false);
         });
 
         return Promise_serial(promises, {parallelize: 1}).then(() => {

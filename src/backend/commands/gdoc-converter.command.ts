@@ -3,18 +3,16 @@ import {GeoDocAdapterResponseMapper} from '../shared/gdoc-commons/services/gdoc-
 import {GeoDocDataServiceModule} from '../modules/gdoc-dataservice.module';
 import {GeoDocConverterModule} from '../modules/gdoc-converter.module';
 import {GeoDocSolrAdapter} from '../shared/gdoc-commons/services/gdoc-solr.adapter';
-import {
-    ValidationRule,
-    WhiteListValidationRule
-} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
-import {
-    CommonAdminCommand,
-    SimpleConfigFilePathValidationRule,
-    SimpleFilePathValidationRule
-} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
+import {CommonAdminCommand} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
 import {DateUtils} from '@dps/mycms-commons/dist/commons/utils/date.utils';
 import {FileUtils} from '@dps/mycms-commons/dist/commons/utils/file.utils';
 import {GeoDocFileUtils} from '../shared/gdoc-commons/services/gdoc-file.utils';
+import {
+    SimpleConfigFilePathValidationRule,
+    SimpleFilePathValidationRule,
+    ValidationRule,
+    WhiteListValidationRule
+} from '@dps/mycms-commons/dist/search-commons/model/forms/generic-validator.util';
 
 export class GeoDocConverterCommand extends CommonAdminCommand {
     protected createValidationRules(): {[key: string]: ValidationRule} {

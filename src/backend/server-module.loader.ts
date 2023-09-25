@@ -9,11 +9,17 @@ import {BackendConfigType} from './modules/backend.commons';
 import {GeoDocDataServiceModule} from './modules/gdoc-dataservice.module';
 import {GeoDocDataService} from 'shared/gdoc-commons/services/gdoc-data.service';
 import {GeoDocServerModule} from './modules/gdoc-server.module';
-import {PDocWriterServerModule} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pdoc-writer-server.module';
+import {
+    PDocWriterServerModule
+} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pdoc-writer-server.module';
 import {PagesServerModule} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pages-server.module';
-import {PagesDataserviceModule} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pages-dataservice.module';
+import {
+    PagesDataserviceModule
+} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pages-dataservice.module';
 import {StaticPagesDataService} from '@dps/mycms-commons/dist/pdoc-commons/services/staticpages-data.service';
-import {PDocDataServiceModule} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pdoc-dataservice.module';
+import {
+    PDocDataServiceModule
+} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pdoc-dataservice.module';
 import {PDocServerModule} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pdoc-server.module';
 import {MarkdownService} from '@dps/mycms-commons/dist/markdown-commons/markdown.service';
 import {DefaultOptions} from '@dps/mycms-commons/dist/markdown-commons/options';
@@ -45,16 +51,15 @@ export class ServerModuleLoader {
         const gdocDataService: GeoDocDataService = GeoDocDataServiceModule.getDataService('gdocSolr',
             serverConfig.backendConfig);
         const pdocDataServiceDE: PDocDataService = PDocDataServiceModule.getDataService('pdocSolrDE',
-            serverConfig.backendConfig, 'de');
+            serverConfig.backendConfig);
         const pdocDataServiceEN: PDocDataService = PDocDataServiceModule.getDataService('pdocSolrEN',
-            serverConfig.backendConfig, 'en');
-        const cache: DataCacheModule = new DataCacheModule(serverConfig.backendConfig.cacheConfig);
+            serverConfig.backendConfig);
 
         // add routes
         const gdocServerModule = GeoDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix, gdocDataService, cache,
             serverConfig.backendConfig);
-        PDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix, pdocDataServiceDE, 'de');
-        PDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix, pdocDataServiceEN, 'en');
+        PDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix, pdocDataServiceDE, cache, serverConfig.backendConfig);
+        PDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix, pdocDataServiceEN, cache, serverConfig.backendConfig);
 
         ConfigureServerModule.configureDefaultErrorHandler(app);
     }

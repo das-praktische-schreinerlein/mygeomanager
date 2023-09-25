@@ -55,8 +55,8 @@
                         "command": "dbMigrate",
                         "action": "migrateDB",
                         "migrationDbConfigFile": "config/db-migrate-database.json",
-                        "migrationsDir": "migrations/myshpdb",
-                        "migrationEnv": "myshpdb_sqlite3"
+                        "migrationsDir": "migrations/mygeomdb",
+                        "migrationEnv": "mygeomdb_sqlite3"
                     }
                 },
                 {

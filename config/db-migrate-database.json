@@ -1,9 +1,9 @@
 {
-    "myshpdb_sqlite3": {
+    "mygeomdb_sqlite3": {
         "driver": "sqlite3",
-        "filename": "F:/playground/myshp-test/myshp.sqlite"
+        "filename": "F:/playground/mygeom-test/mygeom.sqlite"
     },
-    "myshpdb_mysql": {
+    "mygeomdb_mysql": {
         "driver": "mysql",
         "host": "localhost",
         "user": "testmysqhdb",

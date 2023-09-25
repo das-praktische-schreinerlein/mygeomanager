@@ -1,15 +1,10 @@
 import * as fs from 'fs';
-import {GeoDocFileUtils} from '../shared/gdoc-commons/services/gdoc-file.utils';
-import {
-    CommonAdminCommand,
-    SimpleConfigFilePathValidationRule,
-    SimpleFilePathValidationRule
-} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
 import {CommonAdminCommand} from '@dps/mycms-server-commons/dist/backend-commons/commands/common-admin.command';
 import {
     KeywordValidationRule,
     NumberValidationRule,
     SimpleConfigFilePathValidationRule,
+    SimpleFilePathListValidationRule,
     SimpleFilePathValidationRule,
     ValidationRule,
     WhiteListValidationRule

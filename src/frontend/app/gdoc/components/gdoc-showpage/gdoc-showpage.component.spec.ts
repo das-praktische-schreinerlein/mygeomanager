@@ -29,7 +29,12 @@ import {GeoDocContentUtils} from '../../../shared-gdoc/services/gdoc-contentutil
 import {SearchFormUtils} from '@dps/mycms-frontend-commons/dist/angular-commons/services/searchform-utils.service';
 import {GeoDocRoutingService} from '../../../../shared/gdoc-commons/services/gdoc-routing.service';
 import {ToastrServiceStub} from '@dps/mycms-frontend-commons/dist/testing/toasts-stubs';
-import {NgxMdModule, NgxMdService} from 'ngx-md';
+import {
+    SimpleAngularMarkdownService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/simple-angular-markdown.service';
+import {
+    SimpleAngularHtmlService
+} from '@dps/mycms-frontend-commons/dist/angular-commons/services/simple-angular-html.service';
 
 describe('GeoDocShowpageComponent', () => {
     let component: GeoDocShowpageComponent;
@@ -40,8 +45,7 @@ describe('GeoDocShowpageComponent', () => {
             declarations: [GeoDocShowpageComponent, GeoDocDateFormatPipe],
             imports: [
                 NgbModule.forRoot(),
-                TranslateModule.forRoot(),
-                NgxMdModule.forRoot()],
+                TranslateModule.forRoot()],
             providers: [
                 { provide: ActivatedRoute, useValue: new ActivatedRouteStub() },
                 { provide: Router, useValue: new RouterStub() },
@@ -54,9 +58,8 @@ describe('GeoDocShowpageComponent', () => {
                 GeoDocRoutingService,
                 { provide: ToastrService, useValue: new ToastrServiceStub() },
                 TranslateService,
-                NgxMdService,
-                AngularMarkdownService,
-                AngularHtmlService,
+                { provide: AngularMarkdownService, useClass: SimpleAngularMarkdownService },
+                { provide: AngularHtmlService, useClass: SimpleAngularHtmlService },
                 ErrorResolver,
                 PageUtils,
                 GenericTrackingService,

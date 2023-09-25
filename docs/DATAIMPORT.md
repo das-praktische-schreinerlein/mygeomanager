@@ -12,7 +12,7 @@
     - Sample: https://forum.openstreetmap.org/viewtopic.php?id=18927
     - Sample: https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#Sets
     - Sample: https://observablehq.com/@easz/overpass-api-for-openstreetmap
-- save exported data to F:/playground/mytb-test/mytbbase/poi-import/poi_import.geojson
+- save exported data to F:/playground/mygeom-test/mygeombase/poi-import/poi_import.geojson
 - select available tags [available osm-tags](https://taginfo.openstreetmap.org/tags/natural=peak#overview)
 - get data export as geojson  [git via overpass-turbo](http://overpass-turbo.eu/#)
 ```
@@ -35,8 +35,8 @@ out body;
 out skel qt;
 ```
 
-#### Import poi-data into mytb-database via admin-ui
-- save exported data to F:/playground/mytb-test/mytbbase/poi-import/poi_import.geojson
+#### Import poi-data into mygeom-database via admin-ui
+- save exported data to F:/playground/mygeom-test/mygeombase/poi-import/poi_import.geojson
 - start import-Job on admin-area: "POIIMPORT: importDataFromPoiDatabase"
     - will convert poi-import/poi_import.geojson -> poi_import-dump.json
     - will import (insert only not already found records) poi_import-dump.json and rename it afterwards
@@ -75,7 +75,7 @@ OSMDIR=F:/playground/osm-poi-geojson
 FILTER=$OSMDIR/*.gdoc.json
 FILES=`echo $FILTER | sed "s/ /,/g"`
 echo $FILES
-sbin/generateViewerFileForStaticData.sh $OSMDIR/ $FILES mymm-pois
+sbin/generateViewerFileForStaticData.sh $OSMDIR/ $FILES mygeom-pois
 ```
 
 ### import into solr

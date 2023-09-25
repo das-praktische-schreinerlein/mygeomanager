@@ -30,6 +30,7 @@ import {GeoDocAlbumService} from '../../../shared-gdoc/services/gdoc-album.servi
 import {GeoDocPlaylistService} from '../../../shared-gdoc/services/gdoc-playlist.service';
 import {CommonDocContentUtils} from '@dps/mycms-frontend-commons/dist/frontend-cdoc-commons/services/cdoc-contentutils.service';
 import {ToastrServiceStub} from '@dps/mycms-frontend-commons/dist/testing/toasts-stubs';
+import {Location} from '@angular/common';
 
 describe('GeoDocSearchpageComponent', () => {
     let component: GeoDocSearchpageComponent;
@@ -45,6 +46,7 @@ describe('GeoDocSearchpageComponent', () => {
                 { provide: GeoDocDataService, useValue: new GeoDocDataServiceStub() },
                 { provide: ActivatedRoute, useValue: new ActivatedRouteStub() },
                 { provide: Router, useValue: new RouterStub() },
+                { provide: Location, useValue: {} },
                 CommonRoutingService,
                 GeoDocSearchFormConverter,
                 SearchFormUtils,
