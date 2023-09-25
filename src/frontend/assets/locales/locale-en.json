@@ -29,11 +29,14 @@
     "listSorts_dateDesc": "date",
     "listSorts_dateAsc": "date asc",
     "listSorts_file": "filename",
+    "listSorts_langkeys": "page-lang",
     "listSorts_order": "natural order",
     "listSorts_persRate": "rate",
     "listSorts_name": "name",
-    "listSorts_type": "type",
     "listSorts_subtype": "subtype",
+    "listSorts_sortkey": "Seiten-Gliederung",
+    "listSorts_theme": "Seiten-Thema",
+    "listSorts_type": "type",
     "ac_0": "unknown",
     "ac_1": "cycling",
     "loc_1": "unknown",
@@ -53,3 +56,4 @@
     "hrt_loc_parent_id_i": "at location:",
     "hrt_ele": "max ele:"
 }
+
