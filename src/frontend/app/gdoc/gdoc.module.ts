@@ -51,6 +51,7 @@ import {
 } from '@dps/mycms-frontend-commons/dist/angular-commons/htmlrenderer/html-locallink.renderer';
 import {SpecificAngularHtmlService} from '../services/specific-angular-html.service';
 import {SpecificAngularMarkdownService} from '../services/specific-angular-markdown.service';
+import {AngularMapsModule} from '@dps/mycms-frontend-commons/dist/angular-maps/angular-maps.module';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,7 @@ import {SpecificAngularMarkdownService} from '../services/specific-angular-markd
         ToastrModule,
         HttpClientModule,
         AngularCommonsModule,
+        AngularMapsModule,
         SharedGeoDocModule,
         GeoDocRoutingModule,
         FileDropModule,

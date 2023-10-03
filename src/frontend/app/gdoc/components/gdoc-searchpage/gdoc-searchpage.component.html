@@ -60,21 +60,21 @@
 
 <ng-template #mapContainer let-searchFormLayout=searchFormLayout>
     <div [class]="('container map-container ' + (!flgShowProfileMap ? 'container-fullline' : ''))" *ngIf="flgShowMap">
-        <app-gdoc-map [mapId]="'searchMap' + (searchFormLayout === 0 ? 'small' : 'big')"
+        <app-mapdoc-map [mapId]="'searchMap' + (searchFormLayout === 0 ? 'small' : 'big')"
                       [height]="'300'"
                       [mapZoom]="mapZoom"
-                      [gdocs]="searchResult.currentRecords"
-                      [currentGDocId]="currentMapGDocId"
-                      (gdocClicked)="onMapGeoDocClicked($event)"
+                      [docRecords]="searchResult.currentRecords"
+                      [currentDocId]="currentMapGDocId"
+                      (docClicked)="onMapGeoDocClicked($event)"
                       (centerChanged)="onMapCenterChanged($event)"
                       (mapElementsFound)="onMapElementsFound($event)"
-                      [mapCenterPos]="mapCenterPos"></app-gdoc-map>
+                      [mapCenterPos]="mapCenterPos"></app-mapdoc-map>
     </div>
     <div class="container map-container" *ngIf="flgShowProfileMap">
-        <app-gdoc-profilemap [mapId]="'showProfileMap'"
+        <app-mapdoc-profilemap [mapId]="'showProfileMap'"
                              [height]="'300px'"
                              (mapElementsFound)="onProfileMapElementsFound($event)"
-                             [gdocs]="searchResult.currentRecords"></app-gdoc-profilemap>
+                             [docRecords]="searchResult.currentRecords"></app-mapdoc-profilemap>
     </div>
     <div class="container containter profile-toggler-container" *ngIf="flgShowMap">
         <button class="btn btn-action btn-sm right" (click)="flgShowProfileMap = true" *ngIf="flgMapAvailable && !flgShowProfileMap">

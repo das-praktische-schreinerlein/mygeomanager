@@ -14,8 +14,6 @@ import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect';
 import {NgbAccordionModule, NgbRatingModule, NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
 import {LightboxModule} from 'ngx-lightbox';
-import {GeoDocProfileMapComponent} from './components/gdoc-profilemap/gdoc-profilemap.component';
-import {GeoDocMapComponent} from './components/gdoc-map/gdoc-map.component';
 import {
     GeoDocLinkedLocHierarchyComponent
 } from './components/gdoc-linked-loc-hierarchy/gdoc-linked-loc-hierarchy.component';
@@ -49,8 +47,6 @@ import {RouterModule} from '@angular/router';
         GeoDocListItemThinComponent,
         GeoDocSearchformComponent,
         GeoDocInlineSearchpageComponent,
-        GeoDocMapComponent,
-        GeoDocProfileMapComponent,
         GeoDocInlineSearchpageComponent,
         GeoDocLinkedLocHierarchyComponent,
         GeoDocDataTechComponent,
@@ -92,8 +88,6 @@ import {RouterModule} from '@angular/router';
         GeoDocListItemThinComponent,
         GeoDocSearchformComponent,
         GeoDocInlineSearchpageComponent,
-        GeoDocMapComponent,
-        GeoDocProfileMapComponent,
         GeoDocInlineSearchpageComponent,
         GeoDocLinkedLocHierarchyComponent,
         GeoDocDataTechComponent,

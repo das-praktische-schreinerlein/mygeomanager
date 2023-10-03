@@ -20,8 +20,9 @@ import {
     CommonDocRecordFactory,
     CommonDocRecordValidator
 } from '@dps/mycms-commons/dist/search-commons/model/records/cdoc-entity-record';
+import {MapDocRecord} from '@dps/mycms-commons/dist/geo-commons/model/map-element.types';
 
-export interface GeoDocRecordType extends BaseEntityRecordType {
+export interface GeoDocRecordType extends BaseEntityRecordType, MapDocRecord {
     locId: number;
     locIdParent: number;
 

@@ -11,6 +11,7 @@
 - improve imageInlineLoader
 - backend/frontend: use new fully featured markdown-support with extensions
 - frontend: added print/pdf-support
+- frontend: use generic maps from commons
 
 ### new features
 - added optional password-encryption of static-viewer-version
@@ -22,6 +23,7 @@
 - use commons 6.0.0
 - bumped up deps
 - improve imageInlineLoader
+- frontend: use generic maps from commons
 
 ### bug fixes
 - none

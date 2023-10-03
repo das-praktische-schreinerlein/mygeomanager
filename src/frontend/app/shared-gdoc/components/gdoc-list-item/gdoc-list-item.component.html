@@ -34,11 +34,11 @@
                     </ngb-panel>
                     <ngb-panel *ngIf="listItem.currentRecord.gpsTrackBasefile || (listItem.currentRecord.geoLat != undefined && listItem.currentRecord.geoLon != undefined)" title="Map" i18n-title="title accordion map|Title for map accordion@@accordion.map.gdoc.title">
                         <ng-template ngbPanelContent>
-                            <app-gdoc-map [mapId]="'listItemMap' + listItem.currentRecord.id"
+                            <app-mapdoc-map [mapId]="'listItemMap' + listItem.currentRecord.id"
                                           [height]="'150'"
                                           [mapZoom]="'9'"
-                                          [gdocs]="[listItem.currentRecord]"
-                                          [mapCenterPos]="undefined"></app-gdoc-map>
+                                          [docRecords]="[listItem.currentRecord]"
+                                          [mapCenterPos]="undefined"></app-mapdoc-map>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
