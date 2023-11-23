@@ -47,21 +47,12 @@ export class ServerModuleLoader {
         FirewallModule.configureFirewall(app, serverConfig.firewallConfig, serverConfig.filePathErrorDocs);
         DnsBLModule.configureDnsBL(app, serverConfig.firewallConfig, serverConfig.filePathErrorDocs);
 
-        // configure dataservices
-        const gdocDataService: GeoDocDataService = GeoDocDataServiceModule.getDataService('gdocSolr',
-            serverConfig.backendConfig);
-        const pdocDataServiceDE: PDocDataService = PDocDataServiceModule.getDataService('pdocSolrDE',
-            serverConfig.backendConfig);
-        const pdocDataServiceEN: PDocDataService = PDocDataServiceModule.getDataService('pdocSolrEN',
-            serverConfig.backendConfig);
-
-        // add routes
-        const gdocServerModule = GeoDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix, gdocDataService, cache,
-            serverConfig.backendConfig);
-        PDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix, pdocDataServiceDE, cache, serverConfig.backendConfig);
-        PDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix, pdocDataServiceEN, cache, serverConfig.backendConfig);
-
         ConfigureServerModule.configureDefaultErrorHandler(app);
+    }
+
+    public static loadAdditionalModules(app, serverConfig: ServerConfig, cache: DataCacheModule) {
+        ServerModuleLoader.loadModuleGDoc(app, serverConfig, cache);
+        ServerModuleLoader.loadModulePDoc(app, serverConfig, cache);
     }
 
     public static loadModulePages(app, serverConfig: ServerConfig, cache: DataCacheModule) {
@@ -93,12 +84,19 @@ export class ServerModuleLoader {
     public static isServerWritable(serverConfig: ServerConfig) {
         const pdocWritable = serverConfig.backendConfig.pdocWritable === true
             || <any>serverConfig.backendConfig.pdocWritable === 'true';
+        const gdocWritable = serverConfig.backendConfig.gdocWritable === true
+            || <any>serverConfig.backendConfig.gdocWritable === 'true';
 
-        return pdocWritable;
+        return pdocWritable || gdocWritable;
     }
 
-    public static loadAdditionalModules(app, serverConfig: ServerConfig, cache: DataCacheModule) {
-        ServerModuleLoader.loadModulePDoc(app, serverConfig, cache);
-    }
+    public static loadModuleGDoc(app, serverConfig: ServerConfig, cache: DataCacheModule) {
+        // configure dataservices
+        const gdocDataService: GeoDocDataService = GeoDocDataServiceModule.getDataService('gdocSolr',
+            serverConfig.backendConfig);
 
+        // add routes
+        const gdocServerModule = GeoDocServerModule.configureRoutes(app, serverConfig.apiDataPrefix,
+            gdocDataService, cache, serverConfig.backendConfig);
+    }
 }

@@ -4,7 +4,9 @@ import {
     CommonKeywordMapperConfigType,
     CommonSqlConnectionConfigType
 } from '@dps/mycms-server-commons/dist/backend-commons/modules/backend.commons';
-import {CommonPDocBackendConfigType} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pdoc-backend.commons';
+import {
+    CommonPDocBackendConfigType
+} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/modules/pdoc-backend.commons';
 import {FacetCacheUsageConfigurations} from '@dps/mycms-commons/dist/search-commons/services/sql-query.builder';
 import {FacetCacheConfiguration} from '@dps/mycms-commons/dist/facetcache-commons/model/facetcache.configuration';
 
@@ -13,7 +15,15 @@ export interface SqlConnectionConfigType extends CommonSqlConnectionConfigType<F
 
 export interface BackendConfigType extends CommonBackendConfigType<CommonKeywordMapperConfigType, CacheConfig>,
     CommonPDocBackendConfigType<SqlConnectionConfigType> {
+    gdocDataStoreAdapter: string,
+    gdocWritable: boolean,
     gdocImportConverterAdditionalKeywords?: string[],
-    nodejsBinaryPath: string,
-    inlineJsPath: string
+    GeoDocItemsJsAdapter: {
+        dataFile: string
+    },
+    GeoDocSolrAdapter: {
+        solrCoreGeoDoc: string,
+        solrCoreGeoDocReadUsername: string,
+        solrCoreGeoDocReadPassword: string
+    }
 }
