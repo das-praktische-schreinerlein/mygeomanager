@@ -3,23 +3,61 @@
     "commandConfig": {
         "adminWritable": true,
         "preparedCommands": {
-            "generateSitemap": {
-                "description": "generate sitemaps",
+            "POIIMPORT: importDataFromPoiDatabase": {
+                "description": "import data from poi-database: F:/playground/mygeom-test/mygeombase/poi-import/poi_import.geojson",
                 "commands": [
                     {
                         "parameters": {
-                            "command": "generateSitemap",
-                            "action": "generateSitemap",
+                            "command": "convertGeoDoc",
+                            "action": "convertGeoJsonToGeoDoc",
                             "backend": "config/backend.dev.json",
-                            "sitemap": "config/sitemap-de.json"
+                            "srcFile": "F:/playground/mygeom-test/mygeombase/poi-import/poi_import.geojson",
+                            "mode": "RESPONSE",
+                            "file": "F:/playground/mygeom-test/mygeombase/poi-import/poi_import-dump.json",
+                            "renameFileIfExists": true
                         }
                     },
                     {
                         "parameters": {
-                            "command": "generateSitemap",
-                            "action": "generateSitemap",
+                            "command": "loadGeoDoc",
+                            "action": "loadDocs",
                             "backend": "config/backend.dev.json",
-                            "sitemap": "config/sitemap-en.json"
+                            "file": "F:/playground/mygeom-test/mygeombase/poi-import/poi_import-dump.json",
+                            "renameFileAfterSuccess": true
+                        }
+                    }
+                ]
+            },
+            "EXPORT: exportData": {
+                "description": "export pos-data to export-directory",
+                "commands": [
+                    {
+                        "parameters": {
+                            "command": "exportGeoDoc",
+                            "action": "exportGeoDocs",
+                            "backend": "config/backend.dev.json",
+                            "file": "F:/playground/mygeom-test/export/poi-data/poi-data.gdocs.json",
+                            "renameFileIfExists": true
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "mediaManager",
+                            "action": "generateHtmlViewerFileForExport",
+                            "backend": "config/backend.dev.json",
+                            "exportName": "poi-data",
+                            "exportDir": "F:/playground/mygeom-test/export/poi-data/",
+                            "createViewer": "html",
+                            "srcFile": "F:/Projekte/mygeomanager/dist/static/mygeomviewer/de/index.viewer.full.html",
+                            "srcFiles": "F:/playground/mygeom-test/export/poi-data/poi-data.gdocs.json"
+                        }
+                    },
+                    {
+                        "parameters": {
+                            "command": "mediaManager",
+                            "action": "inlineDataOnViewerFile",
+                            "backend": "config/backend.dev.json",
+                            "srcFile": "F:/playground/mygeom-test/export/poi-data/poi-data.html"
                         }
                     }
                 ]

@@ -36,7 +36,7 @@ export class GeoDocExporterCommand extends CommonAdminCommand {
 
     protected processCommandArgs(argv: {}): Promise<any> {
         const perRun = 999;
-        const typeOrder = ['location', 'news', 'trip', 'route', 'track', 'image', 'video'];
+        const typeOrder = ['info', 'poi'];
 
         const filePathConfigJson = argv['backend'];
         if (filePathConfigJson === undefined) {

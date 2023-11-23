@@ -6,6 +6,9 @@ import {
 } from '@dps/mycms-server-commons/dist/backend-commons/commands/common-serveradmin-command.manager';
 import {PageManagerCommand} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/commands/pdoc-manager.command';
 import {MediaManagerCommand} from './media-manager.command';
+import {GeoDocExporterCommand} from './gdoc-exporter.command';
+import {GeoDocLoaderCommand} from './gdoc-loader.command';
+import {GeoDocConverterCommand} from './gdoc-converter.command';
 
 export interface ServerAdminCommandConfigType extends CommonServerAdminCommandConfigType, AdminCommandConfigType {
     outputDir: string,
@@ -18,6 +21,9 @@ export class ServerAdminCommandManager extends CommonServerAdminCommandManager<S
         // only define a subset of commands
         super({
                 'generateSitemap': new SiteMapGeneratorCommand(),
+                'convertGeoDoc': new GeoDocConverterCommand(),
+                'loadGeoDoc': new GeoDocLoaderCommand(),
+                'exportGeoDoc': new GeoDocExporterCommand(),
                 'mediaManager': new MediaManagerCommand(),
                 'pageManager': new PageManagerCommand(),
             },
