@@ -113,12 +113,12 @@ npm run backend-load-data
 ```
 - OR do it manually
 ```
-node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --srcFile d:\docs\import-peaks-canaren.geojson --mode SOLR --file d:\docs\import-gdocs-peaks-canaren.json
-node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --srcFile d:\docs\import-alpine-huts.geojson --mode SOLR --file d:\docs\import-gdocs-alpine-huts.json
-node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --srcFile d:\docs\import-peaks-alpen.geojson --mode SOLR --file d:\docs\import-gdocs-peaks-alpen.json
-node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file d:\docs\import-gdocs-peaks-canaren.json
-node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file d:\docs\import-gdocs-alpine-huts.json
-node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file d:\docs\import-gdocs-peaks-alpen.json
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --srcFile F:\playground\osm-poi-geojson\import-alpen-natural-peak.geojson --mode SOLR --file F:\playground\osm-poi-geojson\import-alpen-natural-peak.gdoc.json
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --srcFile F:\playground\osm-poi-geojson\import-alpen-natural-glacier.geojson --mode SOLR --file F:\playground\osm-poi-geojson\import-alpen-natural-glacier.gdoc.json
+node dist\backend\serverAdmin.js --debug --command convertGeoDoc --action convertGeoJsonToGeoDoc --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --srcFile F:\playground\osm-poi-geojson\import-alpen-mountain_pass.geojson --mode SOLR --file F:\playground\osm-poi-geojson\import-alpen-mountain_pass.gdoc.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file F:\playground\osm-poi-geojson\import-alpen-natural-peak.gdoc.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file F:\playground\osm-poi-geojson\import-alpen-natural-glacier.gdoc.json
+node dist\backend\serverAdmin.js --debug --command loadGeoDoc --action loadGeoDocs --adminclibackend config/adminCli.dev.json --backend config/backend.dev.json --file F:\playground\osm-poi-geojson\import-alpen-mountain_pass.gdoc.json
 ```
 
 ### configure local environments

@@ -90,9 +90,9 @@
                         "command": "convertGeoDoc",
                         "action": "convertGeoJsonToGeoDoc",
                         "backend": "config/backend.dev.json",
-                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-peaks-canaren.geojson",
+                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-alpen-natural-peak.geojson",
                         "mode": "SOLR",
-                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-peaks-canaren.json",
+                        "file": "F:\\playground\\osm-poi-geojson\\import-alpen-natural-peak.gdoc.json",
                         "renameFileIfExists": true
                     }
                 },
@@ -101,9 +101,9 @@
                         "command": "convertGeoDoc",
                         "action": "convertGeoJsonToGeoDoc",
                         "backend": "config/backend.dev.json",
-                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-alpine-huts.geojson",
+                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-alpen-natural-glacier.geojson",
                         "mode": "SOLR",
-                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-alpine-huts.json",
+                        "file": "F:\\playground\\osm-poi-geojson\\import-alpen-natural-glacier.gdoc.json",
                         "renameFileIfExists": true
                     }
                 },
@@ -112,9 +112,9 @@
                         "command": "convertGeoDoc",
                         "action": "convertGeoJsonToGeoDoc",
                         "backend": "config/backend.dev.json",
-                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-peaks-alpen.geojson",
+                        "srcFile": "F:\\playground\\osm-poi-geojson\\import-alpen-mountain_pass.geojson",
                         "mode": "SOLR",
-                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-peaks-alpen.json",
+                        "file": "F:\\playground\\osm-poi-geojson\\import-alpen-mountain_pass.gdoc.json",
                         "renameFileIfExists": true
                     }
                 },
@@ -123,7 +123,7 @@
                         "command": "loadGeoDoc",
                         "action": "loadGeoDocs",
                         "backend": "config/backend.dev.json",
-                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-peaks-canaren.json"
+                        "file": "F:\\playground\\osm-poi-geojson\\import-alpen-natural-peak.json"
                     }
                 },
                 {
@@ -131,7 +131,7 @@
                         "command": "loadGeoDoc",
                         "action": "loadGeoDocs",
                         "backend": "config/backend.dev.json",
-                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-alpine-huts.json"
+                        "file": "F:\\playground\\osm-poi-geojson\\import-alpen-natural-glacier.gdoc.json"
                     }
                 },
                 {
@@ -139,7 +139,7 @@
                         "command": "loadGeoDoc",
                         "action": "loadGeoDocs",
                         "backend": "config/backend.dev.json",
-                        "file": "F:\\playground\\osm-poi-geojson\\import-gdocs-peaks-alpen.json"
+                        "file": "F:\\playground\\osm-poi-geojson\\import-alpen-mountain_pass.gdoc.json"
                     }
                 }
             ]

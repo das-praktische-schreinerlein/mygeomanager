@@ -52,6 +52,7 @@ import {
 import {SpecificAngularHtmlService} from '../services/specific-angular-html.service';
 import {SpecificAngularMarkdownService} from '../services/specific-angular-markdown.service';
 import {AngularMapsModule} from '@dps/mycms-frontend-commons/dist/angular-maps/angular-maps.module';
+import {MapContentUtils} from '@dps/mycms-frontend-commons/dist/angular-maps/services/map-contentutils.service';
 
 @NgModule({
     declarations: [
@@ -94,6 +95,7 @@ import {AngularMapsModule} from '@dps/mycms-frontend-commons/dist/angular-maps/a
         GeoDocLightBoxService,
         GeoDocAlbumResolver,
         LayoutService,
+        MapContentUtils,
         {provide: AngularMarkdownService, useClass: SpecificAngularMarkdownService},
         {provide: AngularHtmlService, useClass: SpecificAngularHtmlService},
         HtmlLocalLinkRenderer,
