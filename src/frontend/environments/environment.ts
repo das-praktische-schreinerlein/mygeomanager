@@ -12,7 +12,7 @@ export const environment: AppEnvironment = {
     assetsPathVersionSnippet: '',
     assetsPathVersionSuffix: '',
     pdocWritable: false,
-    pdocActionTagWritable: true,
+    pdocActionTagWritable: false,
     pdocEmptyDefaultSearchTypes: 'page',
     defaultSearchTypes: '',
     emptyDefaultSearchTypes: '',

@@ -21,10 +21,8 @@ import {PdfPrintService} from '@dps/mycms-frontend-commons/dist/angular-commons/
 })
 @Injectable()
 export class AppComponent extends AbstractAppComponent {
-    printAvailable: true;
-    pdfPrintAvailable: true;
-    showLoadingSpinner = true;
     title = 'MyGeoManager';
+    showLoadingSpinner = true;
     showLaw = false;
     hideCopyrightFooter = environment.hideCopyrightFooter;
     cookieLawSeenName = environment.cookieLawSeenName;

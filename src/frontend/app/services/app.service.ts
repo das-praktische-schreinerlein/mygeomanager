@@ -190,16 +190,16 @@ export class AppService extends GenericAppService {
             }
         };
         const gdocAdapter = new GeoDocHttpAdapter(options);
-
-        this.gdocDataStore.setAdapter('http', undefined, '', {});
         const pdocAdapter = new PDocHttpAdapter(options);
 
+        this.gdocDataStore.setAdapter('http', undefined, '', {});
         this.pdocDataStore.setAdapter('http', undefined, '', {});
         this.pagesDataStore.setAdapter('http', undefined, '', {});
 
         this.pagesDataService.clearLocalStore();
         this.pdocDataService.clearLocalStore();
         this.gdocDataService.clearLocalStore();
+
         this.gdocDataStore.setAdapter('http', gdocAdapter, '', {});
 
         return new Promise<boolean>((resolve, reject) => {
@@ -214,8 +214,8 @@ export class AppService extends GenericAppService {
                     return me.pagesDataService.addMany(docs);
                 }).then(function onDocsAdded(records: BaseEntityRecord[]) {
                     // console.log('initially loaded pdocs from server', records);
-                    me.pdocDataService.setWritable(false);
                     me.gdocDataService.setWritable(false);
+                    me.pdocDataService.setWritable(false);
                     me.pagesDataService.setWritable(false);
                     me.pdocDataService.setWritable(me.appConfig.permissions.pdocWritable);
 
@@ -234,10 +234,10 @@ export class AppService extends GenericAppService {
     initStaticData(): Promise<any> {
         const me = this;
         this.gdocDataStore.setAdapter('http', undefined, '', {});
-        this.pdocDataService.clearLocalStore();
         this.gdocDataService.clearLocalStore();
-        this.pagesDataStore.setAdapter('http', undefined, '', {});
 
+        this.pagesDataStore.setAdapter('http', undefined, '', {});
+        this.pdocDataService.clearLocalStore();
         this.pagesDataService.clearLocalStore();
 
         this.pagesDataService.setWritable(false);
@@ -265,6 +265,8 @@ export class AppService extends GenericAppService {
                 return me.pagesDataService.addMany(docs);
             }).then(function onPDocsAdded(pdocs: BaseEntityRecord[]) {
                 console.log('initially loaded pdocs from assets', pdocs);
+
+                me.pagesDataService.setWritable(false);
 
                 const promises = [];
                 for (const staticTDocsFile of me.appConfig.staticGDocsFiles) {
@@ -316,7 +318,6 @@ export class AppService extends GenericAppService {
                 me.gdocDataStore.setAdapter('http', gdocAdapter, '', {});
                 me.gdocDataService.setWritable(false);
 
-                me.pagesDataService.setWritable(false);
                 return Promise.resolve(true);
             }).catch(function onError(reason: any) {
                 console.error('loading appdata failed:', reason);
