@@ -12,6 +12,7 @@
 - backend/frontend: use new fully featured markdown-support with extensions
 - frontend: added print/pdf-support
 - frontend: use generic maps from commons
+- backend/frontend: fixed naming of attributes/filter: type_s)
 
 ### new features
 - added optional password-encryption of static-viewer-version
@@ -24,6 +25,7 @@
 - bumped up deps
 - improve imageInlineLoader
 - frontend: use generic maps from commons
+- backend/frontend: fixed naming of attributes/filter: type_s)
 
 ### bug fixes
 - none

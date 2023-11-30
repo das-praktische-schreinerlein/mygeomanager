@@ -60,7 +60,7 @@ export class GeoDocItemsJsAdapter extends GenericItemsJsAdapter<GeoDocRecord, Ge
                 hide_zero_doc_count: true,
                 size: 1000
             },
-            'type_txt': {
+            'type_ss': {
                 mapField: 'type_s',
                 conjunction: false,
                 sort: 'term',

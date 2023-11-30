@@ -34,11 +34,11 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
             'loc_lochirarchie_txt': {},
             'playlists_txt': {
             },
-            'type_txt': {}
+            'type_ss': {}
         },
         commonSortOptions: {
             'bq': 'type_s:IMAGE^1',
-            'qf': 'html_txt^12.0 name_txt^10.0 desc_txt^8.0 keywords_txt^6.0 loc_lochirarchie_txt^4.0',
+            'qf': 'html_txt^12.0 name_s^10.0 desc_txt^8.0 keywords_txt^6.0 loc_lochirarchie_txt^4.0',
             'defType': 'edismax',
             'boost': 'recip(rord(date_dts),1,1000,1000)'
         },
@@ -92,7 +92,6 @@ export class GeoDocSolrAdapter extends GenericSolrAdapter<GeoDocRecord, GeoDocSe
                 ? props.playlists.split(', ').join(',,')
                 : undefined),
             type_s: props.type,
-            type_txt: props.type,
 
             geo_lon_s: props.geoLon,
             geo_lat_s: props.geoLat,

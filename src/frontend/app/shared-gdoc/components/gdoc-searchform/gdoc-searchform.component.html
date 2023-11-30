@@ -145,7 +145,7 @@
                                                  (onRemoved)="onChangeSelect()"></ss-multiselect-dropdown>
                     </ng-container>
                 </div>
-                <div [class]="(width4 + ' input-group input-group-sm')">
+                <div [class]="(width4 + ' input-group input-group-sm')" *ngIf="optionsSelectType && optionsSelectType.length > 0">
                     <label [class]="'col-xs-2 col-form-label mr-2 ' + (searchFormGroup.get('type').value.length > 0 ? 'label-active' : 'label-inactive')" i18n="type label|Label for filter: type@@label.searchform.gdoc.type">Types:</label>
                     <ss-multiselect-dropdown [options]="optionsSelectType"
                                              [settings]="settingsSelectType"
