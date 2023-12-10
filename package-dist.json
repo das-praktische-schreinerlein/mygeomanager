@@ -42,7 +42,7 @@
   "optionalDeps // do copy these to deps if needed": {
     "db-migrate-mysql": "2.2.0",
     "mysql": "2.18.1",
-    "redis": "3.0.2"
+    "redis": "3.1.2"
   },
   "dependencies": {
     "axios": "0.19.2",
@@ -52,7 +52,6 @@
     "knex": "0.20.10",
     "lz-string": "1.5.0",
     "minimist": "1.2.8",
-    "redis": "3.1.2",
     "sqlite3": "5.1.6"
   },
   "devDependencies": {}
