@@ -76,6 +76,27 @@ FILTER=$OSMDIR/*.gdoc.json
 FILES=`echo $FILTER | sed "s/ /,/g"`
 echo $FILES
 sbin/generateViewerFileForStaticData.sh $OSMDIR/ $FILES mygeom-pois
+
+FILTER=$OSMDIR/import-alpen-*.gdoc.json
+FILES=`echo $FILTER | sed "s/ /,/g"`
+echo $FILES
+sbin/generateViewerFileForStaticData.sh $OSMDIR/ $FILES mygeom-pois-alpen
+${SCRIPTPATH}/setConfigValueInViewerFile.sh "${W_OSMDIR}\\mygeom-pois-alpen.html" "bestMatchingTabsOrder" '"POI", "INFO", "ALL"'
+${SCRIPTPATH}/setConfigValueInViewerFile.sh "${W_OSMDIR}\\mygeom-pois-alpen.html" "favoritesTabsOrder" '"POI", "INFO", "ALL"'
+
+FILTER=$OSMDIR/import-deutschland-*.gdoc.json
+FILES=`echo $FILTER | sed "s/ /,/g"`
+echo $FILES
+sbin/generateViewerFileForStaticData.sh $OSMDIR/ $FILES mygeom-pois-deutschland
+${SCRIPTPATH}/setConfigValueInViewerFile.sh "${W_OSMDIR}\\mygeom-pois-deutschland.html" "bestMatchingTabsOrder" '"POI", "INFO", "ALL"'
+${SCRIPTPATH}/setConfigValueInViewerFile.sh "${W_OSMDIR}\\mygeom-pois-deutschland.html" "favoritesTabsOrder" '"POI", "INFO", "ALL"'
+
+FILTER=$OSMDIR/import-sachsen-*.gdoc.json
+FILES=`echo $FILTER | sed "s/ /,/g"`
+echo $FILES
+sbin/generateViewerFileForStaticData.sh $OSMDIR/ $FILES mygeom-pois-sachsen-peaks
+${SCRIPTPATH}/setConfigValueInViewerFile.sh "${W_OSMDIR}\\mygeom-pois-sachsen-peaks.html" "bestMatchingTabsOrder" '"POI", "INFO", "ALL"'
+${SCRIPTPATH}/setConfigValueInViewerFile.sh "${W_OSMDIR}\\mygeom-pois-sachsen-peaks.html" "favoritesTabsOrder" '"POI", "INFO", "ALL"'
 ```
 
 ### import into solr
