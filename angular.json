@@ -203,6 +203,54 @@
                             "serviceWorker": true,
                             "ngswConfigPath": "src/frontend/ngsw-config.json"
                         },
+                        "mdpad-de": {
+                            "i18nFile": "src/frontend/locales/messages.de.xlf",
+                            "i18nFormat": "xlf",
+                            "i18nLocale": "de",
+                            "index": "src/frontend/index.viewer.html",
+                            "main": "src/frontend/main.mdpad.ts",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/frontend/environments/environment.ts",
+                                    "with": "src/frontend/environments/environment.viewer.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": true,
+                            "ngswConfigPath": "src/frontend/ngsw-config.json"
+                        },
+                        "mdpad-en": {
+                            "i18nFile": "src/frontend/locales/messages.en.xlf",
+                            "i18nFormat": "xlf",
+                            "i18nLocale": "en",
+                            "index": "src/frontend/index.viewer.html",
+                            "main": "src/frontend/main.mdpad.ts",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/frontend/environments/environment.ts",
+                                    "with": "src/frontend/environments/environment.viewer.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": true,
+                            "ngswConfigPath": "src/frontend/ngsw-config.json"
+                        },
                         "viewer-de": {
                             "i18nFile": "src/frontend/locales/messages.de.xlf",
                             "i18nFormat": "xlf",

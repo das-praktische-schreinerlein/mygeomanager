@@ -2,6 +2,27 @@
  
 # Versions
 
+## 5.1.0
+- use new commons
+- frontend: improved text-editor
+- frontend: added full-page mdpad-editor
+- frontend: added own app-mdpad-editor with pdf-support
+
+### new features
+- frontend: added full-page mdpad-editor
+- frontend: added own app-mdpad-editor with pdf-support
+
+### improvements
+- use new commons
+- frontend: improved text-editor
+
+### bug fixes
+- none
+
+### breaking changes
+- none
+
+
 ## 5.0.0 (2023-12-22)
 - now bases on mysimplehomepage-5.0.0
 - use commons 6.0.0

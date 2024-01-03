@@ -1,6 +1,6 @@
 {
   "name": "mygeomanager",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "license": "Apache-2.0",
   "angular-cli": {},
   "config": {
@@ -46,13 +46,13 @@
     "build-prod-de": "ng build frontend --base-href=/mygeom/de/ --configuration=prod-de --aot true --output-path dist/static/mygeom/de",
     "build-prod-en": "ng build frontend --base-href=/mygeom/en/ --configuration=prod-en --aot true --output-path dist/static/mygeom/en",
     "build-viewer": "npm run build-before-prepare && npm run build-viewer-de && npm run build-viewer-en && npm run build-after-copy-overrides-dist-viewer",
-    "build-viewer-de": "ng build frontend --configuration=viewer-de --aot true --output-path dist/static/mygeomviewer/de && npm run build-after-copy-preinline-de && cross-var node devtools/create-allinone-html.js dist/static/mygeomviewer/de/index.viewer.html dist/static/mygeomviewer/de/index.viewer.full.html \"\" noexclusions $npm_package_config_viewerpassword",
-    "build-viewer-en": "ng build frontend --configuration=viewer-en --aot true --output-path dist/static/mygeomviewer/en && npm run build-after-copy-preinline-en && cross-var node devtools/create-allinone-html.js dist/static/mygeomviewer/en/index.viewer.html dist/static/mygeomviewer/en/index.viewer.full.html \"\" noexclusions $npm_package_config_viewerpassword",
-    "build-viewer-de-stats": "ng build frontend --configuration=viewer-de --aot true --stats-json true --output-path dist/static/mygeomviewer/de && npm run build-after-copy-preinline-de && node devtools/create-allinone-html.js dist/static/mygeomviewer/de/index.viewer.html dist/static/mygeomviewer/de/index.viewer.full.html",
+    "build-viewer-de": "ng build frontend --configuration=viewer-de --aot true --output-path dist/static/mygeomviewer/de && npm run build-after-copy-preinline-viewer-de && cross-var node devtools/create-allinone-html.js dist/static/mygeomviewer/de/index.viewer.html dist/static/mygeomviewer/de/index.viewer.full.html \"\" noexclusions $npm_package_config_viewerpassword",
+    "build-viewer-en": "ng build frontend --configuration=viewer-en --aot true --output-path dist/static/mygeomviewer/en && npm run build-after-copy-preinline-viewer-en && cross-var node devtools/create-allinone-html.js dist/static/mygeomviewer/en/index.viewer.html dist/static/mygeomviewer/en/index.viewer.full.html \"\" noexclusions $npm_package_config_viewerpassword",
+    "build-viewer-de-stats": "ng build frontend --configuration=viewer-de --aot true --stats-json true --output-path dist/static/mygeomviewer/de && npm run build-after-copy-preinline-viewer-de && node devtools/create-allinone-html.js dist/static/mygeomviewer/de/index.viewer.html dist/static/mygeomviewer/de/index.viewer.full.html",
     "build-after-copy-contrib": "cpx --include-empty-dirs \"contrib/**/*\" dist/contrib/ && cpx --include-empty-dirs --verbose \"installer/solr/**/*\" dist/contrib/solr/server/solr/",
     "build-after-copy-contrib-solrlang": "cpx --include-empty-dirs --verbose \"contrib/solr/contrib/lang/*.*\" dist/contrib/solr/server/solr/coremygeo/conf/lang/",
-    "build-after-copy-preinline-de": "cpx --include-empty-dirs --verbose \"node_modules/lz-string/libs/lz-string.min.js\" dist/static/mygeomviewer/de/ && cpx --include-empty-dirs --verbose \"devtools/webloader.js\" dist/static/mygeomviewer/de/ && cpx --include-empty-dirs --verbose \"overrides/after-build/dist/mygeomviewer/de/**/*.* \" dist/static/mygeomviewer/de/",
-    "build-after-copy-preinline-en": "cpx --include-empty-dirs --verbose \"node_modules/lz-string/libs/lz-string.min.js\" dist/static/mygeomviewer/en/ && cpx --include-empty-dirs --verbose \"devtools/webloader.js\" dist/static/mygeomviewer/en/ && cpx --include-empty-dirs --verbose \"overrides/after-build/dist/mygeomviewer/en/**/*.* \" dist/static/mygeomviewer/en/",
+    "build-after-copy-preinline-viewer-de": "cpx --include-empty-dirs --verbose \"node_modules/lz-string/libs/lz-string.min.js\" dist/static/mygeomviewer/de/ && cpx --include-empty-dirs --verbose \"devtools/webloader.js\" dist/static/mygeomviewer/de/ && cpx --include-empty-dirs --verbose \"overrides/after-build/dist/mygeomviewer/de/**/*.* \" dist/static/mygeomviewer/de/",
+    "build-after-copy-preinline-viewer-en": "cpx --include-empty-dirs --verbose \"node_modules/lz-string/libs/lz-string.min.js\" dist/static/mygeomviewer/en/ && cpx --include-empty-dirs --verbose \"devtools/webloader.js\" dist/static/mygeomviewer/en/ && cpx --include-empty-dirs --verbose \"overrides/after-build/dist/mygeomviewer/en/**/*.* \" dist/static/mygeomviewer/en/",
     "build-after-copy-overrides-config": "cpx --include-empty-dirs --verbose \"overrides/after-build/config/**/*.*\" config/",
     "build-after-copy-overrides-dist-viewer": "cpx --include-empty-dirs --verbose \"overrides/after-build/dist/mygeomviewer/**/*.*\" dist/static/mygeomviewer/",
     "build-after-copy-overrides-dist-dev": "cpx --include-empty-dirs --verbose \"overrides/after-build/dist/mygeomdev/**/*.*\" dist/static/mygeomdev/ && cpx --include-empty-dirs \"overrides/after-build/dist/mygeomdev/**/*.*\" dist/mygeomdev-server/",
@@ -150,8 +150,7 @@
   "dependencyHints": {
     "@babel/runtime": "fixed to prevent 'TypeError: l is undefined' on viewer and builded versions",
     "@babel/runtime-corejs3": "fixed to prevent 'TypeError: l is undefined' on viewer and builded versions",
-    "core-js-pure": "fixed to prevent 'TypeError: l is undefined' on viewer and builded versions",
-    "mermaid": "// TODO remove mermaid if not used to minimize build-size"
+    "core-js-pure": "fixed to prevent 'TypeError: l is undefined' on viewer and builded versions"
   },
   "optionalDeps // do copy these to deps if needed": {
     "db-migrate-mysql": "2.2.0",
@@ -173,9 +172,9 @@
     "@angular/service-worker": "7.2.16",
     "@babel/runtime": "7.15.4",
     "@babel/runtime-corejs3": "7.15.4",
-    "@dps/mycms-commons": "git://github.com/das-praktische-schreinerlein/mycms-commons.git#6.0.0",
-    "@dps/mycms-frontend-commons": "git://github.com/das-praktische-schreinerlein/mycms-frontend-commons.git#6.0.0",
-    "@dps/mycms-server-commons": "git://github.com/das-praktische-schreinerlein/mycms-server-commons.git#6.0.0",
+    "@dps/mycms-commons": "git://github.com/das-praktische-schreinerlein/mycms-commons.git#6.1.0",
+    "@dps/mycms-frontend-commons": "git://github.com/das-praktische-schreinerlein/mycms-frontend-commons.git#6.1.0",
+    "@dps/mycms-server-commons": "git://github.com/das-praktische-schreinerlein/mycms-server-commons.git#6.1.0",
     "@ng-bootstrap/ng-bootstrap": "4.2.2",
     "@nguniversal/express-engine": "7.1.1",
     "@nguniversal/module-map-ngfactory-loader": "7.1.1",
