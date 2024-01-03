@@ -154,8 +154,6 @@
   },
   "optionalDeps // do copy these to deps if needed": {
     "db-migrate-mysql": "2.2.0",
-    "// TODO if you want pdf replace PrintDialogPdfGenerator by JsPdfGenerator and move jspdf in package.json from optional to dep": "",
-    "jspdf": "2.3.1",
     "mysql": "2.18.1"
   },
   "dependencies": {

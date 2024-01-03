@@ -3,6 +3,7 @@
 # Versions
 
 ## 5.1.0
+- now bases on mysimplehomepage-5.1.0
 - use new commons
 - frontend: improved text-editor
 - frontend: added full-page mdpad-editor
