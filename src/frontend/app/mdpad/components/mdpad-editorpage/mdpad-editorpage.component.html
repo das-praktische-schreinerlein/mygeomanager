@@ -5,18 +5,21 @@
             <legend i18n="dataDesc label|Label for fieldset: dataDesc@@label.editform.pdoc.legend.dataDesc">&#x231a; Seiteninhalt</legend>
             <div class="row">
                 <app-text-editor
-                        [descMd]="defaultDescMd"
+                        [descMd]="currentDescMd"
                         [sampleDesc]="sampleDesc"
                         [editorCommands]="editorCommands"
                         [recommendAvailable]="false"
-                        (changeRenderedDescId)="setRenderedDescId($event)"></app-text-editor>
+                        [suggestedFileName]="suggestedFileBase + '.md'"
+                        (changeDesc)="setDesc($event)"
+                        (changeRenderedDescId)="setRenderedDescId($event)"
+                        (fileLoaded)="onFileLoaded($event)"></app-text-editor>
                 <div class="col-md-12" *ngIf="isPrintAvailable() || isPdfPrintAvailable()">
                     <ul class="nav command-container justify-content-end">
                         <li class="command-link" *ngIf="isPrintAvailable()">
-                            <div (click)="onOpenPrintPreview('ID', renderedDescId, 800, 200, 'print\.css')" class="command-icon command-icon-print"><span></span></div>
+                            <div (click)="onOpenPrintPreview('ID', renderedDescId, 800, 200, 'print.*\.css')" class="command-icon command-icon-print"><span></span></div>
                         </li>
                         <li class="command-link" *ngIf="isPdfPrintAvailable()">
-                            <div (click)="onPrintPdf('ID', renderedDescId, 800, 200, 'print\.css')" class="command-icon command-icon-pdf"><span></span></div>
+                            <div (click)="onPrintPdf('ID', renderedDescId, 800, 200, 'print.*\.css')" class="command-icon command-icon-pdf"><span></span></div>
                         </li>
                     </ul>
                 </div>

@@ -21,7 +21,7 @@ import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generi
 import {AppService} from './services/app.service';
 import {MarkdownPadModule} from './mdpad/mdpad.module';
 import {PdfGenerator} from '@dps/mycms-frontend-commons/dist/angular-commons/services/pdf-print.service';
-import {PrintDialogPdfGenerator} from '@dps/mycms-frontend-commons/dist/angular-commons/services/print-dialog-pdf.generator';
+import {EnvironmentPdfGenerator} from '../environments/environment';
 
 registerLocaleData(localeDe);
 
@@ -35,8 +35,7 @@ registerLocaleData(localeDe);
     ],
     providers: [
         {provide: GenericAppService, useClass: AppService},
-        // TODO if you want pdf replace PrintDialogPdfGenerator by JsPdfGenerator and move jspdf in package.json from optional to dep
-        {provide: PdfGenerator, useClass: PrintDialogPdfGenerator},
+        {provide: PdfGenerator, useClass: EnvironmentPdfGenerator},
         {provide: AngularMarkdownService, useClass: SpecificAngularMarkdownService},
         {provide: AngularHtmlService, useClass: SpecificAngularHtmlService},
         HtmlLocalLinkRenderer,

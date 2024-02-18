@@ -1,5 +1,15 @@
 # Migration-Hints for MySimpleHomePage
 
+## Version 5.0.0 -> 5.1.0
+
+### migrate changelogs
+
+#### pages
+- use changelog of pdocs-de.json to identify create/updatedates
+```sql
+UPDATE page SET pg_createdat='2023-07-08 00:00:00', pg_updatedat='2023-11-30 00:00:00', pg_updateversion=1;
+```
+
 ## Version 4.5 -> 5.0.0
 
 ### migrate page-documents

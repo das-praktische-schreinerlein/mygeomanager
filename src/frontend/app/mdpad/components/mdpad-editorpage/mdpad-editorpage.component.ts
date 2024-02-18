@@ -17,6 +17,7 @@ import {PrintOptions, PrintService} from '@dps/mycms-frontend-commons/dist/angul
 import {ElementFilterType} from '@dps/mycms-frontend-commons/dist/angular-commons/services/layout.utils';
 import {BeanUtils} from '@dps/mycms-commons/dist/commons/utils/bean.utils';
 import {CommonRoutingService, RoutingState} from '@dps/mycms-frontend-commons/dist/angular-commons/services/common-routing.service';
+import {NameUtils} from '@dps/mycms-commons/dist/commons/utils/name.utils';
 
 export interface MarkdownPadEditorPageComponentConfig {
     editorCommands: CommonDocEditorCommandComponentConfig;
@@ -38,7 +39,8 @@ export class MarkdownPadEditorPageComponent
         commandBlocks: []
     };
 
-    defaultDescMd = '';
+    suggestedFileBase = 'document';
+    currentDescMd = '';
     sampleDesc = '';
     renderedDescId: string = undefined;
 
@@ -52,8 +54,19 @@ export class MarkdownPadEditorPageComponent
         super(route, toastr, pageUtils, cd, trackingProvider, appService, platformService, layoutService, environment);
     }
 
+    setDesc(desc: string): void {
+        this.currentDescMd = desc;
+    }
+
     setRenderedDescId(renderedDescId: string): void {
         this.renderedDescId = renderedDescId;
+    }
+
+    onFileLoaded(fileName: string): void {
+        const newFileBase = fileName.substring(0, fileName.lastIndexOf('.'));
+        this.suggestedFileBase = NameUtils.normalizeFileNames(newFileBase !== undefined && newFileBase.length > 0
+            ? newFileBase
+            : this.suggestedFileBase);
     }
 
     isPdfPrintAvailable(): boolean {
@@ -94,7 +107,7 @@ export class MarkdownPadEditorPageComponent
                 height: height
             },
             printStyleIdFilter: new RegExp(printCssIdRegExp),
-            fileName: 'filename.pdf',
+            fileName: this.suggestedFileBase + '.pdf',
             pdfOptions: {
                 orientation: 'portrait',
                 format: 'a4'

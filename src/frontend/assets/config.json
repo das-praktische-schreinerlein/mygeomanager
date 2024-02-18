@@ -296,13 +296,13 @@
         "pdoc-create-resolver": {
             "nameReplacements": [
                 [" \\d\\d\\.\\d\\d\\.\\d\\d\\d\\d", ""],
-                ["mit .*? (ab |am |an |auf |bei |durch |im |in |nach |von |zur |zum )+", "$1"]
+                [" mit .*? (ab |am |an |auf |bei |durch |im |in |nach |von |zur |zum )+", "$1"]
             ]
         },
         "pdoc-page-desc-suggester": {
             "nameReplacements": [
                 [" \\d\\d\\.\\d\\d\\.\\d\\d\\d\\d", ""],
-                ["mit .*? (ab |am |an |auf |bei |durch |im |in |nach |von |zur |zum )+", "$1"]
+                [" mit .*? (ab |am |an |auf |bei |durch |im |in |nach |von |zur |zum )+", "$1"]
             ],
             "listItemTemplate": "- [{{LISTITEM.name}}](pdoc/show/page/{{LISTITEM.id}})\n",
             "listItemsFallbackTemplate": "",

@@ -14,6 +14,7 @@ import {
     PDocConverterCommand
 } from '@dps/mycms-server-commons/dist/pdoc-backend-commons/commands/pdoc-converter.command';
 import {ExtendedConfigInitializerCommand} from './extendedconfig-initializer.command';
+import {PDocPdfManagerCommand} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/commands/pdoc-pdf-manager.command';
 
 // tslint:disable-next-line:no-empty-interface
 export interface AdminCommandConfigType extends CommonAdminCommandConfigType {
@@ -31,6 +32,7 @@ export class AdminCommandManager extends CommonAdminCommandManager<AdminCommandC
             'loadGeoDoc': new GeoDocLoaderCommand(),
             'loadPDoc': new PDocLoaderCommand(),
             'mediaManager': new MediaManagerCommand(),
+            'pdocPdfManager': new PDocPdfManagerCommand(),
             'pageManager': new PageManagerCommand()
         }, adminCommandConfig);
     }

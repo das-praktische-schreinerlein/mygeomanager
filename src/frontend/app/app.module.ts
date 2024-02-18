@@ -38,10 +38,8 @@ import {
 import {
     PDocDynamicComponentService
 } from '@dps/mycms-frontend-commons/dist/frontend-pdoc-module/shared-pdoc/services/pdoc-dynamic-components.service';
-import {
-    PDocAlbumService
-} from '@dps/mycms-frontend-commons/dist/frontend-pdoc-module/shared-pdoc/services/pdoc-album.service';
-import {environment} from '../environments/environment';
+import {PDocAlbumService} from '@dps/mycms-frontend-commons/dist/frontend-pdoc-module/shared-pdoc/services/pdoc-album.service';
+import {environment, EnvironmentPdfGenerator} from '../environments/environment';
 import {COMMON_APP_ENVIRONMENT} from '@dps/mycms-frontend-commons/dist/frontend-section-commons/common-environment';
 import {
     AngularMarkdownService
@@ -59,7 +57,6 @@ import {
 import {GenericAppService} from '@dps/mycms-commons/dist/commons/services/generic-app.service';
 import {AppService} from './services/app.service';
 import {PdfGenerator} from '@dps/mycms-frontend-commons/dist/angular-commons/services/pdf-print.service';
-import {PrintDialogPdfGenerator} from '@dps/mycms-frontend-commons/dist/angular-commons/services/print-dialog-pdf.generator';
 
 registerLocaleData(localeDe);
 
@@ -85,8 +82,7 @@ registerLocaleData(localeDe);
         PDocNameSuggesterService,
         PDocDescSuggesterService,
         PDocPageDescSuggesterService,
-        // TODO if you want pdf replace PrintDialogPdfGenerator by JsPdfGenerator and move jspdf in package.json from optional to dep
-        {provide: PdfGenerator, useClass: PrintDialogPdfGenerator},
+        {provide: PdfGenerator, useClass: EnvironmentPdfGenerator},
         {provide: AngularMarkdownService, useClass: SpecificAngularMarkdownService},
         {provide: AngularHtmlService, useClass: SpecificAngularHtmlService},
         HtmlLocalLinkRenderer,

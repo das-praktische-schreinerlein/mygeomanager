@@ -2,10 +2,12 @@
     "profile": "dev",
     "filePathPDocJson": "config/pdocs.json",
     "filePathThemeFilterJson": "config/themeFilterConfig.json",
+    "apiRoutePdfsStaticDir": "F:/playground/mygeom-test/pdfs/",
     "gdocDataStoreAdapter": "GeoDocSolrAdapter",
     "gdocWritable": true,
     "nodejsBinaryPath": "node",
     "inlineJsPath": "devtools/create-allinone-html.js",
+    "webshot2pdfCommandPath": "F:\\Projekte\\MatPublishingTools\\dist-js\\webshot2pdf.js",
     "GeoDocItemsJsAdapter": {
         "dataFile": "D:/tmp/test/mygeo.json"
     },

@@ -9,6 +9,7 @@ import {MediaManagerCommand} from './media-manager.command';
 import {GeoDocExporterCommand} from './gdoc-exporter.command';
 import {GeoDocLoaderCommand} from './gdoc-loader.command';
 import {GeoDocConverterCommand} from './gdoc-converter.command';
+import {PDocPdfManagerCommand} from '@dps/mycms-server-commons/dist/pdoc-backend-commons/commands/pdoc-pdf-manager.command';
 
 export interface ServerAdminCommandConfigType extends CommonServerAdminCommandConfigType, AdminCommandConfigType {
     outputDir: string,
@@ -25,6 +26,7 @@ export class ServerAdminCommandManager extends CommonServerAdminCommandManager<S
                 'loadGeoDoc': new GeoDocLoaderCommand(),
                 'exportGeoDoc': new GeoDocExporterCommand(),
                 'mediaManager': new MediaManagerCommand(),
+                'pdocPdfManager': new PDocPdfManagerCommand(),
                 'pageManager': new PageManagerCommand(),
             },
             adminCommandConfig,
