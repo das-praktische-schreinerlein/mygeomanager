@@ -2,7 +2,7 @@
  
 # Versions
 
-## 5.1.0
+## 5.1.0 (2024-05-12)
 - now bases on mysimplehomepage-5.1.0
 - use new commons
 - frontend: improved text-editor
