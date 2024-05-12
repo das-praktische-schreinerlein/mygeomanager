@@ -46,6 +46,8 @@ window.importStaticTranslationsJsonP = `
     "listSorts_subtype": "Art",
     "listSorts_theme": "Seiten-Thema",
     "listSorts_type": "Typ",
+    "listSorts_createdAt": "angelegt",
+    "listSorts_updatedAt": "letzte Änderung",
     "ac_0": "Unbestimmt",
     "ac_1": "Rad-Tour",
     "loc_1": "Unbestimmt",

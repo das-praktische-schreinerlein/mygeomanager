@@ -45,6 +45,8 @@
     "listSorts_sortkey": "Seiten-Gliederung",
     "listSorts_theme": "Seiten-Thema",
     "listSorts_type": "type",
+    "listSorts_createdAt": "created at",
+    "listSorts_updatedAt": "last changed",
     "ac_0": "unknown",
     "ac_1": "cycling",
     "loc_1": "unknown",
