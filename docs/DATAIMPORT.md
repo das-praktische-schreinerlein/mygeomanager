@@ -25,9 +25,7 @@ Choose your region and hit the Run button above!
 // gather results
 (
   // query part for: “natural=peak”
-  node["natural"="peak"]({{bbox}});
-  way["natural"="peak"]({{bbox}});
-  relation["natural"="peak"]({{bbox}});
+  nwr["natural"="peak"]({{bbox}});
 );
 // print results
 out body;

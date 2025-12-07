@@ -17,7 +17,7 @@ for %%f in (%OSMDIR%\*.gdoc.json) do (
         --action loadGeoDocs ^
         --adminclibackend config/adminCli.dev.json ^
         --backend config/backend.dev.json ^
-        --file %OSMDIR%/%%~nf.gdoc.json ^
+        --file %OSMDIR%/%%~nf.json ^
         --renameFileAfterSuccess true
 )
 
