@@ -97,6 +97,8 @@
   <!--
      <lib path="../a-jar-that-does-not-exist.jar" /> 
   -->
+  <!-- allow Resource-Loading of language-files-->
+  <lib path="${solr.install.dir:../../../..}/contrib/" />
 
   <!-- Data Directory
 
