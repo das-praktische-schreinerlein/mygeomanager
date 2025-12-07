@@ -3,6 +3,7 @@
 # Versions
 
 ## 5.2.0
+- now bases on mysimplehomepage-5.2.0
 - use new commons
 
 ### new features
