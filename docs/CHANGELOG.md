@@ -2,7 +2,7 @@
  
 # Versions
 
-## 5.2.0
+## 5.2.0 (2025-12-07)
 - now bases on mysimplehomepage-5.2.0
 - use new commons
 
