@@ -2,6 +2,22 @@
  
 # Versions
 
+## 5.2.0
+- use new commons
+
+### new features
+- none
+
+### improvements
+- use new commons
+
+### bug fixes
+- none
+
+### breaking changes
+- none
+
+
 ## 5.1.0 (2024-05-12)
 - now bases on mysimplehomepage-5.1.0
 - use new commons

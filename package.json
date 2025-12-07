@@ -1,6 +1,6 @@
 {
   "name": "mygeomanager",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "license": "Apache-2.0",
   "angular-cli": {},
   "config": {
@@ -170,9 +170,9 @@
     "@angular/service-worker": "7.2.16",
     "@babel/runtime": "7.15.4",
     "@babel/runtime-corejs3": "7.15.4",
-    "@dps/mycms-commons": "git://github.com/das-praktische-schreinerlein/mycms-commons.git#6.1.0",
-    "@dps/mycms-frontend-commons": "git://github.com/das-praktische-schreinerlein/mycms-frontend-commons.git#6.1.0",
-    "@dps/mycms-server-commons": "git://github.com/das-praktische-schreinerlein/mycms-server-commons.git#6.1.0",
+    "@dps/mycms-commons": "git://github.com/das-praktische-schreinerlein/mycms-commons.git#6.3.0",
+    "@dps/mycms-frontend-commons": "git://github.com/das-praktische-schreinerlein/mycms-frontend-commons.git#6.3.0",
+    "@dps/mycms-server-commons": "git://github.com/das-praktische-schreinerlein/mycms-server-commons.git#6.3.0",
     "@ng-bootstrap/ng-bootstrap": "4.2.2",
     "@nguniversal/express-engine": "7.1.1",
     "@nguniversal/module-map-ngfactory-loader": "7.1.1",
@@ -214,6 +214,7 @@
     "leaflet-editable-polyline": "1.0.8",
     "leaflet.markercluster": "1.4.1",
     "lz-string": "1.5.0",
+    "markdown-to-text": "0.1.1",
     "marked": "4.3.0",
     "minimist": "1.2.8",
     "ngx-file-drop": "6.0.1",
